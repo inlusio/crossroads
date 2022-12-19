@@ -1,0 +1,1980 @@
+title: irene__intro
+tags: 
+colorID: 0
+position: 400,2820
+---
+npc: {irene__intro__0}
+player: {irene__intro__1}
+<<setactionbar choice>>
+<<setvisited irene__intro>>
+npc: {irene__intro__2}
+===
+title: app_ai__start
+tags: 
+colorID: 0
+position: 2840,4680
+---
+<<setactionbar choice>>
+npc: {app_ai__start__0}
+===
+title: basement_bright__intro
+tags: 
+colorID: 0
+position: -480,3680
+---
+<<setvisited basement_bright__intro>>
+<<set $outro_unlocked to true>>
+player: {basement_bright__intro__0}
+player: {basement_bright__intro__1}
+player: {basement_bright__intro__2}
+player: {basement_bright__intro__3}
+player: {basement_bright__intro__4}
+player: {basement_bright__intro__5}
+player: {basement_bright__intro__6}
+player: {basement_bright__intro__7}
+player: {basement_bright__intro__8}
+<<loc outro-0>>
+===
+title: caillou__intro
+tags: 
+colorID: 0
+position: 400,940
+---
+npc: {caillou__intro__0}
+player: {caillou__intro__1}
+npc: {caillou__intro__2}
+<<setactionbar choice>>
+<<setvisited caillou__intro>>
+player: {caillou__intro__3}
+===
+title: concierge_tel__intro
+tags: 
+colorID: 0
+position: 400,4700
+---
+npc: {concierge_tel__intro__0}
+player: {concierge_tel__intro__1}
+<<setactionbar choice>>
+<<setvisited concierge_tel__intro>>
+npc: {concierge_tel__intro__2}
+===
+title: kiosk__intro
+tags: 
+colorID: 0
+position: 2840,940
+---
+player: {kiosk__intro__0}
+<<setactionbar choice>>
+<<setvisited kiosk__intro>>
+npc: {kiosk__intro__1}
+===
+title: pierre__intro
+tags: 
+colorID: 0
+position: 2840,1900
+---
+npc: {pierre__intro__0}
+player: {pierre__intro__1}
+npc: {pierre__intro__2}
+player: {pierre__intro__3}
+npc: {pierre__intro__4}
+player: {pierre__intro__5}
+<<setvisited pierre__intro>>
+<<setactionbar choice>>
+npc: {pierre__intro__6}
+===
+title: pinboard__intro
+tags: 
+colorID: 0
+position: 2840,2800
+---
+<<setvisited pinboard__intro>>
+<<setactionbar choice>>
+player: {pinboard__intro__0}
+===
+title: tech_support__intro
+tags: 
+colorID: 0
+position: 2840,3700
+---
+npc: {tech_support__intro__0}
+player: {tech_support__intro__1}
+<<addoption pin>>
+npc: {tech_support__intro__2}
+player: {tech_support__intro__3}
+npc: {tech_support__intro__4}
+<<addoption serial_number>>
+npc: {tech_support__intro__5}
+<<setvisited tech_support__intro>>
+<<setactionbar deadend>>
+player: {tech_support__intro__6}
+===
+title: intro_0__start
+tags: 
+colorID: 0
+position: -1680,1860
+---
+narrator: {intro_0__start__0}
+<<loc intro-1>>
+<<jump intro_1__start>>
+===
+title: concierge__intro
+tags: 
+colorID: 0
+position: 400,1920
+---
+player: {concierge__intro__0}
+player: {concierge__intro__1}
+<<addoption phone_number>>
+player: {concierge__intro__2}
+player: {concierge__intro__3}
+player: {concierge__intro__4}
+<<addlocation app-ai>>
+<<setactionbar choice>>
+<<setvisited concierge__intro>>
+player: {concierge__intro__5}
+===
+title: intro_1__start
+tags: 
+colorID: 0
+position: -1440,1860
+---
+narrator: {intro_1__start__0}
+narrator: {intro_1__start__1}
+<<loc intro-2>>
+<<jump intro_2__start>>
+===
+title: intro_2__start
+tags: 
+colorID: 0
+position: -1200,1860
+---
+player: {intro_2__start__0}
+player: {intro_2__start__1}
+player: {intro_2__start__2}
+player: {intro_2__start__3}
+player: {intro_2__start__4}
+player: {intro_2__start__5}
+player: {intro_2__start__6}
+<<goto overview>>
+===
+title: irene__return
+tags: 
+colorID: 0
+position: 400,3060
+---
+player: {irene__return__0}
+<<setactionbar choice>>
+npc: {irene__return__1}
+===
+title: irene__start
+tags: 
+colorID: 0
+position: 120,2940
+---
+<<if $electricity_fixed is true>>
+<<jump irene__end>>
+<< elseif wasvisited("irene__intro") >>
+<<jump irene__return>>
+<< else >>
+<<jump irene__intro>>
+<< endif >>
+===
+title: concierge__return
+tags: 
+colorID: 0
+position: 400,2140
+---
+player: {concierge_return__0}
+<<setactionbar choice>>
+player: {concierge_return__1}
+===
+title: concierge__start
+tags: 
+colorID: 0
+position: 120,2000
+---
+<< if wasvisited("concierge__intro") >>
+<<jump concierge__return>>
+<< else >>
+<<jump concierge__intro>>
+<< endif >>
+===
+title: caillou__start
+tags: 
+colorID: 0
+position: 120,1060
+---
+<<if $electricity_fixed is true>>
+<<jump caillou__end>>
+<< elseif wasvisited("caillou__intro") >>
+<<jump caillou__return>>
+<< else >>
+<<jump caillou__intro>>
+<< endif >>
+===
+title: kiosk__start
+tags: 
+colorID: 0
+position: 2560,1060
+---
+<< if wasvisited("kiosk__intro") >>
+<<jump kiosk__return>>
+<< else >>
+<<jump kiosk__intro>>
+<< endif >>
+===
+title: kiosk__return
+tags: 
+colorID: 0
+position: 2840,1180
+---
+player: {kiosk__return__0}
+<<setactionbar choice>>
+npc: {kiosk__return__1}
+===
+title: pierre__start
+tags: 
+colorID: 0
+position: 2560,2020
+---
+<<if $electricity_fixed is true>>
+<<jump pierre__end>>
+<<elseif wasvisited("pierre__intro")>>
+<<jump pierre__return>>
+<<else>>
+<<jump pierre__intro>>
+<<endif>>
+===
+title: pierre__return
+tags: 
+colorID: 0
+position: 2840,2140
+---
+player: {pierre__return__0}
+<<setactionbar choice>>
+npc: {pierre__return__1}
+===
+title: pinboard__start
+tags: 
+colorID: 0
+position: 2560,2940
+---
+<< if wasvisited("pinboard__intro") >>
+<<jump pinboard__return>>
+<< else >>
+<<jump pinboard__intro>>
+<< endif >>
+===
+title: pinboard__return
+tags: 
+colorID: 0
+position: 2840,3060
+---
+<<setactionbar choice>>
+player: {pinboard__return__0}
+===
+title: tech_support__start
+tags: 
+colorID: 0
+position: 2560,3700
+---
+<<set $tech_support__correct_customer_pin to false>>
+<<set $tech_support__inquiry to false>>
+<<if $electricity_fixed is true>>
+<<jump tech_support__end>>
+<<elseif wasvisited("tech_support__intro")>>
+<<if hasoption("customer_pin") and hasoption("fuse_box_pin")>>
+<<jump tech_support__unlocked>>
+<<elseif hasoption("customer_pin")>>
+<<jump tech_support__partial>>
+<<elseif hasoption("fuse_box_pin")>>
+<<jump tech_support__partial>>
+<<else>>
+<<jump tech_support__return>>
+<<endif>>
+<< else >>
+<<jump tech_support__intro>>
+<< endif >>
+===
+title: concierge_tel__start
+tags: 
+colorID: 0
+position: 120,4800
+---
+<<if $electricity_fixed is true>>
+<<jump concierge_tel__end>>
+<<elseif wasvisited("concierge_tel__intro")>>
+<<jump concierge_tel__return>>
+<<else>>
+<<jump concierge_tel__intro>>
+<<endif>>
+===
+title: basement_bright__start
+tags: 
+colorID: 0
+position: -700,3820
+---
+<<setvisited basement_bright__start>>
+<<set $electricity_fixed to true>>
+<<jump basement_bright__intro>>
+===
+title: basement_dark__start
+tags: 
+colorID: 0
+position: 120,3820
+---
+<< if wasvisited("basement_bright__start") >>
+<<loc basement-bright>>
+<<jump basement_bright__start>>
+<< elseif wasvisited("basement_dark__intro") >>
+<< if hasitem("electric_cable") and hasitem("fuse") and hasitem("ladder") and hasitem("pliers") and hasitem("screwdriver") and hasitem("square_spanner") >>
+<<jump basement_dark__success>>
+<< else >>
+<<jump basement_dark__return>>
+<< endif >>
+<< else >>
+<<jump basement_dark__intro>>
+<< endif >>
+===
+title: basement_dark__intro
+tags: 
+colorID: 0
+position: 400,3700
+---
+player: {basement_dark__intro__0}
+player: {basement_dark__intro__1}
+player: {basement_dark__intro__2}
+<<addoption ladder>>
+player: {basement_dark__intro__3}
+<<setactionbar choice>>
+<<addoption electrician>>
+<<proceedonboarding onboarding_location_step_dialogue>>
+<<setvisited basement_dark__intro>>
+player: {basement_dark__intro__4}
+===
+title: caillou__return
+tags: 
+colorID: 0
+position: 400,1180
+---
+player: {caillou__return__0}
+<<setactionbar choice>>
+npc: {caillou__return__1}
+===
+title: irene__phone_number
+tags: 
+colorID: 0
+position: 880,3300
+---
+player: {irene__phone_number__0}
+npc: {irene__phone_number__1}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {irene__phone_number__2}
+===
+title: irene__electrician
+tags: 
+colorID: 0
+position: 1120,2840
+---
+player: {irene__electrician__0}
+npc: {irene__electrician__1}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {irene__electrician__2}
+===
+title: irene__ladder
+tags: 
+colorID: 0
+position: 1120,3080
+---
+player: {irene__ladder__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {irene__ladder__1}
+===
+title: irene__tech_support
+tags: 
+colorID: 0
+position: 1120,3300
+---
+player: {irene__tech_support__0}
+npc: {irene__tech_support__1}
+player: {irene__tech_support__2}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {irene__tech_support__3}
+===
+title: irene__square_spanner
+tags: 
+colorID: 0
+position: 1360,2820
+---
+player: {irene__square_spanner__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {irene__square_spanner__1}
+===
+title: irene__fuse
+tags: 
+colorID: 0
+position: 1360,3060
+---
+player: {irene__fuse__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {irene__fuse__1}
+===
+title: irene__pin
+tags: 
+colorID: 0
+position: 1360,3300
+---
+player: {irene__pin__0}
+<<changeteamspirit +1>>
+npc: {irene__pin__1}
+<<setactionbar choice>>
+<<addoption yellow_postit>>
+npc: {irene__pin__2}
+===
+title: irene__serial_number
+tags: 
+colorID: 0
+position: 1600,2820
+---
+player: {irene__serial_number__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {irene__serial_number__1}
+===
+title: irene__yellow_postit
+tags: 
+colorID: 0
+position: 1600,3060
+---
+player: {irene__yellow_postit__0} 
+npc: {irene__yellow_postit__1} 
+npc: {irene__yellow_postit__2} 
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {irene__yellow_postit__3}
+===
+title: irene__customer_pin
+tags: 
+colorID: 0
+position: 1840,2820
+---
+player: {irene__customer_pin__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {irene__customer_pin__1}
+===
+title: irene__fuse_box_pin
+tags: 
+colorID: 0
+position: 1600,3300
+---
+player: {irene__fuse_box_pin__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {irene__fuse_box_pin__1}
+===
+title: irene__pliers
+tags: 
+colorID: 0
+position: 1840,3300
+---
+player: {irene__pliers__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {irene__pliers__1}
+===
+title: irene__screwdriver
+tags: 
+colorID: 0
+position: 2080,2820
+---
+player: {irene__screwdriver__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {irene__screwdriver__1}
+===
+title: irene__electric_cable
+tags: 
+colorID: 0
+position: 2080,3060
+---
+player: {irene__electric_cable__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {irene__electric_cable__1}
+===
+title: pierre__phone_number
+tags: 
+colorID: 0
+position: 3320,2380
+---
+player: {pierre__phone_number__0}
+player: {pierre__phone_number__1}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {pierre__phone_number__2}
+===
+title: pierre__electrician
+tags: 
+colorID: 0
+position: 3560,1900
+---
+player: {pierre__electrician__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {pierre__electrician__1}
+===
+title: pierre__ladder
+tags: 
+colorID: 0
+position: 3560,2140
+---
+player: {pierre__ladder__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {pierre__ladder__1}
+===
+title: pierre__tech_support
+tags: 
+colorID: 0
+position: 3560,2360
+---
+player: {pierre__tech_support__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {pierre__tech_support__1}
+===
+title: pierre__square_spanner
+tags: 
+colorID: 0
+position: 3800,1900
+---
+player: {pierre__square_spanner__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {pierre__square_spanner__1}
+===
+title: pierre__fuse
+tags: 
+colorID: 0
+position: 3800,2140
+---
+player: {pierre__fuse__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {pierre__fuse__1}
+===
+title: pierre__pin
+tags: 
+colorID: 0
+position: 3800,2380
+---
+player: {pierre__pin__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {pierre__pin__1}
+===
+title: pierre__serial_number
+tags: 
+colorID: 0
+position: 4040,1880
+---
+player: {pierre__serial_number__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {pierre__serial_number__1}
+===
+title: pierre__yellow_postit
+tags: 
+colorID: 0
+position: 4040,2140
+---
+player: {pierre__yellow_postit__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {pierre__yellow_postit__1}
+===
+title: pierre__fuse_box_pin
+tags: 
+colorID: 0
+position: 4040,2380
+---
+player: {pierre__fuse_box_pin__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {pierre__fuse_box_pin__1}
+===
+title: pierre__customer_pin
+tags: 
+colorID: 0
+position: 4280,1900
+---
+player: {pierre__customer_pin__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {pierre__customer_pin__1}
+===
+title: pierre__pliers
+tags: 
+colorID: 0
+position: 4280,2380
+---
+player: {pierre__pliers__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {pierre__pliers__1}
+===
+title: pierre__screwdriver
+tags: 
+colorID: 0
+position: 4520,1880
+---
+player: {pierre__screwdriver__0}
+<<changeteamspirit +1>>
+npc: {pierre__screwdriver__1}
+<<additem screwdriver>>
+npc: {pierre__screwdriver__2}
+<<setactionbar choice>>
+player: {pierre__screwdriver__3}
+===
+title: pierre__electric_cable
+tags: 
+colorID: 0
+position: 4520,2140
+---
+player: {pierre__electric_cable__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {pierre__electric_cable__1}
+===
+title: caillou__phone_number
+tags: 
+colorID: 0
+position: 880,1420
+---
+player: {caillou__phone_number__0}
+<<changeteamspirit +1>>
+npc: {caillou__phone_number__1}
+npc: {caillou__phone_number__2}
+<<addlocation tel-concierge>>
+npc: {caillou__phone_number__3}
+<<setactionbar choice>>
+player: {caillou__phone_number__4}
+===
+title: caillou__electrician
+tags: 
+colorID: 0
+position: 1120,940
+---
+player: {caillou__electrician__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {caillou__electrician__1}
+===
+title: caillou__ladder
+tags: 
+colorID: 0
+position: 1120,1180
+---
+player: {caillou__ladder__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {caillou__ladder__1}
+===
+title: caillou__tech_support
+tags: 
+colorID: 0
+position: 1120,1420
+---
+player: {caillou__tech_support__0}
+npc: {caillou__tech_support__1}
+player: {caillou__tech_support__2}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {caillou__tech_support__3}
+===
+title: caillou__square_spanner
+tags: 
+colorID: 0
+position: 1360,920
+---
+player: {caillou__square_spanner__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {caillou__square_spanner__1}
+===
+title: caillou__fuse
+tags: 
+colorID: 0
+position: 1360,1180
+---
+player: {caillou__fuse__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {caillou__fuse__1}
+===
+title: caillou__pin
+tags: 
+colorID: 0
+position: 1360,1420
+---
+player: {caillou__pin__0}
+npc: {caillou__pin__1}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {caillou__pin__2}
+===
+title: caillou__serial_number
+tags: 
+colorID: 0
+position: 1600,940
+---
+player: {caillou__serial_number__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {caillou__serial_number__1}
+===
+title: caillou__yellow_postit
+tags: 
+colorID: 0
+position: 1600,1160
+---
+player: {caillou__yellow_postit__0}
+player: {caillou__yellow_postit__1}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {caillou__yellow_postit__2}
+===
+title: caillou__fuse_box_pin
+tags: 
+colorID: 0
+position: 1600,1420
+---
+player: {caillou__fuse_box_pin__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {caillou__fuse_box_pin__1}
+===
+title: caillou__customer_pin
+tags: 
+colorID: 0
+position: 1840,940
+---
+player: {caillou__customer_pin__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {caillou__customer_pin__1}
+===
+title: caillou__pliers
+tags: 
+colorID: 0
+position: 1840,1420
+---
+player: {caillou__pliers__0}
+<<changeteamspirit +1>>
+npc: {caillou__pliers__1}
+<<additem pliers>>
+npc: {caillou__pliers__2}
+<<setactionbar choice>>
+player: {caillou__pliers__3}
+===
+title: caillou__screwdriver
+tags: 
+colorID: 0
+position: 2080,940
+---
+player: {caillou__screwdriver__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {caillou__screwdriver__1}
+===
+title: caillou__electric_cable
+tags: 
+colorID: 0
+position: 2080,1180
+---
+player: {caillou__electric_cable__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {caillou__electric_cable__1}
+===
+title: pinboard__phone_number
+tags: 
+colorID: 0
+position: 3320,3280
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {pinboard__phoner_number__0}
+===
+title: pinboard__electrician
+tags: 
+colorID: 0
+position: 3560,2820
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {pinboard__electrician__0}
+===
+title: pinboard__ladder
+tags: 
+colorID: 0
+position: 3560,3060
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {pinboard__ladder__0}
+===
+title: pinboard__tech_support
+tags: 
+colorID: 0
+position: 3560,3300
+---
+player: {pinboard__tech_support__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {pinboard__tech_support__1}
+===
+title: pinboard__square_spanner
+tags: 
+colorID: 0
+position: 3800,2820
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {pinboard__square_spanner__0}
+===
+title: pinboard__fuse
+tags: 
+colorID: 0
+position: 3800,3060
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {pinboard__fuse__0}
+===
+title: pinboard__pin
+tags: 
+colorID: 0
+position: 3800,3300
+---
+player: {pinboard__pin__0}
+player: {pinboard__pin__1}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {pinboard__pin__2}
+===
+title: pinboard__serial_number
+tags: 
+colorID: 0
+position: 4040,2820
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {pinboard__serial_number__0}
+===
+title: pinboard__yellow_postit
+tags: 
+colorID: 0
+position: 4040,3060
+---
+player: {pinboard__yellow_postit__0}
+<<changeteamspirit +1>>
+player: {pinboard__yellow_postit__1}
+player: {pinboard__yellow_postit__2}
+<<setactionbar choice>>
+<<addoption customer_pin>>
+player: {pinboard__yellow_postit__3}.
+===
+title: pinboard__fuse_box_pin
+tags: 
+colorID: 0
+position: 4040,3300
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {pinboard__fuse_box_pin__0}
+===
+title: pinboard__customer_pin
+tags: 
+colorID: 0
+position: 4280,2820
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {pinboard__customer_pin__0}
+===
+title: pinboard__pliers
+tags: 
+colorID: 0
+position: 4280,3300
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {pinboard__pliers__0}
+===
+title: pinboard__screwdriver
+tags: 
+colorID: 0
+position: 4520,2820
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {pinboard__screwdriver__0}
+===
+title: pinboard__electric_cable
+tags: 
+colorID: 0
+position: 4520,3060
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {pinboard__electric_cable__0}
+===
+title: basement_dark__phone_number
+tags: 
+colorID: 0
+position: 880,4180
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {basement_dark__phone_number__0}
+===
+title: basement_dark__electrician
+tags: 
+colorID: 0
+position: 1120,3700
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {basement_dark__electrician__0}
+===
+title: basement_dark__ladder
+tags: 
+colorID: 0
+position: 1120,3940
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {basement_dark__ladder__0}
+===
+title: basement_dark__tech_support
+tags: 
+colorID: 0
+position: 1120,4180
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {basement_dark__tech_support__0}
+===
+title: basement_dark__square_spanner
+tags: 
+colorID: 0
+position: 1360,3700
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {basement_dark__square_spanner__0}
+===
+title: basement_dark__fuse
+tags: 
+colorID: 0
+position: 1360,3940
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {basement_dark__fuse__0}
+===
+title: basement_dark__pin
+tags: 
+colorID: 0
+position: 1360,4180
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {basement_dark__pin__0}
+===
+title: basement_dark__serial_number
+tags: 
+colorID: 0
+position: 1600,3700
+---
+player: {basement_dark__serial_number__0}
+<<changeteamspirit +1>>
+player: {basement_dark__serial_number__1}
+player: {basement_dark__serial_number__2}
+<<setactionbar choice>>
+<<addoption fuse_box_pin>>
+player: {basement_dark__serial_number__3}
+===
+title: basement_dark__yellow_postit
+tags: 
+colorID: 0
+position: 1600,3940
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {basement_dark__yellow_postit__0}
+===
+title: basement_dark__customer_pin
+tags: 
+colorID: 0
+position: 1840,3700
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {basement_dark__customer_pin__0}
+===
+title: basement_dark__fuse_box_pin
+tags: 
+colorID: 0
+position: 1600,4180
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {basement_dark__fuse_box_pin__0}
+===
+title: basement_dark__pliers
+tags: 
+colorID: 0
+position: 1840,4180
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {basement_dark__pliers__0}
+===
+title: basement_dark__screwdriver
+tags: 
+colorID: 0
+position: 2080,3680
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {basement_dark__screwdriver__0}
+===
+title: basement_dark__electric_cable
+tags: 
+colorID: 0
+position: 2080,3920
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {basement_dark__electric_cable__0}
+===
+title: concierge_tel__phone_number
+tags: 
+colorID: 0
+position: 880,5180
+---
+player: {concierge_tel__phone_number__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {concierge_tel__phone_number__1}
+===
+title: concierge_tel__electrician
+tags: 
+colorID: 0
+position: 1120,4700
+---
+player: {concierge_tel__electrician__0}
+player: {concierge_tel__electrician__1}
+<<changeteamspirit +1>>
+<<addoption tech_support>>
+npc: {concierge_tel__electrician__2}
+player: {concierge_tel__electrician__3}
+npc: {concierge_tel__electrician__4}
+player: {concierge_tel__electrician__5}
+npc: {concierge_tel__electrician__6}
+npc: {concierge_tel__electrician__7}
+<<addoption fuse>>
+npc: {concierge_tel__electrician__8}
+<<addoption square_spanner>>
+npc: {concierge_tel__electrician__9}
+<<setactionbar choice>>>
+player: {concierge_tel__electrician__10}
+===
+title: concierge_tel__ladder
+tags: 
+colorID: 0
+position: 1120,4940
+---
+player: {concierge_tel__ladder__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {concierge_tel__ladder__1}
+===
+title: concierge_tel__tech_support
+tags: 
+colorID: 0
+position: 1120,5180
+---
+player: {concierge_tel__tech_support__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {concierge_tel__tech_support__1}
+===
+title: concierge_tel__square_spanner
+tags: 
+colorID: 0
+position: 1360,4700
+---
+player: {concierge_tel__square_spanner__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {concierge_tel__square_spanner__1}
+===
+title: concierge_tel__fuse
+tags: 
+colorID: 0
+position: 1360,4940
+---
+player: {concierge_tel__fuse__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {concierge_tel__fuse__1}
+===
+title: concierge_tel__pin
+tags: 
+colorID: 0
+position: 1360,5180
+---
+player: {concierge_tel__pin__0}
+npc: {concierge_tel__pin__1}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {concierge_tel__pin__2}
+===
+title: concierge_tel__serial_number
+tags: 
+colorID: 0
+position: 1600,4700
+---
+player: {concierge_tel__serial_number__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {concierge_tel__serial_number__1}
+===
+title: concierge_tel__yellow_postit
+tags: 
+colorID: 0
+position: 1600,4940
+---
+player: {concierge_tel__yellow_postit__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {concierge_tel__yellow_postit__1}
+===
+title: concierge_tel__fuse_box_pin
+tags: 
+colorID: 0
+position: 1600,5180
+---
+player: {concierge_tel__fuse_box_pin__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {concierge_tel__fuse_box_pin__1}
+===
+title: concierge_tel__customer_pin
+tags: 
+colorID: 0
+position: 1840,4700
+---
+player: {concierge_tel__customer_pin__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {concierge_tel__customer_pin__1}
+===
+title: concierge_tel__pliers
+tags: 
+colorID: 0
+position: 1840,5180
+---
+player: {concierge_tel__pliers__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {concierge_tel__pliers__1}
+===
+title: concierge_tel__screwdriver
+tags: 
+colorID: 0
+position: 2080,4700
+---
+player: {concierge_tel__screwdriver__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {concierge_tel__screwdriver__1}
+===
+title: concierge_tel__electric_cable
+tags: 
+colorID: 0
+position: 2080,4940
+---
+player: {concierge_tel__electric_cable__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {concierge_tel__electric_cable__1}
+===
+title: tech_support__customer_pin
+tags: 
+colorID: 0
+position: 4280,3680
+---
+player: {tech_support__customer_pin__0}
+<<set $tech_support__correct_customer_pin to true>>
+<<changeteamspirit +1>>
+<<setactionbar choice>>
+npc: {tech_support__customer_pin__1}
+===
+title: tech_support__fuse_box_pin
+tags: 
+colorID: 0
+position: 4040,4180
+---
+<<if $tech_support__correct_customer_pin == true>>
+<<changeteamspirit +1>>
+<<jump tech_support__success>>
+<<else>>
+player: {tech_support__fuse_box_pin__0}
+<<jump tech_support__wrong_pin>>
+<<endif>>
+===
+title: tech_support__phone_number
+tags: 
+colorID: 0
+position: 3320,4160
+---
+<<if $tech_support__inquiry is true>>
+player: {tech_support__phone_number__0}
+<<jump tech_support__wrong_pin>>
+<<endif>>
+player: {tech_support__phone_number__1}
+<<setactionbar choice>>
+npc: {tech_support__phone_number__2}
+===
+title: tech_support__electrician
+tags: 
+colorID: 0
+position: 3560,3700
+---
+<<if $tech_support__inquiry is true>>
+player: {tech_support__electrician__0}
+<<jump tech_support__wrong_pin>>
+<<endif>>
+player: {tech_support__electrician__1}
+<<setactionbar choice>>
+npc: {tech_support__electrician__2}
+===
+title: tech_support__ladder
+tags: 
+colorID: 0
+position: 3560,3940
+---
+<<if $tech_support__inquiry is true>>
+player: {tech_support__ladder__0}
+<<jump tech_support__wrong_pin>>
+<<endif>>
+player: {tech_support__ladder__1}
+<<setactionbar choice>>
+npc: {tech_support__ladder__2}
+===
+title: tech_support__tech_support
+tags: 
+colorID: 0
+position: 3560,4180
+---
+<<if $tech_support__inquiry is true>>
+player: {tech_support__tech_support__0}
+<<jump tech_support__wrong_pin>>
+<<endif>>
+player: {tech_support__tech_support__1}
+<<setactionbar choice>>
+npc: {tech_support__tech_support__2}
+===
+title: tech_support__square_spanner
+tags: 
+colorID: 0
+position: 3800,3700
+---
+<<if $tech_support__inquiry is true>>
+player: {tech_support__square_spanner__0}
+<<jump tech_support__wrong_pin>>
+<<endif>>
+player: {tech_support__square_spanner__1}
+<<setactionbar choice>>
+npc: {tech_support__square_spanner__2}
+===
+title: tech_support__pin
+tags: 
+colorID: 0
+position: 3800,4180
+---
+<<if $tech_support__inquiry is true>>
+player: {tech_support__pin__0}
+<<jump tech_support__wrong_pin>>
+<<endif>>
+player: {tech_support__pin__1}
+<<setactionbar choice>>
+npc: {tech_support__pin__2}
+===
+title: tech_support__serial_number
+tags: 
+colorID: 0
+position: 4040,3700
+---
+<<if $tech_support__inquiry is true>>
+player: {tech_support__serial_number__0}
+<<jump tech_support__wrong_pin>>
+<<endif>>
+player: {tech_support__serial_number__1}
+<<setactionbar choice>>
+npc: {tech_support__serial_number__2}
+===
+title: tech_support__yellow_postit
+tags: 
+colorID: 0
+position: 4040,3940
+---
+<<if $tech_support__inquiry is true>>
+player: {tech_support__yellow_postit__0}
+<<jump tech_support__wrong_pin>>
+<<endif>>
+player: {tech_support__yellow_postit__1}
+<<setactionbar choice>>
+npc: {tech_support__yellow_postit__2}
+===
+title: tech_support__pliers
+tags: 
+colorID: 0
+position: 4280,4180
+---
+<<if $tech_support__inquiry is true>>
+player: {tech_support__pliers__0}
+<<jump tech_support__wrong_pin>>
+<<endif>>
+player: {tech_support__pliers__1}
+<<setactionbar choice>>
+npc: {tech_support__pliers__2}
+===
+title: tech_support__screwdriver
+tags: 
+colorID: 0
+position: 4520,3700
+---
+<<if $tech_support__inquiry is true>>
+player: {tech_support__screwdriver__0}
+<<jump tech_support__wrong_pin>>
+<<endif>>
+player: {tech_support__screwdriver__1}
+<<setactionbar choice>>
+npc: {tech_support__screwdriver__2}
+===
+title: tech_support__electric_cable
+tags: 
+colorID: 0
+position: 4520,3940
+---
+<<if $tech_support__inquiry is true>>
+player: {tech_support__electric_cable__0}
+<<jump tech_support__wrong_pin>>
+<<endif>>
+player: {tech_support__electric_cable__1}
+<<setactionbar choice>>
+npc: {tech_support__electric_cable__2}
+===
+title: kiosk__phone_number
+tags: 
+colorID: 0
+position: 3320,1360
+---
+player: {kiosk__phone_number__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {kiosk__phone_number__1}
+===
+title: kiosk__electrician
+tags: 
+colorID: 0
+position: 3560,940
+---
+player: {kiosk__electrician__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {kiosk__electrician__1}
+===
+title: kiosk__ladder
+tags: 
+colorID: 0
+position: 3560,1180
+---
+player: {kiosk__ladder__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {kiosk__ladder__1}
+===
+title: kiosk__tech_support
+tags: 
+colorID: 0
+position: 3560,1420
+---
+player: {kiosk__tech_support__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {kiosk__tech_support__1}
+===
+title: kiosk__square_spanner
+tags: 
+colorID: 0
+position: 3800,940
+---
+player: {kiosk__square_spanner__0}
+<<changeteamspirit +1>>
+npc: {kiosk__square_spanner__1}
+<<additem square_spanner>>
+npc: {kiosk__square_spanner__2}
+<<setactionbar choice>>
+player: {kiosk__square_spanner__3}
+===
+title: kiosk__fuse
+tags: 
+colorID: 0
+position: 3800,1180
+---
+player:{kiosk__fuse__0} 
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {kiosk__fuse__1}
+===
+title: kiosk__pin
+tags: 
+colorID: 0
+position: 3800,1420
+---
+player: {kiosk__pin__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {kiosk__pin__1}
+===
+title: kiosk__serial_number
+tags: 
+colorID: 0
+position: 4040,940
+---
+player: {kiosk__serial_number__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {kiosk__serial_number__1}
+===
+title: kiosk__yellow_postit
+tags: 
+colorID: 0
+position: 4040,1180
+---
+player: {kiosk__yellow_postit__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {kiosk__yellow_postit__1}
+===
+title: kiosk__fuse_box_pin
+tags: 
+colorID: 0
+position: 4040,1420
+---
+player: {kiosk__fuse_box_pin__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {kiosk__fuse_box_pin__1}
+===
+title: kiosk__screwdriver
+tags: 
+colorID: 0
+position: 4520,940
+---
+player: {kiosk__screwdriver__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {kiosk__screwdriver__1}
+===
+title: kiosk__customer_pin
+tags: 
+colorID: 0
+position: 4280,920
+---
+player: {kiosk__customer_pin__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {kiosk__customer_pin__1}
+===
+title: kiosk__pliers
+tags: 
+colorID: 0
+position: 4280,1420
+---
+player: {kiosk__pliers__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {kiosk__pliers__1}
+===
+title: kiosk__electric_cable
+tags: 
+colorID: 0
+position: 4520,1160
+---
+player: {kiosk__electric_cable__0}
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {kiosk__electric_cable__1}
+===
+title: app_ai__phone_number
+tags: 
+colorID: 0
+position: 3320,5180
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+<<messageplayer {dialogue_option.phone_number}>>
+<<play app_ai__phone_number>>
+===
+title: app_ai__electrician
+tags: 
+colorID: 0
+position: 3560,4700
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+<<messageplayer {dialogue_option.electrician}>>
+<<play app_ai__electrician>>
+===
+title: app_ai__ladder
+tags: 
+colorID: 0
+position: 3560,4940
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+<<messageplayer {dialogue_option.ladder}>>
+<<play app_ai__ladder>>
+===
+title: app_ai__tech_support
+tags: 
+colorID: 0
+position: 3560,5180
+---
+<<addlocation tel-tech-support>>
+<<changeteamspirit +1>>
+<<setactionbar choice>>
+<<messageplayer {dialogue_option.tech_support}>>
+<<play app_ai__tech_support>>
+===
+title: app_ai__square_spanner
+tags: 
+colorID: 0
+position: 3800,4700
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+<<messageplayer {dialogue_option.square_spanner}>>
+<<play app_ai__square_spanner>>
+===
+title: app_ai__fuse
+tags: 
+colorID: 0
+position: 3800,4920
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+<<messageplayer {dialogue_option.fuse}>>
+<<play app_ai__fuse>>
+===
+title: app_ai__pin
+tags: 
+colorID: 0
+position: 3800,5180
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+<<messageplayer {dialogue_option.pin}>>
+<<play app_ai__pin>>
+===
+title: app_ai__serial_number
+tags: 
+colorID: 0
+position: 4040,4700
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+<<messageplayer {dialogue_option.serial_number}>>
+<<play app_ai__serial_number>>
+===
+title: app_ai__yellow_postit
+tags: 
+colorID: 0
+position: 4040,4940
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+<<messageplayer {dialogue_option.yellow_postit}>>
+<<play app_ai__yellow_postit>>
+===
+title: app_ai__fuse_box_pin
+tags: 
+colorID: 0
+position: 4040,5160
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+<<messageplayer {dialogue_option.fuse_box_pin}>>
+<<play app_ai__fuse_box_pin>>
+===
+title: app_ai__customer_pin
+tags: 
+colorID: 0
+position: 4280,4700
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+<<messageplayer {dialogue_option.customer_pin}>>
+<<play app_ai__customer_pin>>
+===
+title: app_ai__pliers
+tags: 
+colorID: 0
+position: 4280,5180
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+<<messageplayer {dialogue_option.pliers}>>
+<<play app_ai__pliers>>
+===
+title: app_ai__screwdriver
+tags: 
+colorID: 0
+position: 4520,4700
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+<<messageplayer {dialogue_option.screwdriver}>>
+<<play app_ai__screwdriver>>
+===
+title: app_ai__electric_cable
+tags: 
+colorID: 0
+position: 4520,4940
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+<<messageplayer {dialogue_option.electric_cable}>>
+<<play app_ai__electric_cable>>
+===
+title: basement_dark__return
+tags: 
+colorID: 0
+position: 400,3940
+---
+player: {basement_dark__return__0}
+<<proceedonboarding onboarding_location_step_dialogue>>
+<<setactionbar choice>>
+player: {basement_dark__return__1}
+===
+title: tech_support__fuse
+tags: 
+colorID: 0
+position: 3800,3940
+---
+<<if $tech_support__inquiry is true>>
+player: {tech_support__fuse__0}
+<<jump tech_support__wrong_pin>>
+<<endif>>
+player: {tech_support__fuse__1}
+<<setactionbar choice>>
+npc: {tech_support__fuse__2}
+===
+title: tech_support__return
+tags: 
+colorID: 0
+position: 2840,3940
+---
+npc: {tech_support__return__0}Hotline von Electro Eclair, guten Tag.
+player: {tech_support__return__1}
+player: {tech_support__return__2}
+<<setactionbar deadend>>
+npc: {tech_support__return__3}
+===
+title: tech_support__unlocked
+tags: 
+colorID: 0
+position: 2560,4180
+---
+npc: {tech_support__unlocked__0}
+player: {tech_support__unlocked__1}
+<<setactionbar choice>>
+<<set $tech_support__inquiry to true>>
+npc: {tech_support__unlocked__2}
+===
+title: tech_support__partial
+tags: 
+colorID: 0
+position: 2840,4180
+---
+npc: {tech_support__partial__0}
+player: {tech_support__partial__1}
+<<setactionbar deadend>>
+npc: {tech_support__partial__2}
+===
+title: tech_support__wrong_pin
+tags: 
+colorID: 0
+position: 4760,3700
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+npc: {tech_support__wrong_pin__0}
+===
+title: tech_support__success
+tags: 
+colorID: 0
+position: 4760,4180
+---
+player: {tech_support__success__0}
+npc: {tech_support__success__1}
+npc: {tech_support__success__2}
+npc: {tech_support__success__3}
+<<addoption electric_cable>>
+npc: {tech_support__success__4}
+<<addoption pliers>>
+npc: {tech_support__success__5}
+<<addoption screwdriver>>
+npc: {tech_support__success__6}
+npc: {tech_support__success__7}
+npc: {tech_support__success__8}
+player: {tech_support__success__9}
+npc: {tech_support__success__10}
+npc: {tech_support__success__11}
+player: {tech_support__success__12}
+<<setvisited tech_support__success>>
+<<setactionbar deadend>>
+npc: {tech_support__success__13}
+===
+title: concierge__deadend
+tags: 
+colorID: 0
+position: 120,2400
+---
+<<setactionbar choice>>
+<<changeteamspirit -1>>
+player: {player__deadend__0}
+===
+title: concierge__electrician
+tags: 
+colorID: 0
+position: 1120,1920
+---
+<<jump concierge__deadend>>
+===
+title: concierge__square_spanner
+tags: 
+colorID: 0
+position: 1360,1920
+---
+<<jump concierge__deadend>>
+===
+title: concierge__serial_number
+tags: 
+colorID: 0
+position: 1600,1920
+---
+<<jump concierge__deadend>>
+===
+title: concierge__customer_pin
+tags: 
+colorID: 0
+position: 1840,1920
+---
+<<jump concierge__deadend>>
+===
+title: concierge__screwdriver
+tags: 
+colorID: 0
+position: 2080,1920
+---
+<<jump concierge__deadend>>
+===
+title: concierge__ladder
+tags: 
+colorID: 0
+position: 1120,2160
+---
+<<jump concierge__deadend>>
+===
+title: concierge__fuse
+tags: 
+colorID: 0
+position: 1360,2160
+---
+<<jump concierge__deadend>>
+===
+title: concierge__yellow_postit
+tags: 
+colorID: 0
+position: 1600,2160
+---
+<<jump concierge__deadend>>
+===
+title: concierge__electric_cable
+tags: 
+colorID: 0
+position: 2080,2160
+---
+<<jump concierge__deadend>>
+===
+title: concierge__phone_number
+tags: 
+colorID: 0
+position: 880,2400
+---
+<<jump concierge__deadend>>
+===
+title: concierge__tech_support
+tags: 
+colorID: 0
+position: 1120,2400
+---
+<<jump concierge__deadend>>
+===
+title: concierge__pin
+tags: 
+colorID: 0
+position: 1360,2400
+---
+<<jump concierge__deadend>>
+===
+title: concierge__fuse_box_pin
+tags: 
+colorID: 0
+position: 1600,2400
+---
+<<jump concierge__deadend>>
+===
+title: concierge__pliers
+tags: 
+colorID: 0
+position: 1840,2400
+---
+<<jump concierge__deadend>>
+===
+title: concierge_tel__return
+tags: 
+colorID: 0
+position: 400,4920
+---
+npc: {concierge_tel__return__0}
+<<setactionbar choice>>
+player: {concierge_tel__return__1}
+===
+title: basement_dark__success
+tags: 
+colorID: 0
+position: 400,4180
+---
+player: {basement_dark__success__0}
+player: {basement_dark__success__1}
+player: {basement_dark__success__2}
+player: {basement_dark__success__3}
+player: {basement_dark__success__4}
+player: {basement_dark__success__5}
+player: {basement_dark__success__6}
+player: {basement_dark__success__7}
+<<loc basement-bright>>
+<<jump basement_bright__start>>
+===
+title: outro_0__start
+tags: 
+colorID: 0
+position: -680,4800
+---
+narrator: {outro__intro__0}
+<<goto congratulations>>
+===
+title: outro_1__start
+tags: 
+colorID: 0
+position: -420,4800
+---
+Empty Text
+===
+title: tech_support__end
+tags: 
+colorID: 0
+position: 2560,3940
+---
+npc: {tech_support__end__0}
+player: {tech_support__end__1}
+<<setactionbar deadend>>
+npc: {tech_support__end__2}
+===
+title: onboarding__start
+tags: 
+colorID: 0
+position: -1680,1280
+---
+<<showonboardingtooltip translation-help>>
+tutorial: {onboarding__0}
+<<showonboardingtooltip team-spirit>>
+tutorial: {onboarding__1}
+<<showonboardingtooltip menu>>
+tutorial: {onboarding__2}
+<<showonboardingtooltip none>>
+<<loc intro-0>>
+===
+title: onboarding_overview_choose_location__start
+tags: 
+colorID: 0
+position: -1680,1520
+---
+tutorial: {onboarding_overview_choose_location__start__0}
+===
+title: onboarding_location_step_dialogue__start
+tags: 
+colorID: 0
+position: -1440,1520
+---
+<<wait>>
+tutorial: {onboarding_location_step_dialogue__0}
+===
+title: onboarding_overview_search_item__start
+tags: 
+colorID: 0
+position: -1200,1520
+---
+tutorial: {onboarding_overview_search_item__start__0}
+===
+title: onboarding_overview_choose_option__start
+tags: 
+colorID: 0
+position: -960,1520
+---
+tutorial: {onboarding_overview_choose_option__start__0}
+tutorial: {onboarding_overview_choose_option__start__1}
+===
+title: onboarding_team_motivation_gain__start
+tags: 
+colorID: 0
+position: -720,1520
+---
+<<wait>>
+tutorial: {onboarding_team_motivation_gain__start__0}
+===
+title: onboarding_team_motivation_lose__start
+tags: 
+colorID: 0
+position: -480,1520
+---
+<<wait>>
+tutorial: {onboarding_team_motivation_lose__start__0}
+===
