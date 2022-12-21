@@ -23,8 +23,6 @@ Sphere: And who is this then?
         <<jump TwoTruthsGame>>
     -> Ugh, no.
 <<endif>>
-// if they didn't offer to play a game, or they did but you said no,
-// then they don't like you now
 <<jump BadEnding>>
 ===
 title: TwoTruthsGame
