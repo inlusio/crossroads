@@ -33,4 +33,4 @@ lerna-debug.log*
 /cypress/screenshots/
 
 # project files
-ysc
+yarn-tests/ysc
