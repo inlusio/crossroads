@@ -1,5 +1,8 @@
 <script lang="ts" setup>
   import { RouterView } from 'vue-router'
+  import { useBootstrapStore } from '@/stores/Bootstrap'
+
+  useBootstrapStore()
 </script>
 
 <template>

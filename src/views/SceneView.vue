@@ -1,9 +1,8 @@
 <script lang="ts" setup>
   // @ts-ignore
   import YarnBound from 'yarn-bound/src'
-  import dialogue from '../assets/yarn/test.yarn?raw'
-  import { onMounted } from 'vue'
-  import { useRoute } from 'vue-router'
+  import { computed, onMounted, ref, watch } from 'vue'
+  import useGameScene from '@/composables/GameScene/GameScene'
 
   interface YarnBoundOptions {
     dialogue: string
@@ -15,21 +14,30 @@
     locale?: string
   }
 
-  const route = useRoute()
+  const { content, scene } = useGameScene()
 
-  onMounted(() => {
-    const runner = new YarnBound({
-      dialogue,
-    } as YarnBoundOptions)
+  const runner = ref<YarnBound | null>(null)
 
-    console.log(runner.currentResult)
-  })
+  watch(content, () => {
+    if (content.value?.dialogue.code) {
+      runner.value = new YarnBound({
+        dialogue: content.value?.dialogue.code,
+      } as YarnBoundOptions)
+
+      console.log(runner.currentResult)
+    }
+  }, { immediate: true })
 </script>
 
 <template>
   <div class="about">
     <h1>Intro:</h1>
-    <span>scene: {{ route.params.scene }}</span>
+    <span>scene: {{ scene }}</span>
+    <pre>{{ content }}</pre>
+
+    <div v-if="content">
+      <img :src="content.illustration" alt="">
+    </div>
   </div>
 </template>
 
