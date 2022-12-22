@@ -1,0 +1,26 @@
+# File-based Netlify configuration
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+base = "./"
+publish = "./dist/"
+command = "npm run build"
+
+# https://docs.netlify.com/configure-builds/file-based-configuration/#post-processing
+# If skip_processing = true, all other settings are ignored
+# Processing is skipped because git-lfs is used and netlify processing is incompatible with it
+[build.processing]
+skip_processing = true
+
+#[[redirects]]
+#from = "/*"
+#to = "/index.html"
+#status = 200
+
+[[headers]]
+# Define which paths this specific [[headers]] block will cover.
+for = "/*.woff2"
+
+[headers.values]
+Access-Control-Allow-Origin = "*"
+Content-Type = "font/woff2"

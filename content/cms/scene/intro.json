@@ -1,0 +1,8 @@
+{
+  "id": "intro",
+  "name": "Intro",
+  "dialogue": {
+    "code": "#filetag1 \n#filetag2\ntitle: Start\nposition: 0,0\n---\n<<set $shapes_like_you to true>>\nSphere: Hello, I am Blue Sphere.\nCube: Hi there Sphere! I'm Red Cube.\nSphere: And who is this then?\n\n-> I'm Capsule, but my friends call me \"Tic Tac\". No idea why...\n    <<set $name to \"Tic Tac\">>\n-> The name's Triquandle.\n    <<set $name to \"Triquandle\">>\n-> Pyramid. Why; who wants to know?\n    <<set $name to \"Pyramid\">>\n    <<set $shapes_like_you to false>>\n\n<<if $shapes_like_you>>\n    Sphere: Nice to meet you {$name}!\n    Cube: Yeah, likewise!\n    Cube: Do you wanna play a game?\n    -> Yeah, sure!\n        Sphere: Let's play Two Truths and a Lie then!\n        <<jump TwoTruthsGame>>\n    -> Ugh, no.\n<<endif>>\n<<jump BadEnding>>\n==="
+  },
+  "illustration": "/image/cms/scene/illustration/twin-otter-plane-rescue-mission-antarctia-winter.webp"
+}

@@ -1,0 +1,78 @@
+backend:
+  name: git-gateway
+  branch: master
+  squash_merges: true
+
+local_backend: true
+media_folder: '/public/file/cms/'
+public_folder: '/file/cms/'
+
+slug:
+  encoding: 'ascii'
+  clean_accents: true
+  sanitize_replacement: '-'
+
+cms_mixins:
+  cms_field_relation: &FIELD_RELATION
+    widget: relation
+    options_length: 100
+    i18n: duplicate
+  cms_field_string: &FIELD_STRING
+    name: 'string'
+    label: 'Kurztext'
+    required: true
+    widget: string
+    i18n: true
+  cms_field_text: &FIELD_TEXT
+    name: 'text'
+    label: 'Text'
+    required: true
+    widget: text
+    i18n: true
+  cms_field_id: &FIELD_ID
+    <<: *FIELD_STRING
+    name: 'id'
+    label: 'Id'
+    i18n: duplicate
+    pattern: [ '^[a-z0-9-]+$', 'Bitte nur Kleinbuchstaben, Zahlen und Bindestriche verwenden!' ]
+    hint: 'Technischer Identifikator, z.B. für die Verwendung in der URL. Bitte nur Kleinbuchstaben, Zahlen und Bindestriche verwenden, möglichst in Englisch schreiben und darauf achten, dass der Begriff einzigartig ist in seinem Bereich. Beispiel: "eingang-station"'
+  cms_field_name: &FIELD_NAME
+    <<: *FIELD_STRING
+    name: 'name'
+    label: 'Name'
+    hint: 'Wird als Titel verwendet.'
+  cms_field_image: &FIELD_IMAGE
+    name: 'image'
+    label: 'Bild'
+    required: true
+    widget: image
+    i18n: duplicate
+    allow_multiple: false
+    choose_url: false
+
+collections:
+  - name: 'game_scene'
+    label: 'Szenen'
+    label_singular: 'Szene'
+    i18n: true
+    sortable_fields: [ 'name', 'id' ]
+    folder: 'content/cms/scene'
+    slug: '{{fields.id}}'
+    widget: object
+    summary: '{{fields.name}} ––– {{fields.id}}'
+    format: 'json'
+    create: true
+    delete: true
+    editor:
+      preview: false
+    fields:
+      - *FIELD_ID
+      - *FIELD_NAME
+      - <<: *FIELD_IMAGE
+        name: 'illustration'
+        label: 'Illustration Szene'
+        media_folder: '/public/image/cms/scene/illustration/'
+        public_folder: '/image/cms/scene/illustration/'
+      - name: 'dialogue'
+        label: 'Dialog-Code'
+        widget: code
