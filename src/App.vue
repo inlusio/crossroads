@@ -16,7 +16,7 @@
     </div>
   </header>
 
-  <RouterView />
+  <RouterView class="s-app__main" />
 </template>
 
 <style scoped lang="scss"></style>

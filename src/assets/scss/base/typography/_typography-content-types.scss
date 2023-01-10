@@ -102,10 +102,12 @@
 
   position: relative;
   display: inline-block;
-  color: col.$brand-yellow-dark;
-  transition: color trs.$default, transform trs.$default;
+  color: col.$brand-yellow-light;
+  transition: color trs.$default, background-color trs.$default, transform trs.$default;
+  text-decoration: underline;
 
   @include utils.has-focus {
+    color: col.$monochrome-lead;
     background-color: col.$brand-yellow-light;
   }
 }

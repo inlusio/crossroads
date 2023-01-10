@@ -1,0 +1,70 @@
+.u-markdown-root {
+  /// Heading types
+  ///
+  h1 {
+    margin-bottom: 32px;
+
+    &:not(:first-child) {
+      margin-top: 60px;
+    }
+  }
+
+  h2 {
+    margin-bottom: 24px;
+
+    &:not(:first-child) {
+      margin-top: 48px;
+    }
+  }
+
+  h3 {
+    margin-bottom: 16px;
+
+    &:not(:first-child) {
+      margin-top: 36px;
+    }
+  }
+
+  h4 {
+    margin-bottom: 12px;
+
+    &:not(:first-child) {
+      margin-top: 18px;
+    }
+  }
+
+  h5 {
+    margin-bottom: 8px;
+
+    &:not(:first-child) {
+      margin-top: 12px;
+    }
+  }
+
+  h6 {
+    margin-bottom: 8px;
+
+    &:not(:first-child) {
+      margin-top: 12px;
+    }
+  }
+
+  // Margins between list elements
+  li + li {
+    margin-top: 6px;
+  }
+
+  /// Margins between text nodes
+  ///
+  p,
+  ul,
+  ol {
+    + p,
+    + ul,
+    + ol {
+      &:not(.u-reset) {
+        margin-top: 12px;
+      }
+    }
+  }
+}

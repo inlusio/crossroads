@@ -14,3 +14,7 @@
 @include util.create('@/assets/font/martel-v10-latin/martel-v10-latin-700', ('woff2', 'woff')) {
   @include def.base-bold(var.$base);
 }
+
+@include util.create('@/assets/font/martel-v10-latin/martel-v10-latin-900', ('woff2', 'woff')) {
+  @include def.base-extra-bold(var.$base);
+}

@@ -5,12 +5,12 @@
 @use '@/assets/scss/base/font/font' as font;
 
 @mixin h1 {
-  @include font.base-bold;
-  font-size: 3.8rem;
+  @include font.base-extra-bold;
+  font-size: 5.2rem;
   line-height: 1.3;
   letter-spacing: 0.03rem;
 
-  @include mq.media(('<=xl' '>sm')) {
+  @include mq.media(('<=lg' '>sm')) {
     font-size: 3.2rem;
   }
 
@@ -24,7 +24,7 @@
   font-size: 2.8rem;
   line-height: 1.3;
 
-  @include mq.media(('<=xl' '>sm')) {
+  @include mq.media(('<=lg' '>sm')) {
     font-size: 2.4rem;
   }
 
@@ -38,7 +38,7 @@
   font-size: 2.2rem;
   line-height: 1.3;
 
-  @include mq.media(('<=xl' '>sm')) {
+  @include mq.media(('<=lg' '>sm')) {
     font-size: 2.0rem;
   }
 
@@ -52,7 +52,7 @@
   font-size: 1.8rem;
   line-height: 1.3;
 
-  @include mq.media(('<=xl' '>sm')) {
+  @include mq.media(('<=lg' '>sm')) {
     font-size: 1.6rem;
   }
 

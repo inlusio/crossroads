@@ -14,3 +14,9 @@
   font-weight: 700;
   font-style: normal;
 }
+
+@mixin base-extra-bold($ff-definition: var.$base-stack) {
+  font-family: $ff-definition;
+  font-weight: 900;
+  font-style: normal;
+}

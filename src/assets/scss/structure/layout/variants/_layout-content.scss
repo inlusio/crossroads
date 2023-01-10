@@ -4,9 +4,13 @@
 
 .s-layout-content {
   --s-layout--sidebar-width: #{global.$sidebar-width};
-  --s-layout--header-height: #{global.$header-height};
-  color: col.$monochrome-white;
+  --s-layout--header-height: 0px;
+  color: col.$brand-yellow;
   background-color: col.$monochrome-lead;
+
+  &.s-layout-content--has-header {
+    --s-layout--header-height: #{global.$header-height};
+  }
 }
 
 .s-layout-content__header {
