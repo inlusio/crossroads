@@ -1,0 +1,23 @@
+////
+/// Global z-index registry to keep track of the global layer hierarchy
+////
+@use 'sass:map';
+
+/// A list of names with their corresponding layer hierarchy, used as `z-index` value
+///
+$layer-list: (
+  'viewer-frame': 1,
+  'header': 2,
+);
+
+/// Returns a z-index stored within the `$layers` map, which stores z-indexes of all central ui elements
+/// @param {string} $layer - Key that is searched for
+/// @return {number} A z-index number
+///
+@function z-index($layer) {
+  @if not map.has-key($layer-list, $layer) {
+    @error 'Layer with name "#{$layer}" was not found in the `$layers` map.';
+  }
+
+  @return map.get($layer-list, $layer);
+}

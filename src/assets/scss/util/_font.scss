@@ -1,0 +1,43 @@
+@use 'sass:list';
+@use '../../../../node_modules/@nirazul/scss-utils/index' as utils;
+
+/// Creates a font-face definition
+/// @param {string} $path - An url base path pointing at a directory or a root file name
+/// @param {List} $files - A list of filenames or extensions to use
+/// @example - Usage with a list of extensions
+/// ```scss
+///   @include font--create('#{$web-static}/fonts/#{$ff--base}/HelveticaNeue', ('woff2', 'woff', 'ttf')) {
+///      font-family: 'HelveticaNeue';
+///      font-weight: 700;
+///      font-style: normal;
+///   }
+/// ```
+/// @example - Usage with a list of filenames
+/// ```scss
+///   @include font--create('#{$web-static}/fonts/#{$ff--base}/HelveticaNeue', ('0a91b145-990b-4208-82d7-be7865dd0e51.woff2', '9d297c4c-aed0-4b2d-b7eb-258d26f7c50d.woff', '725f0228-e0a9-439b-9444-2615f4da18e5.ttf')) {
+///     font-family: 'HelveticaNeue';
+///     font-weight: 700;
+///     font-style: normal;
+///   }
+/// ```
+///
+@mixin create($path: null, $filenames: ()) {
+  @font-face {
+    @content;
+    font-display: swap;
+
+    @if $path {
+      $src-list: ();
+
+      @each $value in $filenames {
+        $filename-parts: utils.split($value, '.');
+        $extension: utils.last($filename-parts);
+        $filename: if(list.length($filename-parts) == 1, '.#{$extension}', '#{$value}');
+
+        $src-list: list.append($src-list, (url('#{$path}#{$filename}') format($extension)), 'comma');
+      }
+
+      src: $src-list;
+    }
+  }
+}

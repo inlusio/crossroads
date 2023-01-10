@@ -1,0 +1,30 @@
+@use '@/assets/scss/util/arrange/arrange' as arrange;
+
+/// With internal grid
+///
+@mixin grid {
+  // prettier-ignore
+  $definitions: (
+    (spacing: (8px 8px)),
+  );
+
+  .btn__group-items {
+    @include arrange.define-group-root;
+    @include arrange.define-group-box($definitions);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn__group-item {
+    @include arrange.define-group-item($definitions);
+  }
+
+  .btn__group-item-icon {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+  }
+}

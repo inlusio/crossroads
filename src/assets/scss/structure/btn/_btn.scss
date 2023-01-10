@@ -1,0 +1,64 @@
+////
+/// Button facets and state generation library
+////
+
+/// Dependencies and components
+///
+@use 'btn-facet' as facet;
+
+@forward 'btn-facet';
+
+
+/// All applicable btn facets, sizes and special types
+///
+.btn {
+  // Vars
+
+  // Support
+
+  // Module
+  & {
+    @include facet.all;
+  }
+
+  // Facets
+  & {
+    // Sizes
+    &.btn--large {
+      @include facet.large;
+    }
+
+    &.btn--medium {
+      @include facet.medium;
+    }
+
+    &.btn--small {
+      @include facet.small;
+    }
+
+    &.btn--icon-large {
+      @include facet.icon-large;
+    }
+
+    &.btn--icon-medium {
+      @include facet.icon-medium;
+    }
+
+    // Facets
+    &.btn--primary {
+      @include facet.primary;
+    }
+
+    // Bubble
+    &.btn--bubble {
+      @include facet.bubble;
+    }
+
+    // Grid
+    &.btn--has-grid {
+      @include facet.grid;
+    }
+  }
+
+  // States
+}

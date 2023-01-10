@@ -1,0 +1,30 @@
+/// HTML style overrides
+///
+html {
+  scroll-behavior: auto;
+}
+
+/// Heading style overrides
+///
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: normal; // stylelint-disable-line font-weight-notation
+  font-size: inherit;
+}
+
+/// Button style overrides
+///
+button {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+ul, ol {
+  margin: 0;
+}
+
+pre {
+  margin: 0;
+}

@@ -1,0 +1,5 @@
+@use '@/assets/scss/util/color/color' as col;
+
+.u-debug--col {
+  --debug-col: #{rgba(col.$signal-todo, 0.6)};
+}

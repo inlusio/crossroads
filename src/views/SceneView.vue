@@ -24,7 +24,7 @@
         dialogue: content.value?.dialogue.code,
       } as YarnBoundOptions)
 
-      console.log(runner.currentResult)
+      console.log(runner.value.currentResult)
     }
   }, { immediate: true })
 </script>
@@ -33,9 +33,18 @@
   <div class="about">
     <h1>Intro:</h1>
     <span>scene: {{ scene }}</span>
-    <pre>{{ content }}</pre>
+
+    <br>
+
+    <details>
+      <summary>Raw content</summary>
+      <pre>{{ content }}</pre>
+    </details>
+
+    <br>
 
     <div v-if="content">
+      <p v-if="runner" v-text="runner.currentResult.text"/>
       <img :src="content.illustration" alt="">
     </div>
   </div>

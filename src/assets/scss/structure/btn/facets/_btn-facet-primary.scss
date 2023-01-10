@@ -1,0 +1,60 @@
+@use 'sass:color';
+@use '@/assets/scss/structure/btn/btn-util' as util;
+@use '@/assets/scss/base/font/font' as font;
+@use '@/assets/scss/util/color/color' as col;
+@use '@/assets/scss/util/transition' as trs;
+
+/// Primary
+///
+@mixin primary {
+  @include trs.common-props;
+  z-index: 0;
+  position: relative;
+  text-align: center;
+
+  @include util.apply-states(()) {
+    @include primary-base;
+  }
+
+  // Focus
+  @include util.apply-states(('focus')) {
+    @include primary-focus;
+
+    @include util.apply-states(('disabled')) {
+      @include primary-disabled;
+    }
+  }
+
+  // Active
+  @include util.apply-states(('focus', 'active')) {
+    @include primary-active;
+  }
+
+  // Disabled
+  @include util.apply-states(('disabled')) {
+    @include primary-disabled;
+  }
+}
+
+/// Base
+///
+@mixin primary-base {
+  color: col.$monochrome-white;
+  background-color: col.$brand-blue;
+}
+
+/// Focus
+///
+@mixin primary-focus {
+}
+
+/// Active
+///
+@mixin primary-active {
+}
+
+/// Disabled
+///
+@mixin primary-disabled {
+  color: col.$monochrome-tornado;
+}

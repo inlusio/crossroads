@@ -1,0 +1,87 @@
+@use 'sass:color';
+
+/// Monochrome special decoration colors
+///
+$monochrome-white: #ffffff;
+$monochrome-black: #000000;
+$monochrome-lead: #1f1f22;
+$monochrome-magnet: #4c4c4e;
+$monochrome-steel: #79797a;
+$monochrome-quicksilver: #a5a5a7;
+$monochrome-tornado: #d2d2d3;
+
+$monochrome-colors: (
+  'white': $monochrome-white,
+  'black': $monochrome-black,
+  'lead': $monochrome-lead,
+  'magnet': $monochrome-magnet,
+  'steel': $monochrome-steel,
+  'quicksilver': $monochrome-quicksilver,
+  'tornado': $monochrome-tornado,
+);
+
+/// Brand specific colors
+///
+$brand-yellow: #f3cf5f;
+$brand-blue: #88abe5;
+$brand-red: #bd210f;
+$brand-green: #607d39;
+
+$brand-colors: (
+  'yellow': $brand-yellow,
+  'blue': $brand-blue,
+  'red': $brand-red,
+  'green': $brand-green,
+);
+
+$brand-yellow-dark: #c09827;
+$brand-yellow-light: #fce5a8;
+$brand-blue-light: #d4e0f5;
+$brand-red-light: #e5d8df;
+$brand-green-light: #c6d9b4;
+
+$variant-colors: (
+  'yellow-dark': $brand-yellow-dark,
+  'yellow-light': $brand-yellow-light,
+  'blue-light': $brand-blue-light,
+  'red-light': $brand-red-light,
+  'green-light': $brand-green-light,
+);
+
+/// Single purpose colors
+///
+$label-text: $monochrome-lead;
+$label-link: $brand-yellow-dark;
+$label-selection: null;
+
+$label-colors: (
+  'text': $label-text,
+  'link': $label-link,
+  'selection': $label-selection,
+);
+
+/// Signal colors
+///
+$signal-info: $brand-blue;
+$signal-error: $brand-red;
+$signal-warning: $brand-yellow;
+$signal-success: $brand-green;
+$signal-todo: #ff00ff;
+
+$signal-colors: (
+  'info': $signal-info,
+  'error': $signal-error,
+  'warning': $signal-warning,
+  'success': $signal-success,
+  'todo': $signal-todo,
+);
+
+/// Main color map
+///
+$color-map: (
+  'monochrome': $monochrome-colors,
+  'brand': $brand-colors,
+  'variant': $variant-colors,
+  'label': $label-colors,
+  'signal': $signal-colors,
+);

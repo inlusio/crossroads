@@ -1,0 +1,48 @@
+@use 'sass:map';
+@use 'sass:list';
+@use '@nirazul/scss-utils' as utils;
+@use 'btn-state' as states;
+
+/// Iterate through a states config object to apply a given style to the compiled selectors
+/// @param {Map} $states - A state definition object
+///
+@mixin apply-states($states: ()) {
+  $has-keys: list.length($states) > 0;
+
+  @if $has-keys {
+    $state: list.nth($states, 1);
+    $next: utils.remove-nth($states, 1);
+
+    @include apply-state($state) {
+      @include apply-states($next) {
+        @content;
+      }
+    }
+  } @else {
+    @content;
+  }
+}
+
+/// Call a style mixin according to a given key/value pair
+/// @param {string} $key - The state name
+/// @param {boolean} $value - The state value
+///
+@mixin apply-state($state) {
+  @if $state == 'focus' {
+    @include states.focus {
+      @content;
+    }
+  }
+
+  @if $state == 'active' {
+    @include states.active {
+      @content;
+    }
+  }
+
+  @if $state == 'disabled' {
+    @include states.disabled {
+      @content;
+    }
+  }
+}

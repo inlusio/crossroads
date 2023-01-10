@@ -8,6 +8,15 @@ export default defineConfig({
   build: {
     target: 'esnext',
   },
+  // css: {
+  //   preprocessorOptions: {
+  //     scss: {
+  //       additionalData: `
+  //         @import './src/assets/scss/_main.scss';
+  //       `
+  //     }
+  //   }
+  // },
   plugins: [vue()],
   resolve: {
     alias: {

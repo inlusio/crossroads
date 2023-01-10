@@ -1,0 +1,16 @@
+////
+/// Font-styles, usable for project-wide styling of text instances
+////
+@use 'font-var' as var;
+
+@mixin base-regular($ff-definition: var.$base-stack) {
+  font-family: $ff-definition;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin base-bold($ff-definition: var.$base-stack) {
+  font-family: $ff-definition;
+  font-weight: 700;
+  font-style: normal;
+}

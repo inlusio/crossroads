@@ -1,0 +1,25 @@
+@use '@/assets/scss/util/color/_color.scss' as col;
+@use '@/assets/scss/util/_layer.scss' as layer;
+@use '@/assets/scss/util/_global.scss' as global;
+
+.s-layout-content {
+  --s-layout--sidebar-width: #{global.$sidebar-width};
+  --s-layout--header-height: #{global.$header-height};
+  color: col.$monochrome-white;
+  background-color: col.$monochrome-lead;
+}
+
+.s-layout-content__header {
+  z-index: layer.z-index('header');
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.s-layout-content__main {
+  flex: 1 0 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  padding-top: var(--s-layout--header-height);
+}

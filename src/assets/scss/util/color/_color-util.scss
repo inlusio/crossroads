@@ -1,0 +1,26 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use '@nirazul/scss-utils' as utils;
+@use 'color-var';
+
+/// Looks through all color definitions and returns the stored value
+/// @param {string} $subset - The subset in which the color is stored
+/// @param {number|string} $idx - The key as a name or index value
+///
+@function color($subset, $idx) {
+  $map: map.get(color-var.$color-map, $subset);
+  $color: transparent;
+
+  @if meta.type-of($idx) == 'number' {
+    $color: list.nth($map, $idx);
+  } @else {
+    $color: map.get($map, $idx);
+  }
+
+  @if meta.type-of($color) != 'color' and not utils.contains((inherit initial null), $color) {
+    @error 'Color `#{$idx}` in map `#{$subset}` not found!';
+  }
+
+  @return $color;
+}

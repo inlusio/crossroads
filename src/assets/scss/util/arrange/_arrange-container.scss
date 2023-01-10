@@ -1,0 +1,61 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use '@/assets/scss/base/mq' as mq;
+
+/// Create a definitions object for containers
+/// @param {Map} $cfg - The config map
+/// @return {Map} - The merge result
+///
+@function create-container-config($cfg) {
+  $defaults: (
+    container-size: none,
+    edge: 0,
+    mq: null,
+  );
+
+  @return map.merge($defaults, $cfg);
+}
+
+/// Define a container structure
+/// @param {Map} $definition - A single container structure definition
+///
+@mixin container($definition) {
+  $definition: create-container-config($definition);
+
+  $container-size: map.get($definition, 'container-size');
+  $edge: map.get($definition, 'edge');
+  $mq: map.get($definition, 'mq');
+
+  $has-container-size: meta.type-of($container-size) == 'number';
+  $content-width: if($has-container-size, $container-size - (2 * $edge), auto);
+  $border-width: if($has-container-size, 1fr, 0);
+
+  @include mq.media($mq) {
+    grid-template-columns: $border-width $content-width $border-width;
+    column-gap: $edge;
+    @content;
+  }
+}
+
+/// Define the container root
+///
+@mixin define-container-root() {
+  display: grid;
+  grid-template-areas: '. container-area .';
+  width: 100%;
+}
+
+/// Define the container content area
+///
+@mixin define-container-content() {
+  grid-area: container-area;
+}
+
+/// Define a container
+/// @param {List} $definitions - A list of container structure definitions
+///
+@mixin define-container($definitions) {
+  @each $definition in $definitions {
+    @include container($definition);
+  }
+}

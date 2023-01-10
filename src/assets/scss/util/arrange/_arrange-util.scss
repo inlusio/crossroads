@@ -1,0 +1,23 @@
+@use 'sass:meta';
+@use '@nirazul/scss-utils' as utils;
+
+/// Expand a given attribute into a 4-value spacing configuration
+/// @param {number|List} $spacing - The spacing
+/// @return {List} A 4-value list
+///
+@function expand-spacing($spacing) {
+  @if meta.type-of($spacing) == 'list' {
+    @return utils.expand-directions($spacing);
+  } @else {
+    @return (null, $spacing, null, $spacing);
+  }
+}
+
+/// Make a number divisibly by another number
+/// @param {number} $size - The size
+/// @param {number} $divisor - The number to divide by
+/// @return {number} The altered number
+///
+@function make-divisible($size, $divisor) {
+  @return $size - $size % $divisor;
+}

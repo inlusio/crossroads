@@ -1,0 +1,16 @@
+@use '@/assets/scss/util/font' as util;
+@use 'font-var' as var;
+@use 'font-definition' as def;
+
+@forward 'font-var';
+@forward 'font-definition';
+
+/// Font-face definitions
+///
+@include util.create('@/assets/font/martel-v10-latin/martel-v10-latin-regular', ('woff2', 'woff')) {
+  @include def.base-regular(var.$base);
+}
+
+@include util.create('@/assets/font/martel-v10-latin/martel-v10-latin-700', ('woff2', 'woff')) {
+  @include def.base-bold(var.$base);
+}

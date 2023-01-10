@@ -1,0 +1,73 @@
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:list';
+@use '@/assets/scss/base/mq' as mq;
+@use 'arrange-util' as util;
+
+/// Create a definitions object for grids
+/// @param {Map} $cfg - The config map
+/// @return {Map} - The merge result
+///
+@function create-grid-config($cfg) {
+  $defaults: (
+    spacing: 0,
+    directive: 'auto-fit',
+    mq: null,
+    num-cols: 1,
+  );
+
+  @return map.merge($defaults, $cfg);
+}
+
+/// Create a definitions object for the grid root config mixin
+/// @param {Map} $cfg - The config map
+/// @return {Map} - The merge result
+///
+@function create-grid-root-config($cfg) {
+  $defaults: (
+    display: grid,
+  );
+
+  @return map.merge($defaults, $cfg);
+}
+
+/// Define a grid structure
+/// @param {Map} $definition - A single grid structure definition
+///
+@mixin grid($definition) {
+  $definition: create-grid-config($definition);
+
+  $spacing: util.expand-spacing(map.get($definition, 'spacing'));
+  $directive: map.get($definition, 'directive');
+  $mq: map.get($definition, 'mq');
+  $num-cols: map.get($definition, 'num-cols');
+
+  $spacing-x: list.nth($spacing, 2);
+  $spacing-y: list.nth($spacing, 1);
+
+  @include mq.media($mq) {
+    $percentage: math.div(100%, $num-cols);
+    $minmax: if($spacing-x > 0, calc(#{$percentage} - #{$spacing-x}), $percentage);
+
+    grid-template-columns: repeat(#{$directive}, minmax($minmax, 1fr));
+    column-gap: $spacing-x;
+    row-gap: $spacing-y;
+    @content;
+  }
+}
+
+/// Define the grid root
+/// @param {List} $definitions - A list of grid definitions
+///
+@mixin define-grid-root($definition) {
+  display: map.get(create-grid-root-config($definition), 'display');
+}
+
+/// Define a grid
+/// @param {List} $definitions - A list of grid structure definitions
+///
+@mixin define-grid($definitions) {
+  @each $definition in $definitions {
+    @include grid($definition);
+  }
+}

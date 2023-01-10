@@ -1,0 +1,87 @@
+@use 'sass:map';
+@use 'sass:list';
+@use '@/assets/scss/base/mq' as mq;
+@use 'arrange-util' as util;
+
+/// Create a definitions object for groups
+/// @param {Map} $cfg - The config map
+/// @return {Map} - The merge result
+///
+@function create-group-config($cfg) {
+  $defaults: (
+    spacing: 0,
+    mq: null,
+  );
+
+  @return map.merge($defaults, $cfg);
+}
+
+/// Write the desired grid-gutter values.
+/// @param {string} $type - The property type that is being written. Example: 'padding'
+/// @param {List} $gutter-list - A list of gutter sizes with a length of 4.
+/// @param {number} $modifier - A modifier to the gutter size that is being written.
+///
+@mixin write-spacing($type, $spacing-list, $modifier: 1) {
+  $direction-list: ('top', 'left', 'bottom', 'right');
+
+  @for $i from 1 through list.length($direction-list) {
+    $dir: list.nth($direction-list, $i);
+    $val: list.nth($spacing-list, $i);
+
+    @if $val {
+      #{$type}-#{$dir}: ($val * $modifier);
+    }
+  }
+}
+
+/// Define a group box
+/// @param {Map} $definition - A single group structure definition
+///
+@mixin group-box($definition) {
+  $definition: create-group-config($definition);
+  $spacing: util.expand-spacing(map.get($definition, 'spacing'));
+  $mq: map.get($definition, 'mq');
+
+  @include mq.media($mq) {
+    @include write-spacing('margin', $spacing, -0.5);
+  }
+}
+
+/// Define a group item
+/// @param {Map} $definition - A single group structure definition
+///
+@mixin group-item($definition) {
+  $definition: create-group-config($definition);
+  $spacing: util.expand-spacing(map.get($definition, 'spacing'));
+  $mq: map.get($definition, 'mq');
+
+  @include mq.media($mq) {
+    @include write-spacing('padding', $spacing, 0.5);
+  }
+}
+
+/// Define the group root
+///
+@mixin define-group-root() {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/// Define the group box
+/// @param {List} $definitions - A list of group structure definitions
+///
+@mixin define-group-box($definitions) {
+  @each $definition in $definitions {
+    @include group-box($definition);
+  }
+}
+
+/// Define the group item
+/// @param {List} $definitions - A list of group structure definitions
+///
+@mixin define-group-item($definitions) {
+  @each $definition in $definitions {
+    @include group-item($definition);
+  }
+}

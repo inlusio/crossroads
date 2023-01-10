@@ -1,0 +1,12 @@
+@use 'btn-size' as size;
+
+/// Circle shaped button
+///
+@mixin bubble {
+  min-width: 0;
+  border-radius: 50%;
+
+  .btn__icon {
+    margin: 0;
+  }
+}

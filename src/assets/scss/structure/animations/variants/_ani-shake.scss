@@ -1,0 +1,22 @@
+$amount: 20px;
+
+@keyframes ani-shake {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate($amount);
+  }
+  40% {
+    transform: translate($amount * -1);
+  }
+  60% {
+    transform: translate($amount);
+  }
+  80% {
+    transform: translate($amount * -1);
+  }
+  100% {
+    transform: translate(0);
+  }
+}

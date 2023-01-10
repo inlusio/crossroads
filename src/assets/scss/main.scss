@@ -1,0 +1,37 @@
+////
+/// Entry point for the project's main stylesheet
+////
+
+/// Base
+/// Thematic modules with probably page wide effects.
+/// @example - Spacing, fonts, typography, form inputs
+///
+@use '@/assets/scss/base/reset/reset';
+@use '@/assets/scss/base/mq';
+@use '@/assets/scss/base/font/font';
+@use '@/assets/scss/base/typography/typography';
+@use '@/assets/scss/base/general';
+@use '@/assets/scss/base/vite';
+@use '@/assets/scss/base/visually-hidden';
+@use '@/assets/scss/base/vue-router';
+
+/// Structure
+/// Common structures that belong to no js component
+/// @example - Header, footer, main, overlay, btn-bar
+///
+@use '@/assets/scss/structure/animations/animations';
+@use '@/assets/scss/structure/btn/btn';
+@use '@/assets/scss/structure/container/container';
+@use '@/assets/scss/structure/grid/grid';
+@use '@/assets/scss/structure/transitions/transitions';
+@use '@/assets/scss/structure/grid-area';
+@use '@/assets/scss/structure/layout/layout';
+
+/// Components / Pages
+/// Styles belonging to an encapsulated js component
+///
+// Styles are registered in the corresponding SFC files
+
+/// Debugging and testing
+///
+@use '@/assets/scss/debug/debug';

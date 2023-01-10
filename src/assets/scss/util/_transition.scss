@@ -1,0 +1,9 @@
+$default-speed: 200ms;
+$default-fn: ease;
+$default: $default-speed $default-fn;
+
+@mixin common-props($fn: $default-fn, $speed: $default-speed) {
+  transition-timing-function: $fn;
+  transition-duration: $speed;
+  transition-property: color, border-color, background-color, opacity, transform;
+}

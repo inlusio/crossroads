@@ -1,0 +1,145 @@
+@use '@nirazul/scss-utils' as utils;
+@use 'typography-heading-types' as heading;
+@use 'typography-content-types' as content;
+@use 'typography-list-types' as list;
+
+.u-typography-root {
+  /// Heading types
+  ///
+  h1:not(.u-reset),
+  .u-reset--h1 {
+    @include heading.h1;
+  }
+
+  h2:not(.u-reset),
+  .u-reset--h2 {
+    @include heading.h2;
+  }
+
+  h3:not(.u-reset),
+  .u-reset--h3 {
+    @include heading.h3;
+  }
+
+  h4:not(.u-reset),
+  .u-reset--h4 {
+    @include heading.h4;
+  }
+
+  h5:not(.u-reset),
+  .u-reset--h5 {
+    @include heading.h5;
+  }
+
+  h6:not(.u-reset),
+  .u-reset--h6 {
+    @include heading.h6;
+  }
+
+  /// Content types
+  ///
+  p:not(.u-reset),
+  .u-reset--p {
+    @include content.copy-medium;
+  }
+
+  .u-reset--copy-large {
+    @include content.copy-large;
+  }
+
+  .u-reset--copy-medium {
+    @include content.copy-medium;
+  }
+
+  .u-reset--copy-small {
+    @include content.copy-small;
+  }
+
+  .u-reset--copy-x-small {
+    @include content.copy-x-small;
+  }
+
+  /// List types
+  ///
+  ul,
+  ol {
+    &.u-reset {
+      // stylelint-disable-line selector-no-qualifying-type
+      &,
+      > li {
+        list-style: none;
+      }
+    }
+  }
+
+  ul:not(.u-reset),
+  .u-reset--ul {
+    @include list.ul;
+  }
+
+  ol:not(.u-reset),
+  .u-reset--ol {
+    @include list.ol;
+  }
+
+  /// Tags with visual implication
+  ///
+  b,
+  strong {
+    font-weight: 700;
+  }
+
+  i,
+  em {
+    font-style: italic;
+  }
+
+  sub {
+    font-size: 1.4rem;
+    vertical-align: sub;
+  }
+
+  sup {
+    font-size: 1.4rem;
+    vertical-align: super;
+  }
+
+  /// Simple link
+  ///
+  a,
+  .u-link {
+    text-decoration: none;
+
+    &:not(.u-reset):not(.u-router-link-exact-active) {
+      cursor: pointer;
+    }
+
+    &:not(.u-reset):not(.btn) {
+      @include content.link;
+    }
+  }
+
+  /// Misc tags and definitions
+  ///
+  hr {
+    display: block;
+    border: 0;
+    height: 2px;
+    width: 40px;
+    background-color: currentColor;
+    margin: 0;
+  }
+
+  /// Preformatted text (code)
+  ///
+  pre,
+  code {
+    font-family: monospace;
+  }
+
+  /// Hide visually
+  ///
+  .u-cloak {
+    @include utils.hide-visually;
+  }
+}

@@ -1,0 +1,46 @@
+@use 'sass:map';
+@use '@nirazul/scss-mq' as mq;
+
+@forward '@nirazul/scss-mq';
+
+/// Breakpoints
+///
+$xs-viewport-name: 'xs';
+$sm-breakpoint-width: 576px;
+$sm-viewport-name: 'sm';
+$md-breakpoint-width: 768px;
+$md-viewport-name: 'md';
+$lg-breakpoint-width: 992px;
+$lg-viewport-name: 'lg';
+$xl-breakpoint-width: 1200px;
+$xl-viewport-name: 'xl';
+$xxl-breakpoint-width: 1400px;
+$xxl-viewport-name: 'xxl';
+
+/// Add viewport and breakpoint definitions to `@nirazul/scss-mq`
+///
+@include mq.configure(
+  (
+    $xs-viewport-name,
+    $sm-breakpoint-width,
+    $sm-viewport-name,
+    $md-breakpoint-width,
+    $md-viewport-name,
+    $lg-breakpoint-width,
+    $lg-viewport-name,
+    $xl-breakpoint-width,
+    $xl-viewport-name,
+    $xxl-breakpoint-width,
+    $xxl-viewport-name
+  ),
+  'default'
+);
+
+/// Custom media feature definitions
+///
+$additional-media-feature-expressions: ();
+$merged: map.merge(mq.$default-media-feature-expressions, $additional-media-feature-expressions);
+
+/// Add custom media feature definitions to `@nirazul/scss-mq`
+///
+@include mq.configure-globally($media-feature-expressions: $merged);

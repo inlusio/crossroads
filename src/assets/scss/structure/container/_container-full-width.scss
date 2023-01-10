@@ -1,0 +1,30 @@
+@use '@/assets/scss/util/global' as global;
+@use '@/assets/scss/util/arrange/arrange' as arrange;
+@use '@/assets/scss/base/mq' as mq;
+
+$container-sizes: (
+  (
+    mq: '<md',
+    container-size: none,
+    edge: 16px,
+  ),
+  (
+    mq: ('md', 'lg'),
+    container-size: none,
+    edge: 40px,
+  ),
+  (
+    mq: '>lg',
+    container-size: none,
+    edge: 60px,
+  ),
+);
+
+.s-container--full-width {
+  @include arrange.define-container-root;
+  @include arrange.define-container($container-sizes);
+
+  .s-container__container {
+    @include arrange.define-container-content;
+  }
+}

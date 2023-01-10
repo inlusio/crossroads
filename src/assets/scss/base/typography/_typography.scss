@@ -1,0 +1,22 @@
+@use 'sass:color';
+@use '@/assets/scss/base/font/font' as font;
+@use '@/assets/scss/util/color/color' as col;
+@use 'typography-content-types' as content;
+@use 'typography-root';
+
+@forward 'typography-heading-types';
+@forward 'typography-content-types';
+@forward 'typography-list-types';
+
+/// Basic typographic styling
+///
+html {
+  font-size: 62.5%;
+}
+
+body {
+  @include font.base-regular;
+  @include content.copy-medium;
+  color: col.$label-text;
+}
+

@@ -1,0 +1,29 @@
+@use '@/assets/scss/util/arrange/arrange' as arrange;
+
+// prettier-ignore
+$definitions: (
+  (
+    mq: '<md',
+    spacing: 16px,
+    num-cols: 12,
+    directive: 'auto-fill',
+  ),
+  (
+    mq: ('md', 'lg'),
+    spacing: 20px,
+    num-cols: 12,
+    directive: 'auto-fill',
+  ),
+  (
+    mq: '>lg',
+    spacing: 40px,
+    num-cols: 12,
+    directive: 'auto-fill',
+  )
+);
+
+.s-grid--primary {
+  @include arrange.define-grid($definitions);
+  // prettier-ignore
+  @include arrange.define-grid-root((display: grid));
+}

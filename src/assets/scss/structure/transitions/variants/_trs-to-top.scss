@@ -1,0 +1,15 @@
+@use '@nirazul/scss-utils' as utils;
+@use '@/assets/scss/util/transition' as trs;
+
+.trs-to-top {
+  &-enter-active,
+  &-leave-active {
+    @include trs.common-props;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}

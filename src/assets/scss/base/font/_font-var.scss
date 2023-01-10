@@ -1,0 +1,10 @@
+/// The project's font families
+///
+$base: 'Martel';
+
+/// Font stack definitions
+/// @link http://www.cssfontstack.com/
+///
+// stylelint-disable value-keyword-case
+$base-stack: $base, 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
+// stylelint-enable value-keyword-case

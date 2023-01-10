@@ -1,0 +1,111 @@
+////
+/// Content types (p)
+////
+@use 'sass:color';
+@use '@nirazul/scss-utils' as utils;
+@use '@/assets/scss/base/mq' as mq;
+@use '@/assets/scss/util/transition' as trs;
+@use '@/assets/scss/base/font/font' as font;
+@use '@/assets/scss/util/color/color' as col;
+
+@mixin copy-large {
+  @include font.base-regular;
+  font-size: 2.2rem;
+  line-height: 1.4;
+
+  @include mq.media(('<=xl' '>sm')) {
+    font-size: 2.0rem;
+  }
+
+  @include mq.media('<=sm') {
+    font-size: 1.8rem;
+  }
+}
+
+@mixin copy-medium {
+  @include font.base-regular;
+  font-size: 1.8rem;
+  line-height: 1.4;
+
+  @include mq.media(('<=xl' '>sm')) {
+    font-size: 1.6rem;
+  }
+
+  @include mq.media('<=sm') {
+    font-size: 1.4rem;
+  }
+}
+
+@mixin copy-small {
+  @include font.base-regular;
+  font-size: 1.4rem;
+  line-height: 1.44;
+
+  @include mq.media('<=sm') {
+    font-size: 1.2rem;
+  }
+}
+
+@mixin copy-x-small {
+  @include font.base-regular;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+@mixin button-large {
+  @include font.base-bold;
+  font-size: 3.2rem;
+  line-height: 1.0;
+  letter-spacing: 0.03em;
+
+  @include mq.media(('<=xl' '>sm')) {
+    font-size: 2.8rem;
+  }
+
+  @include mq.media('<=sm') {
+    font-size: 2.4rem;
+  }
+}
+
+@mixin button-medium {
+  @include font.base-bold;
+  font-size: 1.8rem;
+  line-height: 1.0;
+  letter-spacing: 0.03em;
+
+  @include mq.media(('<=xl' '>sm')) {
+    font-size: 1.6rem;
+  }
+
+  @include mq.media('<=sm') {
+    font-size: 1.4rem;
+  }
+}
+
+@mixin button-small {
+  @include font.base-bold;
+  font-size: 1.6rem;
+  line-height: 1.0;
+  letter-spacing: 0.03em;
+
+  @include mq.media(('<=xl' '>sm')) {
+    font-size: 1.4rem;
+  }
+
+  @include mq.media('<=sm') {
+    font-size: 1.2rem;
+  }
+}
+
+@mixin link {
+  $col-base: col.$brand-yellow-dark;
+
+  position: relative;
+  display: inline-block;
+  color: col.$brand-yellow-dark;
+  transition: color trs.$default, transform trs.$default;
+
+  @include utils.has-focus {
+    background-color: col.$brand-yellow-light;
+  }
+}

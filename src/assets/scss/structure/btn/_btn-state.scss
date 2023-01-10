@@ -1,0 +1,28 @@
+////
+/// Button states
+////
+@use '@nirazul/scss-utils' as utils;
+
+/// Focus
+///
+@mixin focus() {
+  @include utils.has-focus {
+    @content;
+  }
+}
+
+/// Disabled
+///
+@mixin disabled() {
+  &:disabled {
+    @content;
+  }
+}
+
+/// Active
+///
+@mixin active() {
+  &:active:not(:disabled) {
+    @content;
+  }
+}

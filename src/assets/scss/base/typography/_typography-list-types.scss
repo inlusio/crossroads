@@ -1,0 +1,58 @@
+////
+/// List styles (ul, ol)
+////
+$icon-width: 18px;
+$icon-gutter: 6px;
+$padding: ($icon-width + $icon-gutter);
+
+@mixin list {
+  padding-left: $padding;
+  list-style: none;
+
+  > li {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+    > * {
+      // stylelint-disable selector-max-universal
+      margin-bottom: 0;
+    }
+
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 100%;
+      display: inline-block;
+      width: $padding;
+      height: auto;
+      font-size: inherit;
+
+      color: currentColor;
+    }
+  }
+}
+
+@mixin ul {
+  @include list;
+
+  > li {
+    &::before {
+      content: '\2022';
+      text-align: center;
+    }
+  }
+}
+
+@mixin ol {
+  @include list;
+  counter-reset: li;
+
+  > li {
+    &::before {
+      content: counter(li) '.';
+      counter-increment: li;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,65 @@
+@use 'btn-base' as base;
+@use '@/assets/scss/structure/btn/btn-util' as util;
+
+/// Base mixin for buttons
+///
+@mixin all {
+  // Vars
+
+  // Support
+
+  // Module
+  & {
+    @include base.base;
+  }
+
+  // Facets
+
+  // States
+  & {
+    // Base
+    @include util.apply-states(()) {
+      @include all-base;
+    }
+
+    // Focus
+    @include util.apply-states(('focus')) {
+      @include all-focus;
+    }
+
+    // Active
+    @include util.apply-states(('focus', 'active')) {
+      @include all-active;
+    }
+
+    // Disabled
+    @include util.apply-states(('disabled')) {
+      @include all-disabled;
+    }
+  }
+}
+
+/// Base
+///
+@mixin all-base {
+  text-decoration: none;
+}
+
+/// Focus
+///
+@mixin all-focus {
+  text-decoration: none;
+}
+
+/// Active
+///
+@mixin all-active {
+  text-decoration: none;
+}
+
+/// Disabled
+///
+@mixin all-disabled {
+  text-decoration: none;
+  cursor: not-allowed;
+}

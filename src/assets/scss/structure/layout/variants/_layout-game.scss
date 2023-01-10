@@ -1,0 +1,62 @@
+@use '@/assets/scss/base/_mq.scss' as mq;
+@use '@/assets/scss/util/_layer.scss' as layer;
+@use '@/assets/scss/util/_global.scss' as global;
+
+.s-layout-game {
+  --s-layout--sidebar-width: #{global.$sidebar-width};
+
+  &.s-layout-game--content {
+    --s-layout--header-height: #{global.$header-height};
+  }
+
+  &.s-layout-game--fullscreen {
+    --s-layout--header-height: #{global.$header-height};
+  }
+}
+
+.s-layout-game__header {
+  z-index: layer.z-index('header');
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.s-layout-game__main {
+  flex: 1 0 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  padding-bottom: var(--s-layout--header-height);
+}
+
+.s-layout-game__sidebar {
+  z-index: 2;
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  flex: 0 0 auto;
+}
+
+.s-layout-game__viewer {
+  z-index: 1;
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  flex: 0 1 100%;
+}
+
+.s-layout-game__viewer-frame {
+  overflow: hidden;
+  z-index: layer.z-index('viewer-frame');
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  width: calc(100% - var(--s-layout--sidebar-width));
+  height: calc(100% - var(--s-layout--header-height));
+}
+
+.s-layout-game__sidebar {
+  display: flex;
+  flex-flow: row nowrap;
+}

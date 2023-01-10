@@ -1,0 +1,53 @@
+////
+/// Support styles, that fix errors or enhance defaults - Should be valid throughout the document
+////
+// stylelint-disable property-no-vendor-prefix, no-duplicate-selectors, selector-max-universal, selector-no-qualifying-type
+@use '@nirazul/scss-utils' as utils;
+@use '@/assets/scss/base/mq' as mq;
+@use '@/assets/scss/util/color/color' as col;
+
+/// Force the outermost tags to always fill the screen
+///
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+/// General styles for the `html` element
+///
+html {
+  // Type legibility improvements where applicable - Use with care
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/// General styles for the `body` element
+///
+body {
+  @include mq.media(('(any-pointer: coarse)')) {
+    // Always use the `body` element as the scroll root and add native scroll for iOS devices
+    @include utils.ios-native-scrolling;
+  }
+
+  // Make text selectable throughout the page
+  @include utils.is-selectable(true);
+
+  // Remove default background colors in some browsers
+  background-color: col.$monochrome-white;
+
+  // IE10, 11 and Edge: Hide scrollbars when not in use
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+/// Fix box-sizing not being inherited correctly inside detail tag in Chrome 75+
+/// @link https://bugs.chromium.org/p/chromium/issues/detail?id=589475
+///
+details {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
