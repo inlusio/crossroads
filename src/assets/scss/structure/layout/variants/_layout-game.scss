@@ -1,15 +1,15 @@
 @use '@/assets/scss/base/_mq.scss' as mq;
 @use '@/assets/scss/util/_layer.scss' as layer;
 @use '@/assets/scss/util/_global.scss' as global;
+@use '@/assets/scss/util/color/_color.scss' as col;
 
 .s-layout-game {
   --s-layout--sidebar-width: #{global.$sidebar-width};
+  --s-layout--header-height: 0px;
+  color: col.$brand-yellow;
+  background-color: col.$monochrome-lead;
 
-  &.s-layout-game--content {
-    --s-layout--header-height: #{global.$header-height};
-  }
-
-  &.s-layout-game--fullscreen {
+  &.s-layout-game--has-header {
     --s-layout--header-height: #{global.$header-height};
   }
 }
@@ -26,15 +26,7 @@
   flex: 1 0 100%;
   display: flex;
   flex-flow: row nowrap;
-  padding-bottom: var(--s-layout--header-height);
-}
-
-.s-layout-game__sidebar {
-  z-index: 2;
-  position: relative;
-  display: flex;
-  flex-flow: row nowrap;
-  flex: 0 0 auto;
+  padding-top: var(--s-layout--header-height);
 }
 
 .s-layout-game__viewer {
@@ -54,9 +46,4 @@
   display: flex;
   width: calc(100% - var(--s-layout--sidebar-width));
   height: calc(100% - var(--s-layout--header-height));
-}
-
-.s-layout-game__sidebar {
-  display: flex;
-  flex-flow: row nowrap;
 }
