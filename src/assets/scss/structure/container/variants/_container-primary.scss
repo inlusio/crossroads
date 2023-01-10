@@ -1,6 +1,6 @@
-@use '@/assets/scss/util/global' as global;
-@use '@/assets/scss/util/arrange/arrange' as arrange;
-@use '@/assets/scss/base/mq' as mq;
+@use '@/assets/scss/util/_global.scss' as global;
+@use '@/assets/scss/util/arrange/_arrange.scss' as arrange;
+@use '@/assets/scss/base/_mq.scss' as mq;
 
 $container-sizes: (
   (

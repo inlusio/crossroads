@@ -40,21 +40,26 @@
 ///
 @mixin primary-base {
   color: col.$monochrome-white;
+  border: 2px solid col.$brand-blue-light;
   background-color: col.$brand-blue;
 }
 
 /// Focus
 ///
 @mixin primary-focus {
+  border-color: col.$brand-blue;
 }
 
 /// Active
 ///
 @mixin primary-active {
+  background-color: col.$brand-blue-dark;
 }
 
 /// Disabled
 ///
 @mixin primary-disabled {
-  color: col.$monochrome-tornado;
+  color: col.$monochrome-quicksilver;
+  border-color: col.$brand-blue-light;
+  background-color: col.$brand-blue-light;
 }

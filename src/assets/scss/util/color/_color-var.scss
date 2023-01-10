@@ -36,14 +36,16 @@ $brand-colors: (
 
 $brand-yellow-dark: #c09827;
 $brand-yellow-light: #fce5a8;
+$brand-blue-dark: #2a4061;
 $brand-blue-light: #d4e0f5;
 $brand-red-light: #e5d8df;
 $brand-green-light: #c6d9b4;
 
 $variant-colors: (
-  'yellow-dark': $brand-yellow-dark,
   'yellow-light': $brand-yellow-light,
+  'yellow-dark': $brand-yellow-dark,
   'blue-light': $brand-blue-light,
+  'blue-dark': $brand-blue-dark,
   'red-light': $brand-red-light,
   'green-light': $brand-green-light,
 );

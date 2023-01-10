@@ -5,12 +5,12 @@
 
 .s-layout-game {
   --s-layout--sidebar-width: #{global.$sidebar-width};
-  --s-layout--header-height: 0px;
+  --s-layout--dialog-box-height: 0px;
   color: col.$brand-yellow;
   background-color: col.$monochrome-lead;
 
   &.s-layout-game--has-header {
-    --s-layout--header-height: #{global.$header-height};
+    --s-layout--dialog-box-height: #{global.$dialog-box-height};
   }
 }
 
@@ -26,7 +26,7 @@
   flex: 1 0 100%;
   display: flex;
   flex-flow: row nowrap;
-  padding-top: var(--s-layout--header-height);
+  padding-bottom: var(--s-layout--dialog-box-height);
 }
 
 .s-layout-game__viewer {
@@ -45,5 +45,14 @@
   right: 0;
   display: flex;
   width: calc(100% - var(--s-layout--sidebar-width));
-  height: calc(100% - var(--s-layout--header-height));
+  height: calc(100% - var(--s-layout--dialog-box-height));
+}
+
+.s-layout-game__dialog-box {
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: global.$dialog-box-height;
 }

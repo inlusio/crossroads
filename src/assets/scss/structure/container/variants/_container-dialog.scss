@@ -1,0 +1,30 @@
+@use '@/assets/scss/util/_global.scss' as global;
+@use '@/assets/scss/util/arrange/_arrange.scss' as arrange;
+@use '@/assets/scss/base/_mq.scss' as mq;
+
+$container-sizes: (
+  (
+    mq: '<=sm',
+    container-size: none,
+    edge: 16px,
+  ),
+  (
+    mq: 'md',
+    container-size: arrange.make-divisible(mq.$md-breakpoint-width - global.$scrollbar-offset, 12),
+    edge: 40px,
+  ),
+  (
+    mq: '>md',
+    container-size: arrange.make-divisible(mq.$md-breakpoint-width - global.$scrollbar-offset, 12),
+    edge: 40px,
+  ),
+);
+
+.s-container--dialog {
+  @include arrange.define-container-root;
+  @include arrange.define-container($container-sizes);
+
+  .s-container__container {
+    @include arrange.define-container-content;
+  }
+}

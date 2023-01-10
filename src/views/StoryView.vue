@@ -37,7 +37,7 @@
   @use '@/assets/scss/base/typography/typography' as type;
 
   .p-page-story {
-    background-image: url('/public/image/static/bg.jpg');
+    background-image: url('/image/static/bg.jpg');
     background-size: cover;
     background-position: center center;
     background-color: col.$monochrome-magnet;

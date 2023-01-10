@@ -22,8 +22,8 @@
       <ResponsiveShell :outer-width="width" :outer-height="height" class="c-view-shell__background-shell">
         <div class="c-view-shell__background-element" />
       </ResponsiveShell>
-      <ResponsiveImg :src="background" :width="width" alt="" class="c-view-shell__blur" />
-      <ResponsiveImg :src="background" :width="width" alt="" class="c-view-shell__image" />
+      <ResponsiveImg :resolutions="[1]" :src="background" :width="width" alt="" class="c-view-shell__blur" />
+      <ResponsiveImg :resolutions="[1]" :src="background" :width="width" alt="" class="c-view-shell__image" />
     </div>
     <div class="c-view-shell__content">
       <slot :height="height" :width="width" name="content" />
