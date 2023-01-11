@@ -1,4 +1,4 @@
-#filetag1 
+#filetag1
 #filetag2
 title: Start
 position: 0,0
@@ -17,13 +17,13 @@ Sphere: And who is this then?
     <<set $shapes_like_you to false>>
 
 <<if $shapes_like_you>>
-    Sphere: Nice to meet you {$name}!
-    Cube: Yeah, likewise!
-    Cube: Do you wanna play a game?
-    -> Yeah, sure!
-        Sphere: Let's play Two Truths and a Lie then!
-        <<jump TwoTruthsGame>>
-    -> Ugh, no.
+Sphere: Nice to meet you {$name}!
+Cube: Yeah, likewise!
+Cube: Do you wanna play a game?
+-> Yeah, sure!
+    Sphere: Let's play Two Truths and a Lie then!
+    <<jump TwoTruthsGame>>
+-> Ugh, no.
 <<endif>>
 <<jump BadEnding>>
 ===
@@ -37,13 +37,13 @@ Cube: What do you think is the lie?
 -> The number of faces.
 -> The one about edges.
 -> Your favourite colour, obviously.
-    <<set $rounds_won += 1>>
+    <<set $rounds_won to $rounds_won + 1>>
 Sphere: I agree.
 
 <<if $rounds_won > 0>>
-    Cube: You're too smart!
+Cube: You're too smart!
 <<else>>
-    Cube: Wrong! Haha
+Cube: Wrong! Haha
 <<endif>>
 Cube: Of course my favourite colour is red!
 
@@ -54,15 +54,15 @@ Sphere: I am oblate. I am prolate. I am neither.
 -> The neither.
 -> Hang on, that doesn't work.
     That's two lies and one truth!
-    <<set $rounds_won += 1>>
+    <<set $rounds_won to $rounds_won + 1>>
 Sphere: Oh wait, I think I've mucked it up...
 
 <<if $rounds_won == 2>>
-    Cube: You won both rounds, congrats!
+Cube: You won both rounds, congrats!
 <<elseif $rounds_won == 1>>
-    Cube: Well, at least you got one right.
+Cube: Well, at least you got one right.
 <<else>>
-    Sphere: At least we both lost together.
+Sphere: At least we both lost together.
 <<endif>>
 
 -> That was great!

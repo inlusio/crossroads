@@ -2,7 +2,7 @@
   // @ts-ignore
   import YarnBound from 'yarn-bound/src'
   import { cloneDeep } from 'lodash-es'
-  import { computed, ref, watch } from 'vue'
+  import { computed, nextTick, ref, watch } from 'vue'
   import { DialogResultType } from '@/models/Dialog/Dialog'
   import useDialog from '@/composables/Dialog/Dialog'
 
@@ -13,6 +13,7 @@
   const props = defineProps<Props>()
   const { getResultType, getResultComponent } = useDialog()
 
+  const scrollEl = ref<HTMLDivElement | null>(null)
   const resultHistory = ref<Array<YarnBound.Result>>([])
   const currentResult = computed(() => props.runner.currentResult)
   const currentResultType = computed<DialogResultType>(() => {
@@ -28,10 +29,16 @@
   const advance = () => {
     resultHistory.value.push(cloneDeep(currentResult.value))
     props.runner.advance()
+
+    nextTick(scrollToBottom)
   }
 
   const onOptionChosen = (optionIdx: number) => {
     props.runner.advance(optionIdx)
+  }
+
+  const scrollToBottom = () => {
+    scrollEl.value?.scroll({ top: scrollEl.value?.scrollHeight, behavior: 'smooth' })
   }
 
   watch(
@@ -48,13 +55,13 @@
     <div class="s-container--dialog">
       <div class="c-dialog-box__container s-container__container">
         <div class="c-dialog-box__wrap">
-          <div class="c-dialog-box__box">
+          <div ref="scrollEl" class="c-dialog-box__scroller">
             <ul class="c-dialog-box__history-entries u-reset">
-              <li class="c-dialog-box__history-entry" v-for="result in resultHistory">
+              <li v-for="result in resultHistory" class="c-dialog-box__history-entry">
                 <component :is="getResultComponent(result)" v-bind="result" />
               </li>
               <li class="c-dialog-box__current-entry">
-                <component @choose="onOptionChosen($event)" :is="currentResultComponent" v-bind="currentResult" />
+                <component :is="currentResultComponent" v-bind="currentResult" @choose="onOptionChosen($event)" />
               </li>
             </ul>
           </div>
@@ -88,7 +95,7 @@
     overflow: hidden;
   }
 
-  .c-dialog-box__box {
+  .c-dialog-box__scroller {
     flex: 0 1 100%;
     padding: 8px;
     color: col.$monochrome-lead;

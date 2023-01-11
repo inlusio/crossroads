@@ -1,25 +1,24 @@
 <script lang="ts" setup>
   //@ts-ignore
   import YarnBound from 'yarn-bound/src'
-  import { ref, watch } from 'vue'
+  import { watch } from 'vue'
   import useGameScene from '@/composables/GameScene/GameScene'
   import { ViewShellFacet } from '@/components/ViewShell/ViewShellFacet'
   import ViewShell from '@/components/ViewShell/ViewShell.vue'
   import DialogBox from '@/components/DialogBox/DialogBox.vue'
-  import type { YarnBoundOptions } from '@/models/YarnBound/YarnBound'
+  import useRunner from '@/composables/Runner/Runner'
 
   const { content, scene } = useGameScene()
-
-  const runner = ref<YarnBound | null>(null)
+  const { runner, createRunner } = useRunner()
 
   watch(
     content,
     () => {
-      if (content.value?.dialogue.code) {
-        runner.value = new YarnBound({
-          dialogue: content.value?.dialogue.code,
-        } as YarnBoundOptions)
+      if (!content.value?.dialogue.code) {
+        return
       }
+
+      createRunner(content.value?.dialogue.code)
     },
     { immediate: true },
   )

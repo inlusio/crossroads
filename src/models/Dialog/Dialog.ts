@@ -1,10 +1,5 @@
-import type DialogResultText from '@/components/DialogResultText/DialogResultText.vue'
-import type DialogResultCommand from '@/components/DialogResultCommand/DialogResultCommand.vue'
-import type DialogResultOptions from '@/components/DialogResultOptionList/DialogResultOptionList.vue'
-
-export type DialogResultComponent = DialogResultCommand | DialogResultOptions | DialogResultText
-
 export enum DialogResultType {
+  End = 'End',
   Text = 'TextResult',
   Options = 'OptionsResult',
   Command = 'CommandResult',
