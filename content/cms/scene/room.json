@@ -1,0 +1,8 @@
+{
+  "id": "room",
+  "name": "Privatzimmer",
+  "illustration": "/image/cms/scene/illustration/room.jpg",
+  "dialogue": {
+    "code": "title: Start\nposition: 400,0\n---\nCube: I think we're friends now.\nSphere: Agreed.\nCube: What do you think, {$name}?\n-> BFFs, for sure!\n-> As if I'd be friends with you two!\n    <<scene management>>\n==="
+  }
+}

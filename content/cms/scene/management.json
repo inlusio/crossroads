@@ -1,0 +1,8 @@
+{
+  "id": "management",
+  "name": "Stationsleitung",
+  "illustration": "/image/cms/scene/illustration/management.jpg",
+  "dialogue": {
+    "code": "title: Start\nposition: 200,120\n---\nSphere: No need to be so rude...\nCube: Yeah, maybe you should be called Grumpy {$name}.\nSphere: Ha! Totally.\n==="
+  }
+}

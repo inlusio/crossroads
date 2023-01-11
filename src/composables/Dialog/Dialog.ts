@@ -1,56 +1,51 @@
 // @ts-ignore
 import YarnBound from 'yarn-bound/src'
-import type { DialogResultMarkup } from '@/models/Dialog/Dialog'
-import { DialogResultType } from '@/models/Dialog/Dialog'
-import DialogResultText from '@/components/DialogResultText/DialogResultText.vue'
-import DialogResultOptionList from '@/components/DialogResultOptionList/DialogResultOptionList.vue'
-import DialogResultCommand from '@/components/DialogResultCommand/DialogResultCommand.vue'
-import DialogResultEnd from '@/components/DialogResultEnd/DialogResultEnd.vue'
+import useDialogRunner from '@/composables/DialogRunner/DialogRunner'
+import type { Dialog } from '@/models/Dialog/Dialog'
+import { reactive, watch } from 'vue'
+import useGameScene from '@/composables/GameScene/GameScene'
+import type { GameSceneContent } from '@/models/GameScene/GameScene'
+import { useLocalStorage } from '@/composables/LocalStorage/LocalStorage'
+import { useDialogStorage } from '@/composables/DialogStorage/DialogStorage'
 
 export default function useDialog() {
-  const getCharacter = (markup: Array<DialogResultMarkup>): string | undefined => {
-    const name = markup.find(({ name }) => name === 'character')
+  const { content } = useGameScene()
+  const { createRunner } = useDialogRunner()
+  const { getItem } = useLocalStorage()
 
-    if (name) {
-      return name.properties.name
-    }
+  const dialog = reactive<Dialog>({
+    isReady: false,
+    sceneId: undefined,
+    runner: null,
+    variables: getItem('variables') || {},
+  })
 
-    return undefined
-  }
+  const { variableStorage } = useDialogStorage(dialog)
 
-  const getResultType = (result: YarnBound.Result | undefined) => {
-    switch (true) {
-      case result instanceof YarnBound.TextResult:
-        return DialogResultType.Text
-      case result instanceof YarnBound.OptionsResult:
-        return DialogResultType.Options
-      case result instanceof YarnBound.CommandResult:
-        return DialogResultType.Command
-      case result === undefined:
-        return DialogResultType.End
-      default:
-        throw new Error('Unknown Yarn result type!')
-    }
-  }
+  watch(
+    content,
+    (newVal, oldVal) => {
+      dialog.isReady = false
 
-  const getResultComponent = (result: YarnBound.Result | undefined): string => {
-    switch (true) {
-      case result instanceof YarnBound.TextResult:
-        return DialogResultText as string
-      case result instanceof YarnBound.OptionsResult:
-        return DialogResultOptionList as string
-      case result instanceof YarnBound.CommandResult:
-        return DialogResultCommand as string
-      case result === undefined:
-        return DialogResultEnd as string
-      default:
-        throw new Error('Unknown Yarn result type!')
-    }
+      if (!newVal?.dialogue.code) {
+        return
+      }
+
+      createDialog(newVal)
+    },
+    { immediate: true },
+  )
+
+  const createDialog = (content: GameSceneContent) => {
+    dialog.runner = createRunner(dialog, variableStorage, content.dialogue.code)
+    dialog.sceneId = content.id
+    dialog.isReady = true
+
+    return dialog
   }
 
   return {
-    getCharacter,
-    getResultType,
-    getResultComponent,
+    dialog,
+    createDialog,
   }
 }

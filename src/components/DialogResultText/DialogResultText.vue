@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-  import type { DialogResultMarkup, DialogResultMetadata, DialogResultTextData } from '@/models/Dialog/Dialog'
+  import type { DialogResultMarkup, DialogResultMetadata, DialogResultTextData } from '@/models/DialogResult/Dialog'
   import { computed } from 'vue'
-  import useDialog from '@/composables/Dialog/Dialog'
+  import useDialogResult from '@/composables/DialogResult/DialogResult'
 
   interface Props extends DialogResultTextData {
     text: string
@@ -11,7 +11,7 @@
   }
 
   const props = defineProps<Props>()
-  const {getCharacter} = useDialog()
+  const { getCharacter } = useDialogResult()
 
   const character = computed<string | undefined>(() => {
     return getCharacter(props.markup)
@@ -20,15 +20,11 @@
 
 <template>
   <div class="c-dialog-result-text">
-    <b class="c-dialog-result-text__character" v-if="character">
-      {{ character }}:
-    </b>
+    <b v-if="character" class="c-dialog-result-text__character"> {{ character }}: </b>
     <span class="c-dialog-result-text__text">
       {{ props.text }}
     </span>
   </div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style lang="scss" scoped></style>

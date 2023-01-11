@@ -3,15 +3,15 @@
   import YarnBound from 'yarn-bound/src'
   import { cloneDeep } from 'lodash-es'
   import { computed, nextTick, ref, watch } from 'vue'
-  import { DialogResultType } from '@/models/Dialog/Dialog'
-  import useDialog from '@/composables/Dialog/Dialog'
+  import { DialogResultType } from '@/models/DialogResult/DialogResult'
+  import useDialogResult from '@/composables/DialogResult/DialogResult'
 
   export interface Props {
     runner: YarnBound
   }
 
   const props = defineProps<Props>()
-  const { getResultType, getResultComponent } = useDialog()
+  const { getResultType, getResultComponent } = useDialogResult()
 
   const scrollEl = ref<HTMLDivElement | null>(null)
   const resultHistory = ref<Array<YarnBound.Result>>([])
@@ -23,7 +23,7 @@
     return getResultComponent(currentResult.value)
   })
   const isAdvanceDisabled = computed<boolean>(() => {
-    return currentResultType.value === DialogResultType.Options
+    return [DialogResultType.Options, DialogResultType.End].includes(currentResultType.value)
   })
 
   const advance = () => {

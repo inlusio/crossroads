@@ -1,27 +1,14 @@
 <script lang="ts" setup>
   //@ts-ignore
   import YarnBound from 'yarn-bound/src'
-  import { watch } from 'vue'
   import useGameScene from '@/composables/GameScene/GameScene'
   import { ViewShellFacet } from '@/components/ViewShell/ViewShellFacet'
   import ViewShell from '@/components/ViewShell/ViewShell.vue'
   import DialogBox from '@/components/DialogBox/DialogBox.vue'
-  import useRunner from '@/composables/Runner/Runner'
+  import useDialog from '@/composables/Dialog/Dialog'
 
   const { content, scene } = useGameScene()
-  const { runner, createRunner } = useRunner()
-
-  watch(
-    content,
-    () => {
-      if (!content.value?.dialogue.code) {
-        return
-      }
-
-      createRunner(content.value?.dialogue.code)
-    },
-    { immediate: true },
-  )
+  const { dialog } = useDialog()
 </script>
 
 <template>
@@ -46,7 +33,7 @@
         </div>
       </div>
       <div class="s-layout-game__dialog-box">
-        <DialogBox v-if="runner" :runner="runner" />
+        <DialogBox v-if="dialog.isReady" :ref="dialog.sceneId" :runner="dialog.runner" />
       </div>
     </div>
   </main>
