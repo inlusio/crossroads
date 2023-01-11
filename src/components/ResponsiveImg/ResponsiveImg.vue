@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { computed } from 'vue'
+  import { computed, useAttrs } from 'vue'
 
   type LoadingStrategy = 'auto' | 'eager' | 'lazy'
 
@@ -23,9 +23,13 @@
     loading: 'auto',
     resolutions: () => [1, 2],
   })
+  const attrs = useAttrs()
 
   const maxResolution = computed(() => Math.max(...props.resolutions))
   const rootAttrs = computed(() => getResponsiveImage(props.src, props.width))
+  const alt = computed<string | undefined>(() => {
+    return attrs.alt as string || ''
+  })
 
   const getResponsiveImage = (path: string, w: number): RootAttrs => {
     let srcset: string
@@ -53,7 +57,7 @@
 </script>
 
 <template>
-  <img :alt="$attrs.alt || ''" :loading="loading" class="c-responsive-img" v-bind="rootAttrs" />
+  <img :alt="alt" :loading="loading" class="c-responsive-img" v-bind="rootAttrs" />
 </template>
 
 <style lang="scss" scoped>

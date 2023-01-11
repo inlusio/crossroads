@@ -1,6 +1,7 @@
 <script lang="ts" setup>
   import { useElementSize } from '@vueuse/core'
   import { computed, ref } from 'vue'
+  import type { CSSProperties } from 'vue'
 
   interface Props {
     outerWidth: number
@@ -9,7 +10,7 @@
     innerHeight?: string
   }
 
-  interface Size {
+  interface Size extends CSSProperties {
     '--inner-width': string
     '--inner-height': string
   }

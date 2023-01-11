@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import {
+  import type {
     DialogResultMetadata,
     DialogResultOptionEntryData,
     DialogResultOptionListData,

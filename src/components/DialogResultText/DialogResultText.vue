@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { DialogResultMarkup, DialogResultMetadata, DialogResultTextData } from '@/models/DialogResult/Dialog'
+  import type { DialogResultMarkup, DialogResultMetadata, DialogResultTextData } from '@/models/DialogResult/DialogResult'
   import { computed } from 'vue'
   import useDialogResult from '@/composables/DialogResult/DialogResult'
 

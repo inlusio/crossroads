@@ -36,13 +36,13 @@ export default function useDialogResult() {
   const getResultComponent = (result: YarnBound.Result | undefined): string => {
     switch (true) {
       case result instanceof YarnBound.TextResult:
-        return DialogResultText as string
+        return DialogResultText as unknown as string
       case result instanceof YarnBound.OptionsResult:
-        return DialogResultOptionList as string
+        return DialogResultOptionList as unknown as string
       case result instanceof YarnBound.CommandResult:
-        return DialogResultCommand as string
+        return DialogResultCommand as unknown as string
       case result === undefined:
-        return DialogResultEnd as string
+        return DialogResultEnd as unknown as string
       default:
         throw new Error('Unknown Yarn result type!')
     }
