@@ -5,6 +5,7 @@
     DialogResultOptionListData,
   } from '@/models/DialogResult/DialogResult'
   import useDialogResult from '@/composables/DialogResult/DialogResult'
+  import { computed } from 'vue'
 
   interface Props extends DialogResultOptionListData {
     options: Array<DialogResultOptionEntryData>
@@ -19,7 +20,12 @@
   const emit = defineEmits<Emits>()
   const { getCharacter } = useDialogResult()
 
-  const chooseOption = (optionIdx: number) => {
+  const availableOptions = computed<Array<DialogResultOptionEntryData>>(() => {
+    return props.options.filter(({ isAvailable }) => isAvailable)
+  })
+
+  const chooseOption = (targetOption: DialogResultOptionEntryData) => {
+    const optionIdx = props.options.findIndex((option) => option === targetOption)
     emit('choose', optionIdx)
   }
 </script>
@@ -27,8 +33,8 @@
 <template>
   <div class="c-dialog-result-option-list">
     <ul class="c-dialog-result-option-list__list u-reset">
-      <li v-for="(option, optionIdx) in props.options" class="c-dialog-result-option-list__entry">
-        <button class="c-dialog-result-option-list__btn" @click="chooseOption(optionIdx)">
+      <li v-for="option in availableOptions" class="c-dialog-result-option-list__entry">
+        <button class="c-dialog-result-option-list__btn" @click="chooseOption(option)">
           <b v-if="getCharacter(option.markup)" class="c-dialog-result-option-list__character">
             {{ getCharacter(option.markup) }}:
           </b>
