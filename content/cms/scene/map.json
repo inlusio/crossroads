@@ -3,6 +3,6 @@
   "name": "Karte",
   "illustration": "/image/cms/scene/illustration/02_karte.jpg",
   "dialogue": {
-    "code": "title: Start\nposition: 200,0\n---\n<<if $map_visited>>\n<<jump Investigation>>\n<<endif>>\nConroy: Das ist also die Forschungsstation «Crossroads».\nConroy: Doch grösser als ich gedacht habe.\n\n-> Ich gehe am besten erst einmal zur Stationsleitung. ➡️\n<<set $map_visited to true>>\n<<scene management>>\n===\ntitle: Investigation\nposition: 200,0\n---\n-> Die Stationsleitung – Ich spreche noch einmal mit dem Marshall. ➡️\n  <<scene management>>\n-> Die Kantine – Orte mit Kaffee besuche ich immer gerne. ➡️\n  <<scene cantine>>\n-> Das Privatzimmer von Mrs. Bloom – Vielleicht finden sich hier Indizien. ➡️\n  <<scene room>>\n-> Das Labor – Hier hat Mrs. Bloom gearbeitet. ➡️\n  <<scene lab>>\n===\n\n"
+    "code": "title: Start\nposition: 200,0\n---\n<<if $map_visited>>\n<<jump Investigation>>\n<<endif>>\nConroy: Das ist also die Forschungsstation «Crossroads». #Thoughts\nConroy: Doch grösser als ich gedacht habe. #Thoughts\n\n-> Ich gehe am besten erst einmal zur Stationsleitung. ➡️ #Thoughts\n<<set $map_visited to true>>\n<<scene management>>\n===\ntitle: Investigation\nposition: 200,0\n---\n-> Die Stationsleitung. ➡️ #Thoughts\n  <<scene management>>\n-> Die Kantine. ➡️ #Thoughts\n  <<scene cantine>>\n-> Das Privatzimmer von Mrs. Bloom. ➡️ #Thoughts\n  <<scene room>>\n-> Das Labor. ➡️ #Thoughts\n  <<scene lab>>\n===\n\n"
   }
 }
