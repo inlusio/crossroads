@@ -2,7 +2,7 @@
   "id": "intro",
   "name": "Intro",
   "dialogue": {
-    "code": "title: Start\nposition: 0,0\n---\nWillkommen bei Crossroads!\nHier folgen noch Erklärungen zum Spielverlauf.\n<<scene beginning>>\n==="
+    "code": "title: Start\nposition: 0,0\n---\nWillkommen bei Crossroads!\nHier folgen noch Erklärungen zum Spielverlauf.\n<<scene start>>\n==="
   },
   "illustration": "/image/cms/scene/illustration/01_intro.jpg"
 }
