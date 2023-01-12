@@ -48,6 +48,12 @@
     }
   }
 
+  .c-dialog-result-text--hint {
+    .c-dialog-result-text__text {
+      color: col.$brand-green;
+    }
+  }
+
   .c-dialog-result-text--detective {
     .c-dialog-result-text__character {
       color: col.$brand-blue;
