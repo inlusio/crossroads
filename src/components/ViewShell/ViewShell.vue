@@ -113,21 +113,7 @@
     background-color: col.$monochrome-black;
   }
 
-  .c-view-shell--city,
-  .c-view-shell--district,
-  .c-view-shell--cinema-section {
-    $image-w: 1200px;
-    $image-h: 900px;
-    $image-ratio: math.div($image-h, $image-w);
-
-    .c-view-shell__image {
-      max-width: $image-w;
-      max-height: $image-h;
-    }
-  }
-
-  .c-view-shell--location,
-  .c-view-shell--cinema-room {
+  .c-view-shell--scene {
     $image-w: 1600px;
     $image-h: 900px;
     $image-ratio: math.div($image-h, $image-w);
@@ -135,28 +121,6 @@
     .c-view-shell__image {
       max-width: $image-w;
       max-height: $image-h;
-    }
-  }
-
-  .c-view-shell--city,
-  .c-view-shell--district {
-    .c-view-shell__background-shell {
-      background: radial-gradient(ellipse at center, white 0, col.$monochrome-white 40%, #baffff 100%);
-    }
-  }
-
-  .c-view-shell--city,
-  .c-view-shell--district {
-    .c-view-shell__blur {
-      display: none;
-    }
-  }
-
-  .c-view-shell--location,
-  .c-view-shell--cinema-room,
-  .c-view-shell--cinema-section {
-    .c-view-shell__background-wrap {
-      //background-color: col.$monochrome-black;
     }
   }
 </style>

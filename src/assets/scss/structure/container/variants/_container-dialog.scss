@@ -4,18 +4,18 @@
 
 $container-sizes: (
   (
-    mq: '<=sm',
+    mq: '<=md',
     container-size: none,
     edge: 16px,
   ),
   (
-    mq: 'md',
-    container-size: arrange.make-divisible(mq.$md-breakpoint-width - global.$scrollbar-offset, 12),
+    mq: 'lg',
+    container-size: arrange.make-divisible(mq.$lg-breakpoint-width - global.$scrollbar-offset, 12),
     edge: 40px,
   ),
   (
-    mq: '>md',
-    container-size: arrange.make-divisible(mq.$md-breakpoint-width - global.$scrollbar-offset, 12),
+    mq: '>lg',
+    container-size: arrange.make-divisible(mq.$lg-breakpoint-width - global.$scrollbar-offset, 12),
     edge: 40px,
   ),
 );

@@ -16,7 +16,7 @@
     <div class="s-layout-game__main">
       <div class="s-layout-game__viewer">
         <div v-if="content" class="s-layout-game__viewer-frame">
-          <ViewShell :background="content.illustration" :facets="[ViewShellFacet.Scene]" :height="900" :width="1200">
+          <ViewShell :background="content.illustration" :facets="[ViewShellFacet.Scene]" :height="900" :width="1600">
             <template #content="{ width, height }">
               <div class="s-container s-container--full-width">
                 <div class="s-container__container">

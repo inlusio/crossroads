@@ -13,7 +13,7 @@
   font-size: 2.2rem;
   line-height: 1.4;
 
-  @include mq.media(('<=xl' '>sm')) {
+  @include mq.media(('<=md' '>sm')) {
     font-size: 2.0rem;
   }
 
@@ -27,7 +27,7 @@
   font-size: 1.8rem;
   line-height: 1.4;
 
-  @include mq.media(('<=xl' '>sm')) {
+  @include mq.media(('<=md' '>sm')) {
     font-size: 1.6rem;
   }
 
@@ -58,7 +58,7 @@
   line-height: 1.0;
   letter-spacing: 0.03em;
 
-  @include mq.media(('<=xl' '>sm')) {
+  @include mq.media(('<=md' '>sm')) {
     font-size: 2.8rem;
   }
 
@@ -73,7 +73,7 @@
   line-height: 1.0;
   letter-spacing: 0.03em;
 
-  @include mq.media(('<=xl' '>sm')) {
+  @include mq.media(('<=md' '>sm')) {
     font-size: 1.6rem;
   }
 
@@ -88,7 +88,7 @@
   line-height: 1.0;
   letter-spacing: 0.03em;
 
-  @include mq.media(('<=xl' '>sm')) {
+  @include mq.media(('<=md' '>sm')) {
     font-size: 1.4rem;
   }
 
