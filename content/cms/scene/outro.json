@@ -1,7 +1,7 @@
 {
   "id": "outro",
   "name": "Outro",
-  "illustration": "/image/cms/scene/illustration/arrival.png",
+  "illustration": "/image/cms/scene/illustration/01_intro.jpg",
   "dialogue": {
     "code": "===\ntitle: Start\nposition: 200,120\n---\nConroy: Ob ich Mrs. Bloom bei der Aussenstation finden werde?\nConroy: Und was hat sie wohl herausgefunden, dass sie ganz alleine aufgebrochen ist?\nConroy: Wir werden sehen...\nConroy: Es ist wohl wirklich alles eine Frage der Perspekive.\n==="
   }
