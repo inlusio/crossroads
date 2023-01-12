@@ -1,4 +1,4 @@
-import { basename } from 'path'
+import { basename } from 'node:path'
 
 export default function useViteGlobUtils() {
   const mapToIds = (modules: Record<string, unknown>, ext: string) => {
