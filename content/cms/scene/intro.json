@@ -2,7 +2,7 @@
   "id": "intro",
   "name": "Intro",
   "dialogue": {
-    "code": "#filetag1\n#filetag2\ntitle: Start\nposition: 0,0\n---\n<<set $shapes_like_you to true>>\nSphere: Hello, I am Blue Sphere.\nCube: Hi there Sphere! I'm Red Cube.\nSphere: And who is this then?\n\n-> I'm Capsule, but my friends call me \"Tic Tac\". No idea why... <<if $shapes_like_you == false>>\n    <<set $name to \"Tic Tac\">>\n-> The name's Triquandle.\n    <<set $name to \"Triquandle\">>\n-> Pyramid. Why; who wants to know?\n    <<set $name to \"Pyramid\">>\n    <<set $shapes_like_you to false>>\n\n<<if $shapes_like_you>>\nSphere: Nice to meet you {$name}!\nCube: Yeah, likewise!\nCube: Do you wanna play a game?\n-> Yeah, sure!\n    Sphere: Let's play Two Truths and a Lie then!\n    <<scene map>>\n-> Ugh, no.\n<<endif>>\n===\n"
+    "code": "#filetag1\n#filetag2\ntitle: Start\nposition: 0,0\n---\nConroy: (gedankenverloren)\nConroy: Hier bin ich nun also, auf dem Weg zur Antarktis.\nConroy: Zur internationalen Forschungsstation «Crossroads».\nConroy: Um eine verschwundene Wissenschaftlerin aufzuspüren.\nConroy: Am Ende der Welt. \nConroy: Und unter mir diese riesigen Eisberge.\nConroy: Schon unglaublich, dass nur 10% davon sichtbar sind.\nConroy: Der Rest tief verborgen unter der Wasseroberfläche.\nConroy: Vielleicht hat dieser Fall ja auch damit zu tun?\nConroy: Mit dem Sichtbaren und Unsichtbaren?\nConroy: Es ist immer alles eine Frage der Perspektive.\nConroy: Wie bei diesen Eisbergen.\nConroy: Na ja, ich werde versuchen diesen Fall zu lösen.\nConroy: Zum Glück wurde mir im Vorfeld eine Karte der ganzen Forschungsstation zugestellt.\n===\n"
   },
-  "illustration": "/image/cms/scene/illustration/room.jpg"
+  "illustration": "/image/cms/scene/illustration/arrival.png"
 }
