@@ -1,4 +1,24 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  import useDialog from '@/composables/Dialog/Dialog'
+  import { useRouter } from 'vue-router'
+  import useRouteRecord from '@/composables/RouteRecord/RouteRecord'
+  import { RouteRecordId } from '@/models/RouteRecord/RouteRecord'
+  import { GameSceneId } from '@/models/GameScene/GameScene'
+
+  const router = useRouter()
+  const { toRoute } = useRouteRecord()
+  const { dialog, resetDialog } = useDialog()
+
+  const onReset = () => {
+    resetDialog()
+    router.push(
+      toRoute({
+        name: RouteRecordId.Scene,
+        params: { scene: GameSceneId.Intro },
+      }),
+    )
+  }
+</script>
 
 <template>
   <main class="p-page-story s-layout-content">
@@ -7,24 +27,35 @@
         <div class="s-container__container p-page-story__main">
           <div class="p-page-story__content u-typography-root">
             <h1 class="p-page-story__title">«Crossroads»</h1>
-            <span class="p-page-story__subtitle"> A Game for Cultural Awareness </span>
+            <span class="p-page-story__subtitle"> Die Suche nach der verschwundenen Wissenschaftlerin Mrs. Bloom </span>
 
             <div class="p-page-story__intro">
               <p>
-                Hier könnte ein Introtext stehen. <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi
-                beatae blanditiis, consectetur consequatur consequuntur cupiditate dignissimos dolorem enim esse
-                explicabo.</span>
-              </p>
-              <p>
-                A accusantium, animi assumenda cupiditate dolorem error fugit harum laudantium
-                magnam modi molestias mollitia odio provident quis, repellat sunt suscipit temporibus veniam vitae
-                voluptate.
+                Vorbemerkung: Bei dem folgenden Spiel handelt es sich um einen ersten Prototypen, um die Story und erste
+                Spielmechaniken von «Crossroads» zu testen. Vielen Dank für eure Teilnahme an der Erprobung und viel
+                Glück bei der Suche nach Mrs. Bloom.
               </p>
             </div>
 
-            <RouterLink :to="{ name: 'scene', params: { scene: 'intro' } }">
-              Story starten
-            </RouterLink>
+            <div class="p-page-story__actions">
+              <template v-if="dialog.hasStarted">
+                <RouterLink
+                  class="u-reset btn btn--medium btn--highlight"
+                  :to="{ name: 'scene', params: { scene: 'intro' } }"
+                >
+                  Story weiterführen
+                </RouterLink>
+                <button @click="onReset" class="u-reset btn btn--medium btn--highlight">Story neustarten</button>
+              </template>
+              <template v-else>
+                <RouterLink
+                  class="u-reset btn btn--medium btn--highlight"
+                  :to="{ name: 'scene', params: { scene: 'intro' } }"
+                >
+                  Story starten
+                </RouterLink>
+              </template>
+            </div>
           </div>
         </div>
       </div>
@@ -64,7 +95,13 @@
 
   .p-page-story__intro {
     max-width: 600px;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
     color: col.$monochrome-white;
+  }
+
+  .p-page-story__actions {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 12px;
   }
 </style>

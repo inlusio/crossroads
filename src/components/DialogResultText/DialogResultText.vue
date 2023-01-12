@@ -25,13 +25,13 @@
     return getCharacter(props.markup)
   })
 
-  const rootFacets = computed<Array<string>>(() => {
+  const rootClasses = computed<Array<string>>(() => {
     return [...bemFacets.value, ...getResultFacets(props).map((facet) => bemAdd(facet))]
   })
 </script>
 
 <template>
-  <div :class="rootFacets" class="c-dialog-result-text">
+  <div :class="rootClasses" class="c-dialog-result-text">
     <b v-if="character" class="c-dialog-result-text__character"> {{ character }}: </b>
     <span class="c-dialog-result-text__text">
       {{ props.text }}

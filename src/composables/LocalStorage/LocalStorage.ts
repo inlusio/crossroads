@@ -1,4 +1,4 @@
-const PREFIX = 'crossroads'
+const PREFIX = 'Crossroads'
 
 export function useLocalStorage() {
   const getItem = (key: string) => {
@@ -11,7 +11,7 @@ export function useLocalStorage() {
   }
 
   const removeItem = (key: string) => {
-    localStorage.removeItem(`${PREFIX}.${key}`)
+    localStorage.removeItem(`${PREFIX}::${key}`)
   }
 
   return {

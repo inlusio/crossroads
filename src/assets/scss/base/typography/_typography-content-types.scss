@@ -98,8 +98,7 @@
 }
 
 @mixin link {
-  $col-base: col.$brand-yellow-dark;
-
+  @include font.base-bold;
   position: relative;
   display: inline-block;
   color: col.$brand-yellow;

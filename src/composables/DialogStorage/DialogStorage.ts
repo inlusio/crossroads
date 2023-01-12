@@ -3,7 +3,7 @@ import type { DialogVariableStorage } from '@/models/DialogStorage/DialogStorage
 import type { Dialog } from '@/models/Dialog/Dialog'
 
 export function useDialogStorage(dialog: Dialog) {
-  const { getItem, setItem } = useLocalStorage()
+  const { setItem } = useLocalStorage()
 
   const variableStorage = {
     get: (key: string) => dialog.variables[key],
@@ -13,7 +13,13 @@ export function useDialogStorage(dialog: Dialog) {
     },
   }
 
+  const resetVariableStorage = () => {
+    dialog.variables = {}
+    setItem<DialogVariableStorage>('variables', {})
+  }
+
   return {
     variableStorage,
+    resetVariableStorage,
   }
 }
