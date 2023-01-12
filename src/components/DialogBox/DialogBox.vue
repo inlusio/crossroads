@@ -116,6 +116,7 @@
     flex: 0 0 auto;
     padding: 8px 0;
     touch-action: manipulation;
+    user-select: none;
   }
 
   .c-dialog-box__advance[disabled] {
