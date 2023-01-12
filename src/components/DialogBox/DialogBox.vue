@@ -80,7 +80,6 @@
 
   .c-dialog-box {
     display: flex;
-    padding: 8px 0;
     height: 100%;
   }
 
@@ -91,14 +90,15 @@
 
   .c-dialog-box__wrap {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row nowrap;
+    gap: 8px;
     height: 100%;
     overflow: hidden;
   }
 
   .c-dialog-box__scroller {
     flex: 0 1 100%;
-    padding: 8px;
+    padding: 8px 0;
     color: col.$monochrome-white;
     //background-color: col.$monochrome-white;
     //border: 2px solid color.change(col.$monochrome-tornado, $alpha: 0.04);
@@ -111,7 +111,8 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-end;
+    align-items: flex-end;
     flex: 0 0 auto;
-    margin-top: 8px;
+    padding: 8px 0;
   }
 </style>
