@@ -3,6 +3,6 @@
   "name": "Karte",
   "illustration": "/image/cms/scene/illustration/notizen_-_google_docs.jpg",
   "dialogue": {
-    "code": "title: Start\nposition: 200,0\n---\n<<set $rounds_won to 0>>\nCube: I'll go first! Hmmm...\nCube: I have 6 faces. I have 12 edges. My favourite colour is blue.\nCube: What do you think is the lie?\n-> The number of faces.\n-> The one about edges.\n-> Your favourite colour, obviously.\n    <<set $rounds_won to $rounds_won + 1>>\nSphere: I agree.\n\n<<if $rounds_won > 0>>\nCube: You're too smart!\n<<else>>\nCube: Wrong! Haha\n<<endif>>\nCube: Of course my favourite colour is red!\n\nSphere: My turn!\nSphere: I am oblate. I am prolate. I am neither.\n-> The first one.\n-> The second one.\n-> The neither.\n-> Hang on, that doesn't work.\n    That's two lies and one truth!\n    <<set $rounds_won to $rounds_won + 1>>\nSphere: Oh wait, I think I've mucked it up...\n\n<<if $rounds_won == 2>>\nCube: You won both rounds, congrats!\n<<elseif $rounds_won == 1>>\nCube: Well, at least you got one right.\n<<else>>\nSphere: At least we both lost together.\n<<endif>>\n\n-> That was great!\n    <<scene room>>\n-> This game is lame.\n    <<scene management>>\n==="
+    "code": "title: Start\nposition: 200,0\n---\nConroy: Das ist also die Forschungsstation «Crossroads».\nConroy: Doch grösser als ich gedacht habe.\n-> Ich gehe am besten erst einmal zur Stationsleitung.\n<<scene management>>\n==="
   }
 }
