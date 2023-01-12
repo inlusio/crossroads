@@ -7,14 +7,24 @@
 
 /// Font-face definitions
 ///
-@include util.create('@/assets/font/martel-v10-latin/martel-v10-latin-regular', ('woff2', 'woff')) {
+@include util.create('@/assets/font/bitter-v32-latin/bitter-v32-latin-regular', ('woff2', 'woff')) {
   @include def.base-regular(var.$base);
 }
 
-@include util.create('@/assets/font/martel-v10-latin/martel-v10-latin-700', ('woff2', 'woff')) {
+@include util.create('@/assets/font/bitter-v32-latin/bitter-v32-latin-italic', ('woff2', 'woff')) {
+  // NOTE: Italic does not exist in this font
+  @include def.base-regular-italic(var.$base);
+}
+
+@include util.create('@/assets/font/bitter-v32-latin/bitter-v32-latin-700', ('woff2', 'woff')) {
   @include def.base-bold(var.$base);
 }
 
-@include util.create('@/assets/font/martel-v10-latin/martel-v10-latin-900', ('woff2', 'woff')) {
+@include util.create('@/assets/font/bitter-v32-latin/bitter-v32-latin-700italic', ('woff2', 'woff')) {
+  // NOTE: Italic does not exist in this font
+  @include def.base-bold-italic(var.$base);
+}
+
+@include util.create('@/assets/font/bitter-v32-latin/bitter-v32-latin-900', ('woff2', 'woff')) {
   @include def.base-extra-bold(var.$base);
 }

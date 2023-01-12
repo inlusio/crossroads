@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="s-layout-game__dialog-box">
-        <DialogBox v-if="dialog.isReady" :ref="dialog.sceneId" :runner="dialog.runner" />
+        <DialogBox v-if="dialog.isReady" :key="dialog.sceneId" :runner="dialog.runner" />
       </div>
     </div>
   </main>
