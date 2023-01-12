@@ -11,41 +11,56 @@ import { useDialogStorage } from '@/composables/DialogStorage/DialogStorage'
 export default function useDialog() {
   const { content } = useGameScene()
   const { createRunner } = useDialogRunner()
-  const { getItem } = useLocalStorage()
+  const { getItem, setItem } = useLocalStorage()
 
   const dialog = reactive<Dialog>({
     isReady: false,
     sceneId: undefined,
     runner: null,
+    hasStarted: getItem('has-started') || false,
     variables: getItem('variables') || {},
   })
 
-  const { variableStorage } = useDialogStorage(dialog)
-
-  watch(
-    content,
-    (newVal, oldVal) => {
-      dialog.isReady = false
-
-      if (!newVal?.dialogue.code) {
-        return
-      }
-
-      createDialog(newVal)
-    },
-    { immediate: true },
-  )
+  const { variableStorage, resetVariableStorage } = useDialogStorage(dialog)
 
   const createDialog = (content: GameSceneContent) => {
     dialog.runner = createRunner(dialog, variableStorage, content.dialogue.code)
     dialog.sceneId = content.id
     dialog.isReady = true
-
+    dialog.hasStarted = true
     return dialog
   }
+
+  const resetDialog = () => {
+    dialog.hasStarted = false
+    resetVariableStorage()
+  }
+
+  watch(
+    content,
+    () => {
+      dialog.isReady = false
+
+      if (!content.value?.dialogue.code) {
+        return
+      }
+
+      createDialog(content.value)
+    },
+    { immediate: true },
+  )
+
+  watch(
+    () => dialog.hasStarted,
+    () => {
+      setItem('has-started', dialog.hasStarted)
+    },
+    { immediate: true },
+  )
 
   return {
     dialog,
     createDialog,
+    resetDialog,
   }
 }

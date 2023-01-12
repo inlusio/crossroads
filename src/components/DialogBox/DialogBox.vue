@@ -7,6 +7,7 @@
   import useDialogResult from '@/composables/DialogResult/DialogResult'
 
   export interface Props {
+    facets?: Array<string>
     runner: YarnBound
   }
 
@@ -66,7 +67,7 @@
             </ul>
           </div>
           <div class="c-dialog-box__actions">
-            <button :disabled="isAdvanceDisabled" class="btn btn--primary btn--small" @click="advance">weiter</button>
+            <button :disabled="isAdvanceDisabled" class="c-dialog-box__advance btn btn--primary btn--small" @click="advance">weiter</button>
           </div>
         </div>
       </div>
@@ -114,5 +115,12 @@
     align-items: center;
     flex: 0 0 auto;
     padding: 8px 0;
+    touch-action: manipulation;
+  }
+
+  .c-dialog-box__advance[disabled] {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
   }
 </style>

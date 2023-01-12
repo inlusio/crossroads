@@ -7,9 +7,9 @@
         <div class="s-container__container p-page-home__main">
           <div class="p-page-home__content u-typography-root">
             <h1 class="p-page-home__title">«Crossroads»</h1>
-            <span class="p-page-home__subtitle"> A Game for Cultural Awareness </span>
+            <span class="p-page-home__subtitle"> Die Suche nach der verschwundenen Wissenschaftlerin Mrs. Bloom </span>
 
-            <RouterLink to="/story"> Weiter zur Story </RouterLink>
+            <RouterLink class="u-reset btn btn--medium btn--highlight" to="/story"> Weiter zur Story</RouterLink>
           </div>
         </div>
       </div>

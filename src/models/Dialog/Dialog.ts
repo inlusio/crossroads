@@ -7,5 +7,6 @@ export interface Dialog {
   isReady: boolean
   sceneId: GameSceneId | undefined
   runner: YarnBound | null
+  hasStarted: boolean
   variables: DialogVariableStorage
 }

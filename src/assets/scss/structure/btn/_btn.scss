@@ -45,6 +45,10 @@
     }
 
     // Facets
+    &.btn--highlight {
+      @include facet.highlight;
+    }
+
     &.btn--primary {
       @include facet.primary;
     }
