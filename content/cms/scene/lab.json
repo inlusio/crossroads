@@ -1,0 +1,8 @@
+{
+  "id": "lab",
+  "name": "Labor",
+  "dialogue": {
+    "code": "title: Start\nposition: 400,0\n---\nConroy: Das war hier also die Arbeitsumgebung von Mrs. Bloom.\nConroy: Ein ziemliches Durcheinander.\nConroy: Hier scheinen Leute aus der ganzen Welt gewesen zu sein.\nConroy: All die Postkarten an der Wand.\nConroy: Ahh und hier ein Gruppenfoto.\nConroy: Die Person etwas abseits am Rand muss Mrs. Bloom sein. \nConroy: Sie schaut als einzige nicht in die Kamera.\nConroy: Sie scheint sich eher für Pinguine im Hintergrund zu interessieren.\nForscher: (laut von der anderen Seite) Sie müssen Herr Conroy sein, kann ich Ihnen helfen?\nConroy: Wer war das? Ah dort hinten der Mann mit dem Bart.\nConroy: Das muss der Laborleiter sein. Alle anderen sind total in ihre Arbeit vertieft.\n-> Ich gehe am besten direkt auf ihn zu.\n    Conroy: Hallo.\n    Conroy: Äh.. tolle Arbeitsumgebung.\n    Forscher: Ja ja, ich kann mir schon vorstellen was sie denken. \n    Forscher: Dieses ganze Durcheinander. Ein zusammengewürfeltes Team aus zerstreuten Wissenschaftlern.\n    Forscher: Aber lassen Sie sich nicht von ihrer Wahrnehmung täuschen.\n    Forscher: Also, wie kann ich Ihnen helfen?\n-> Ich bleibe erst einmal hier. Etwas Abstand kann nicht schaden.\n    Conroy: Hallo.\n    Conroy: Äh.. tolle Arbeitsumgebung.\n    Forscher: Keine Angst, ich beisse nicht. \n    Forscher: Auch wenn sich viele von meinem Bart irritieren lassen.\n    Forscher: Ich bin zahm wie ein lahm (lacht).\n    Conroy: (etwas irritiert) Na gut, wenn er meint. Dann gehe ich auf ihn zu.\n    Forscher: Also, wie kann ich Ihnen helfen?\n==="
+  },
+  "illustration": "/image/cms/scene/illustration/management.jpg"
+}
