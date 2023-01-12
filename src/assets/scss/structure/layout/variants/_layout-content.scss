@@ -1,6 +1,6 @@
-@use '@/assets/scss/util/color/_color.scss' as col;
-@use '@/assets/scss/util/_layer.scss' as layer;
-@use '@/assets/scss/util/_global.scss' as global;
+@use '@/assets/scss/util/color/color' as col;
+@use '@/assets/scss/util/layer' as layer;
+@use '@/assets/scss/util/global' as global;
 
 .s-layout-content {
   --s-layout--sidebar-width: #{global.$sidebar-width};

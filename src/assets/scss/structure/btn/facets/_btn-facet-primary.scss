@@ -39,27 +39,28 @@
 /// Base
 ///
 @mixin primary-base {
-  color: col.$monochrome-white;
-  border: 2px solid col.$brand-blue-light;
-  background-color: col.$brand-blue;
+  color: col.$monochrome-lead;
+  border: 2px solid transparent;
+  background-color: col.$monochrome-white;
 }
 
 /// Focus
 ///
 @mixin primary-focus {
-  border-color: col.$brand-blue;
+  border-color: col.$brand-blue-light;
 }
 
 /// Active
 ///
 @mixin primary-active {
-  background-color: col.$brand-blue-dark;
+  color: col.$monochrome-black;
+  background-color: col.$brand-blue-light;
 }
 
 /// Disabled
 ///
 @mixin primary-disabled {
-  color: col.$monochrome-quicksilver;
-  border-color: col.$brand-blue-light;
-  background-color: col.$brand-blue-light;
+  color: col.$monochrome-steel;
+  border-color: col.$monochrome-tornado;
+  background-color: col.$monochrome-tornado;
 }

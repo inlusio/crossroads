@@ -1,11 +1,13 @@
 // @ts-ignore
 import YarnBound from 'yarn-bound/src'
-import type { DialogResultMarkup } from '@/models/DialogResult/DialogResult'
+import type { DialogResultMarkup, DialogResultTextData } from '@/models/DialogResult/DialogResult'
 import { DialogResultType } from '@/models/DialogResult/DialogResult'
 import DialogResultText from '@/components/DialogResultText/DialogResultText.vue'
 import DialogResultOptionList from '@/components/DialogResultOptionList/DialogResultOptionList.vue'
 import DialogResultCommand from '@/components/DialogResultCommand/DialogResultCommand.vue'
 import DialogResultEnd from '@/components/DialogResultEnd/DialogResultEnd.vue'
+import { DialogCharacter } from '@/models/DialogCharacter/DialogCharacter'
+import { DialogTextFacet } from '@/models/DialogTextFacet/DialogTextFacet'
 
 export default function useDialogResult() {
   const getCharacter = (markup: Array<DialogResultMarkup>): string | undefined => {
@@ -48,9 +50,27 @@ export default function useDialogResult() {
     }
   }
 
+  const getResultFacets = (textResult: DialogResultTextData): Array<string> => {
+    const result: Array<string> = []
+    const charName = getCharacter(textResult.markup)
+    const [char] = Object.entries(DialogCharacter).find(([key, value]) => value === charName) ?? []
+
+    if (char) {
+      result.push(DialogTextFacet[char as keyof typeof DialogTextFacet])
+    }
+
+    textResult.hashtags
+      .filter((hashtag) => Object.keys(DialogTextFacet).includes(hashtag))
+      .map((hashtag) => DialogTextFacet[hashtag as keyof typeof DialogTextFacet])
+      .forEach((facet) => result.push(facet))
+
+    return result
+  }
+
   return {
     getCharacter,
     getResultType,
     getResultComponent,
+    getResultFacets,
   }
 }

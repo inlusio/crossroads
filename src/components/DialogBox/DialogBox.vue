@@ -75,6 +75,7 @@
 </template>
 
 <style lang="scss" scoped>
+  @use 'sass:color';
   @use '@/assets/scss/util/color/color' as col;
 
   .c-dialog-box {
@@ -98,12 +99,12 @@
   .c-dialog-box__scroller {
     flex: 0 1 100%;
     padding: 8px;
-    color: col.$monochrome-lead;
-    background-color: col.$monochrome-white;
-    border: 2px solid col.$monochrome-tornado;
-    border-radius: 6px;
+    color: col.$monochrome-white;
+    //background-color: col.$monochrome-white;
+    //border: 2px solid color.change(col.$monochrome-tornado, $alpha: 0.04);
+    border-radius: 2px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   .c-dialog-box__actions {

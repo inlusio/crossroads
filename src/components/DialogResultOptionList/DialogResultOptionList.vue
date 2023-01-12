@@ -53,7 +53,7 @@
 
   .c-dialog-result-option-list__btn {
     @include type.link;
-    color: col.$brand-yellow-dark;
+    color: col.$brand-yellow;
     text-align: left;
   }
 </style>

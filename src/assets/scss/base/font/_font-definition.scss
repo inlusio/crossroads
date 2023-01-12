@@ -9,11 +9,24 @@
   font-style: normal;
 }
 
+@mixin base-regular-italic($ff-definition: var.$base-stack) {
+  font-family: $ff-definition;
+  font-weight: 400;
+  font-style: italic;
+}
+
 @mixin base-bold($ff-definition: var.$base-stack) {
   font-family: $ff-definition;
   font-weight: 700;
   font-style: normal;
 }
+
+@mixin base-bold-italic($ff-definition: var.$base-stack) {
+  font-family: $ff-definition;
+  font-weight: 700;
+  font-style: italic;
+}
+
 
 @mixin base-extra-bold($ff-definition: var.$base-stack) {
   font-family: $ff-definition;
