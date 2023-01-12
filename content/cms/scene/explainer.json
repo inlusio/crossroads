@@ -1,0 +1,8 @@
+{
+  "id": "explainer",
+  "name": "Erklärungs-Screen",
+  "illustration": "/image/cms/scene/illustration/01_intro.jpg",
+  "dialogue": {
+    "code": "title: Start\n---\nWillkommen zu «Crossroads»\n<<scene intro>>\n==="
+  }
+}
