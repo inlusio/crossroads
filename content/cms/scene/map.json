@@ -3,6 +3,6 @@
   "name": "Karte",
   "illustration": "/image/cms/scene/illustration/notizen_-_google_docs.jpg",
   "dialogue": {
-    "code": "title: Start\nposition: 200,0\n---\nConroy: Das ist also die Forschungsstation «Crossroads».\nConroy: Doch grösser als ich gedacht habe.\n-> Ich gehe am besten erst einmal zur Stationsleitung.\n<<scene management>>\n==="
+    "code": "title: Start\nposition: 200,0\n---\nConroy: Das ist also die Forschungsstation «Crossroads».\nConroy: Doch grösser als ich gedacht habe.\n\n-> Ich gehe am besten erst einmal zur Stationsleitung.\n<<scene management>>\n==="
   }
 }
