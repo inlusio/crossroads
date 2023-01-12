@@ -4,4 +4,5 @@ export enum DialogTextFacet {
   MaleResearcher = 'male-researcher',
   FemaleResearcher = 'female-researcher',
   Thoughts = 'thoughts',
+  Hint = 'hint',
 }
