@@ -111,7 +111,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
     flex: 0 0 auto;
     padding: 8px 0;
   }
