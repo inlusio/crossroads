@@ -1,8 +1,0 @@
-{
-  "id": "beginning",
-  "name": "Beginn",
-  "illustration": "/image/cms/scene/illustration/00_titel.png",
-  "dialogue": {
-    "code": "title: Start\nposition: 0,0\n---\nWillkommen bei Crossroads!\nHier folgen noch Erklärungen zum Spielverlauf.\n<<scene start>>\n==="
-  }
-}

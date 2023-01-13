@@ -55,5 +55,6 @@
     @include type.link;
     color: col.$brand-yellow;
     text-align: left;
+    cursor: pointer;
   }
 </style>
