@@ -6,9 +6,11 @@
   import ViewShell from '@/components/ViewShell/ViewShell.vue'
   import DialogBox from '@/components/DialogBox/DialogBox.vue'
   import useDialog from '@/composables/Dialog/Dialog'
+  import useDebug from '@/composables/Debug/Debug'
 
   const { content, scene } = useGameScene()
   const { dialog } = useDialog()
+  const { isDebug } = useDebug()
 </script>
 
 <template>
@@ -18,7 +20,7 @@
         <div v-if="content" class="s-layout-game__viewer-frame">
           <ViewShell :background="content.illustration" :facets="[ViewShellFacet.Scene]" :height="900" :width="1600">
             <template #content="{ width, height }">
-              <div class="s-container s-container--full-width">
+              <div class="s-container s-container--full-width" v-if="isDebug">
                 <div class="s-container__container">
                   <span>scene: {{ scene }}</span>
                   <br />
