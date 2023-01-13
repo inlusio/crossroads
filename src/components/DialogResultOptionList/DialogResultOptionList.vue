@@ -68,6 +68,7 @@
 </template>
 
 <style lang="scss" scoped>
+  @use '@nirazul/scss-utils' as utils;
   @use '@/assets/scss/util/color/color' as col;
   @use '@/assets/scss/base/typography/typography' as type;
 
@@ -77,10 +78,19 @@
     cursor: pointer;
   }
 
+  .c-dialog-result-option-list__character {
+    margin-right: 2px;
+  }
+
   .c-dialog-result-option-list__entry,
   .c-dialog-result-option-list__entry--choice {
     .c-dialog-result-option-list__btn {
       color: col.$brand-yellow;
+
+      @include utils.has-focus {
+        color: col.$monochrome-lead;
+        background-color: col.$brand-yellow-light;
+      }
     }
   }
 
@@ -93,6 +103,11 @@
   .c-dialog-result-option-list__entry--hint {
     .c-dialog-result-option-list__btn {
       color: col.$brand-green;
+
+      @include utils.has-focus {
+        color: col.$monochrome-lead;
+        background-color: col.$brand-green-light;
+      }
     }
   }
 

@@ -42,6 +42,10 @@
 <style lang="scss" scoped>
   @use '@/assets/scss/util/color/color' as col;
 
+  .c-dialog-result-text__character {
+    margin-right: 2px;
+  }
+
   .c-dialog-result-text--thoughts {
     .c-dialog-result-text__text {
       font-style: italic;
