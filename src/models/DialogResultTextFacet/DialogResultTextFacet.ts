@@ -1,4 +1,4 @@
-export enum DialogTextFacet {
+export enum DialogResultTextFacet {
   Detective = 'detective',
   Manager = 'manager',
   MaleResearcher = 'male-researcher',

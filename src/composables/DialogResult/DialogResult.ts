@@ -7,7 +7,7 @@ import DialogResultOptionList from '@/components/DialogResultOptionList/DialogRe
 import DialogResultCommand from '@/components/DialogResultCommand/DialogResultCommand.vue'
 import DialogResultEnd from '@/components/DialogResultEnd/DialogResultEnd.vue'
 import { DialogCharacter } from '@/models/DialogCharacter/DialogCharacter'
-import { DialogTextFacet } from '@/models/DialogTextFacet/DialogTextFacet'
+import { DialogResultTextFacet } from '@/models/DialogResultTextFacet/DialogResultTextFacet'
 
 export default function useDialogResult() {
   const getCharacter = (markup: Array<DialogResultMarkup>): string | undefined => {
@@ -56,12 +56,12 @@ export default function useDialogResult() {
     const [char] = Object.entries(DialogCharacter).find(([key, value]) => value === charName) ?? []
 
     if (char) {
-      result.push(DialogTextFacet[char as keyof typeof DialogTextFacet])
+      result.push(DialogResultTextFacet[char as keyof typeof DialogResultTextFacet])
     }
 
     textResult.hashtags
-      .filter((hashtag) => Object.keys(DialogTextFacet).includes(hashtag))
-      .map((hashtag) => DialogTextFacet[hashtag as keyof typeof DialogTextFacet])
+      .filter((hashtag) => Object.keys(DialogResultTextFacet).includes(hashtag))
+      .map((hashtag) => DialogResultTextFacet[hashtag as keyof typeof DialogResultTextFacet])
       .forEach((facet) => result.push(facet))
 
     return result

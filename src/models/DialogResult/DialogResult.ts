@@ -1,3 +1,5 @@
+import { DialogResultOptionListFacet } from '@/models/DialogResultOptionListFacet/DialogResultOptionListFacet'
+
 export enum DialogResultType {
   End = 'End',
   Text = 'TextResult',
@@ -7,7 +9,9 @@ export enum DialogResultType {
 
 export interface DialogResultMetadata {
   title: string
-  filetags: Array<string>
+  position?: string
+  options?: keyof typeof DialogResultOptionListFacet
+  filetags?: Array<string>
 }
 
 export interface DialogResultMarkup {
