@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import type {
+    DialogResultContentData,
     DialogResultMetadata,
     DialogResultOptionEntryData,
     DialogResultOptionListData,
@@ -23,7 +24,7 @@
   const props = defineProps<Props>()
   const emit = defineEmits<Emits>()
   const { bemAdd, bemFacets } = useBem('c-dialog-result-option-list', props, {})
-  const { getCharacter } = useDialogResult()
+  const { getCharacter, getResultFacets } = useDialogResult()
 
   const availableOptions = computed<Array<DialogResultOptionEntryData>>(() => {
     return props.options.filter(({ isAvailable }) => isAvailable)
@@ -32,11 +33,12 @@
   const rootClasses = computed<Array<string>>(() => {
     const optionsFacet = DialogResultOptionListFacet[props.metadata.options ?? 'Choice']
 
-    return [
-      ...bemFacets.value,
-      bemAdd(optionsFacet),
-    ]
+    return [...bemFacets.value, bemAdd(optionsFacet)]
   })
+
+  const getOptionEntryClasses = (option: DialogResultContentData) => {
+    return [...getResultFacets(option).map((facet) => bemAdd(facet, 'entry'))]
+  }
 
   const chooseOption = (targetOption: DialogResultOptionEntryData) => {
     const optionIdx = props.options.findIndex((option) => option === targetOption)
@@ -47,7 +49,7 @@
 <template>
   <div :class="rootClasses" class="c-dialog-result-option-list">
     <ul class="c-dialog-result-option-list__list u-reset">
-      <li v-for="option in availableOptions" class="c-dialog-result-option-list__entry">
+      <li v-for="option in availableOptions" :class="getOptionEntryClasses(option)" class="c-dialog-result-option-list__entry">
         <button class="c-dialog-result-option-list__btn" @click="chooseOption(option)">
           <b v-if="getCharacter(option.markup)" class="c-dialog-result-option-list__character">
             {{ getCharacter(option.markup) }}:
@@ -71,13 +73,14 @@
     cursor: pointer;
   }
 
-  .c-dialog-result-option-list--choice {
+  .c-dialog-result-option-list__entry,
+  .c-dialog-result-option-list__entry--choice {
     .c-dialog-result-option-list__btn {
       color: col.$brand-yellow;
     }
   }
 
-  .c-dialog-result-option-list--hint {
+  .c-dialog-result-option-list__entry--hint {
     .c-dialog-result-option-list__btn {
       color: col.$brand-green;
     }

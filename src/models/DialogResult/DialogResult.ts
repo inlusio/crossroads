@@ -19,9 +19,8 @@ export interface DialogResultMarkup {
   properties: Record<string, string>
 }
 
-export interface DialogResultOptionEntryData {
-  text: string
-  isAvailable: boolean
+export interface DialogResultContentData {
+  hashtags: Array<string>
   markup: Array<DialogResultMarkup>
 }
 
@@ -31,14 +30,18 @@ export interface DialogResultCommandData {
   hashtags: Array<string>
 }
 
+export interface DialogResultOptionEntryData extends DialogResultContentData {
+  isAvailable: boolean
+  metadata: undefined
+  text: string
+}
+
 export interface DialogResultOptionListData {
   options: Array<DialogResultOptionEntryData>
   metadata: DialogResultMetadata
 }
 
-export interface DialogResultTextData {
+export interface DialogResultTextData extends DialogResultContentData {
   text: string
   metadata: DialogResultMetadata
-  hashtags: Array<string>
-  markup: Array<DialogResultMarkup>
 }
