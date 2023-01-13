@@ -50,6 +50,7 @@
 
   .c-dialog-result-text--hint {
     .c-dialog-result-text__text {
+      font-style: italic;
       color: col.$brand-green;
     }
   }
