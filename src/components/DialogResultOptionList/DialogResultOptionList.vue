@@ -49,7 +49,11 @@
 <template>
   <div :class="rootClasses" class="c-dialog-result-option-list">
     <ul class="c-dialog-result-option-list__list u-reset">
-      <li v-for="option in availableOptions" :class="getOptionEntryClasses(option)" class="c-dialog-result-option-list__entry">
+      <li
+        v-for="option in availableOptions"
+        :class="getOptionEntryClasses(option)"
+        class="c-dialog-result-option-list__entry"
+      >
         <button class="c-dialog-result-option-list__btn" @click="chooseOption(option)">
           <b v-if="getCharacter(option.markup)" class="c-dialog-result-option-list__character">
             {{ getCharacter(option.markup) }}:
@@ -80,9 +84,39 @@
     }
   }
 
+  .c-dialog-result-option-list__entry--thoughts {
+    .c-dialog-result-option-list__text {
+      font-style: italic;
+    }
+  }
+
   .c-dialog-result-option-list__entry--hint {
     .c-dialog-result-option-list__btn {
       color: col.$brand-green;
+    }
+  }
+
+  .c-dialog-result-option-list__entry--detective {
+    .c-dialog-result-option-list__character {
+      color: col.$brand-blue;
+    }
+  }
+
+  .c-dialog-result-option-list__entry--manager {
+    .c-dialog-result-option-list__character {
+      color: col.$brand-red;
+    }
+  }
+
+  .c-dialog-result-option-list__entry--male-researcher {
+    .c-dialog-result-option-list__character {
+      color: col.$brand-green;
+    }
+  }
+
+  .c-dialog-result-option-list__entry--female-researcher {
+    .c-dialog-result-option-list__character {
+      color: col.$brand-green-light;
     }
   }
 </style>

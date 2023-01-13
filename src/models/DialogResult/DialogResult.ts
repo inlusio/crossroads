@@ -1,4 +1,4 @@
-import { DialogResultOptionListFacet } from '@/models/DialogResultOptionListFacet/DialogResultOptionListFacet'
+import type { DialogResultOptionListFacet } from '@/models/DialogResultOptionListFacet/DialogResultOptionListFacet'
 
 export enum DialogResultType {
   End = 'End',
