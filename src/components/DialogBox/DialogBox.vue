@@ -86,35 +86,45 @@
 
   .c-dialog-box__container {
     height: 100%;
-    overflow: hidden;
   }
 
   .c-dialog-box__wrap {
+    overflow: hidden;
+    position: relative;
     display: flex;
     flex-flow: row nowrap;
-    gap: 8px;
     height: 100%;
-    overflow: hidden;
+    gap: 16px;
+    padding: 20px 24px;
+    margin-top: -24px;
+    border-radius: 4px;
+    border: 2px solid col.$monochrome-lead;
+    box-shadow: 0 0 12px 2px col.$monochrome-lead;
+    background-color: col.$monochrome-black;
   }
 
   .c-dialog-box__scroller {
+    overflow: hidden;
+    position: relative;
     flex: 0 1 100%;
-    padding: 8px 0;
     color: col.$monochrome-white;
     //background-color: col.$monochrome-white;
     //border: 2px solid color.change(col.$monochrome-tornado, $alpha: 0.04);
-    border-radius: 2px;
-    overflow-x: hidden;
-    overflow-y: auto;
+  }
+
+  .c-dialog-box__history-entries {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
   }
 
   .c-dialog-box__actions {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: stretch;
+    align-items: flex-end;
     flex: 0 0 auto;
-    padding: 8px 0;
     touch-action: manipulation;
     user-select: none;
   }

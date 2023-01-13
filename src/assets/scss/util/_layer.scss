@@ -7,7 +7,8 @@
 ///
 $layer-list: (
   'viewer-frame': 1,
-  'header': 2,
+  'dialog-box': 2,
+  'header': 3,
 );
 
 /// Returns a z-index stored within the `$layers` map, which stores z-indexes of all central ui elements
