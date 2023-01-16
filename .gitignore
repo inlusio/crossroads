@@ -37,3 +37,6 @@ yarn-tests/ysc
 
 # Local Netlify folder
 .netlify
+
+# generated files
+/src/generated/

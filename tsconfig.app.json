@@ -1,8 +1,9 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "include": ["custom.d.ts", "env.d.ts", "src/**/*", "src/**/*.vue", "src/**/*.json"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
+    "resolveJsonModule": true,
     "lib": ["ES2019", "DOM", "DOM.Iterable"],
     "composite": true,
     "baseUrl": ".",

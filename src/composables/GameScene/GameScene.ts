@@ -9,7 +9,7 @@ export default function useGameScene() {
   const { toRoute, sceneParam } = useRouteRecord()
   const { mapToIds } = useViteGlobUtils()
 
-  const modules = mapToIds(import.meta.glob('../../../content/cms/scene/*.json'), '.json')
+  const modules = mapToIds(import.meta.glob('../../../content/cms/scene/de/*.json'), '.json')
   const content = ref<GameSceneContent | null>(null)
 
   const toGameScene = (targetId: GameSceneId): RouteRecord => {
