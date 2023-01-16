@@ -1,3 +1,4 @@
+// @ts-ignore
 import { _GameSceneId as GameSceneId } from '@/generated/model/GameSceneId/GameSceneId'
 
 export { GameSceneId }

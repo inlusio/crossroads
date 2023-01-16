@@ -10,11 +10,11 @@
     "build": "run-p type-check build-only",
     "build-only": "vite build",
     "preview": "vite preview",
-    "scripts:install": "npm --prefix ./scripts install",
-    "scripts:use": "npm --prefix ./scripts run use",
     "test:unit": "vitest --environment jsdom --root src/",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "scripts:install": "npm --prefix ./scripts install",
+    "scripts:use": "npm --prefix ./scripts run use",
     "watch": "npm run watch:locales",
     "watch:locales": "npx watch 'npm --prefix ./scripts run execute:locales' ./content/cms/translation"
   },
