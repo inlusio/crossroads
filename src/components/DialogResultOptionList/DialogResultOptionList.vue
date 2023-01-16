@@ -54,10 +54,10 @@
         :class="getOptionEntryClasses(option)"
         class="c-dialog-result-option-list__entry"
       >
+        <b v-if="getCharacter(option.markup)" class="c-dialog-result-option-list__character">
+          {{ getCharacter(option.markup) }}:
+        </b>
         <button class="c-dialog-result-option-list__btn" @click="chooseOption(option)">
-          <b v-if="getCharacter(option.markup)" class="c-dialog-result-option-list__character">
-            {{ getCharacter(option.markup) }}:
-          </b>
           <span class="c-dialog-result-option-list__text">
             {{ option.text }}
           </span>

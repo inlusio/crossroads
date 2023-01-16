@@ -10,7 +10,6 @@ import { useDialogStorage } from '@/composables/DialogStorage/DialogStorage'
 
 export default function useDialog() {
   const { content } = useGameScene()
-  const { createRunner } = useDialogRunner()
   const { getItem, setItem } = useLocalStorage()
 
   const dialog = reactive<Dialog>({
@@ -18,16 +17,19 @@ export default function useDialog() {
     sceneId: undefined,
     runner: null,
     hasStarted: getItem('has-started') || false,
+    hotspots: [],
     variables: getItem('variables') || {},
   })
 
+  const { createRunner } = useDialogRunner(dialog)
   const { variableStorage, resetVariableStorage } = useDialogStorage(dialog)
 
   const createDialog = (content: GameSceneContent) => {
-    dialog.runner = createRunner(dialog, variableStorage, content.dialogue.code)
+    dialog.hotspots = []
     dialog.sceneId = content.id
     dialog.isReady = true
     dialog.hasStarted = true
+    dialog.runner = createRunner(dialog, variableStorage, content.dialogue.code)
     return dialog
   }
 

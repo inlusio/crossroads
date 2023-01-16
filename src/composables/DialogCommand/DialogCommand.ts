@@ -3,8 +3,9 @@ import useGameScene from '@/composables/GameScene/GameScene'
 import type { GameSceneId } from '@/models/GameScene/GameScene'
 import type { DialogResultCommandData } from '@/models/DialogResult/DialogResult'
 import { useRouter } from 'vue-router'
+import type { Dialog } from '@/models/Dialog/Dialog'
 
-export default function useDialogCommand() {
+export default function useDialogCommand(dialog: Dialog) {
   const router = useRouter()
   const { toGameScene } = useGameScene()
 
@@ -13,6 +14,23 @@ export default function useDialogCommand() {
 
     switch (command as DialogCommand) {
       case DialogCommand.AddHint:
+        break
+      case DialogCommand.AddHotspot:
+        const [coords, ...rawCommand] = args
+        const [x, y] = coords.split(',').map((n) => parseInt(n, 10))
+
+        dialog.hotspots.push({
+          x,
+          y,
+          commandData: {
+            command: rawCommand.join(' '),
+            metadata: commandResult.metadata,
+            hashtags: commandResult.hashtags,
+          },
+        })
+        break
+      case DialogCommand.Jump:
+        dialog.runner.jump(...args)
         break
       case DialogCommand.GotoRoute:
         break
