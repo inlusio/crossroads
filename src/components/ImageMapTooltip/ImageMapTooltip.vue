@@ -44,8 +44,8 @@
 
 <template>
   <span :class="rootClasses" :style="areaLabelStyles" class="c-image-map-tooltip">
-    <button class="c-image-map-tooltip__btn">
-      <span @click="onActionRequested" class="c-image-map-tooltip__circle-inner" />
+    <button @click="onActionRequested" class="c-image-map-tooltip__btn">
+      <span class="c-image-map-tooltip__circle-inner" />
     </button>
   </span>
 </template>
