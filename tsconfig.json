@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["vite/client"],
+    "types": ["vite/client", "@intlify/unplugin-vue-i18n/messages"],
     "lib": ["esnext"]
   },
   "files": [],

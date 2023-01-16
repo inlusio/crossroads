@@ -12,6 +12,11 @@ slug:
   clean_accents: true
   sanitize_replacement: '-'
 
+i18n:
+  structure: multiple_folders
+  locales: [ 'de', 'en' ]
+  default_locale: 'de'
+
 cms_mixins:
   cms_field_relation: &FIELD_RELATION
     widget: relation
@@ -76,3 +81,42 @@ collections:
       - name: 'dialogue'
         label: 'Dialog-Code'
         widget: code
+
+  - name: 'translation'
+    label: 'Übersetzungen'
+    label_singular: 'Übersetzung'
+    folder: 'content/cms/translation'
+    slug: '{{fields.slug}}'
+    widget: object
+    summary: '{{fields.slug}}'
+    format: 'json'
+    create: true
+    editor:
+      preview: false
+    fields:
+      - name: 'slug'
+        label: 'Gruppe'
+        i18n: duplicate
+        pattern: [ '^[a-z0-9-]+$', 'Bitte nur Kleinbuchstaben, Zahlen und Bindestriche verwenden!' ]
+        hint: 'Thematische Klammer oder Element, in denen die Übersetzungen verwendet werden.'
+      - name: 'items'
+        label: 'übersetzungen'
+        label_singular: 'Übersetzung'
+        widget: list
+        summary: '{{fields.key}} [DE = "{{fields.value_de}}"]'
+        fields:
+          - <<: *FIELD_STRING
+            name: 'key'
+            label: 'Schlüssel'
+            i18n: duplicate
+            pattern: [ '^([a-z0-9-\.])+$', 'Bitte nur Kleinbuchstaben, Bindestriche und Punkte verwenden!' ]
+            hint: 'Identifikator der Übersetzung, kann aus mehreren Untergruppen bestehen. Beispiel: "button.label"'
+          - name: 'value_de'
+            label: 'Übersetzung DE'
+            widget: string
+            hint: 'Übersetzung (de)'
+          - name: 'value_en'
+            label: 'Übersetzung EN'
+            widget: string
+            required: false
+            hint: 'Übersetzung (en)'

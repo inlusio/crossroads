@@ -6,6 +6,7 @@
     "dev": "concurrently --kill-others 'npx netlify-cms-proxy-server' 'npm run dev:netlify'",
     "dev:netlify": "npx netlify dev --command 'npm run dev:vite'",
     "dev:vite": "vite",
+    "prebuild": "npm run scripts:install && npm run scripts:use",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --root src/",
@@ -24,6 +25,7 @@
     "yarn-bound": "^0.3.1"
   },
   "devDependencies": {
+    "@intlify/unplugin-vue-i18n": "^0.8.1",
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/jsdom": "^20.0.1",
     "@types/lodash-es": "^4.17.6",
@@ -45,6 +47,7 @@
     "typescript": "~4.7.4",
     "vite": "^4.0.0",
     "vitest": "^0.25.6",
+    "vue-i18n": "^9.2.2",
     "vue-tsc": "^1.0.12"
   }
 }

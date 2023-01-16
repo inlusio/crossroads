@@ -11,7 +11,9 @@
   import ResponsiveShell from '@/components/ResponsiveShell/ResponsiveShell.vue'
   import type { DialogHotspot } from '@/models/DialogHotspot/DialogHotspot'
   import useDialogCommand from '@/composables/DialogCommand/DialogCommand'
+  import useTranslation from '@/composables/Translation/Translation'
 
+  const { t } = useTranslation()
   const { content, scene } = useGameScene()
   const { dialog } = useDialog()
   const { isDebug } = useDebug()
@@ -47,7 +49,7 @@
                       @action="onActionRequested(hotspot)"
                     >
                       <template #default="{ label }">
-                        {{ label }}
+                        {{ t(label) }}
                       </template>
                     </ImageMapTooltip>
                   </li>
