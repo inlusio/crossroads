@@ -4,9 +4,12 @@ import type { GameSceneId } from '@/models/GameScene/GameScene'
 import type { DialogResultCommandData } from '@/models/DialogResult/DialogResult'
 import { useRouter } from 'vue-router'
 import type { Dialog } from '@/models/Dialog/Dialog'
+import useRouteRecord from '@/composables/RouteRecord/RouteRecord'
+import { RouteRecordId } from '@/models/RouteRecord/RouteRecord'
 
 export default function useDialogCommand(dialog: Dialog) {
   const router = useRouter()
+  const { toRoute } = useRouteRecord()
   const { toGameScene } = useGameScene()
 
   const handleCommand = async (commandResult: DialogResultCommandData) => {
@@ -34,6 +37,8 @@ export default function useDialogCommand(dialog: Dialog) {
         dialog.runner.jump(...args)
         break
       case DialogCommand.GotoRoute:
+        const name = args[0] as RouteRecordId
+        await router.push(toRoute({ name }))
         break
       case DialogCommand.GotoScene:
         await router.push(toGameScene(args[0] as GameSceneId))
