@@ -3,6 +3,6 @@
   "name": "Karte",
   "illustration": "/image/cms/scene/illustration/02_karte.png",
   "dialogue": {
-    "code": "title: Start\nposition: 200,0\n---\n\n<<if $map_visited>>\n<<jump Investigation>>\n<<endif>>\nConroy: Das ist also die Forschungsstation «Crossroads». #Thoughts\nConroy: Doch grösser als ich gedacht habe. #Thoughts\nConroy: Ich gehe am besten erst einmal zur Stationsleitung. #Thoughts\n<<set $map_visited to true>>\n<<hotspot 700,500 scene management>>\n===\ntitle: Investigation\nposition: 200,0\n---\n-> Stationsleitung. 🧭\n  <<scene management>>\n-> Kantine. 🧭\n  <<scene cantine>>\n-> Privatzimmer von Mrs. Bloom. 🧭\n  <<scene room>>\n-> Labor. 🧭\n  <<scene lab>>\n===\n"
+    "code": "title: Start\nposition: 200,0\n---\n\n<<if $map_visited>>\n<<jump Investigation>>\n<<endif>>\nConroy: Das ist also die Forschungsstation «Crossroads». #Thoughts\nConroy: Doch grösser als ich gedacht habe. #Thoughts\nConroy: Ich gehe am besten erst einmal zur Stationsleitung. #Thoughts\n<<set $map_visited to true>>\n<<hotspot 50,450 scene map>>\n===\ntitle: Investigation\nposition: 200,0\n---\n-> Stationsleitung. 🧭\n  <<scene management>>\n-> Kantine. 🧭\n  <<scene cantine>>\n-> Privatzimmer von Mrs. Bloom. 🧭\n  <<scene room>>\n-> Labor. 🧭\n  <<scene lab>>\n===\n"
   }
 }
