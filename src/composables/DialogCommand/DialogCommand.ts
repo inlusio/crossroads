@@ -5,7 +5,7 @@ import type { DialogResultCommandData } from '@/models/DialogResult/DialogResult
 import { useRouter } from 'vue-router'
 import type { Dialog } from '@/models/Dialog/Dialog'
 import useRouteRecord from '@/composables/RouteRecord/RouteRecord'
-import { RouteRecordId } from '@/models/RouteRecord/RouteRecord'
+import type { RouteRecordId } from '@/models/RouteRecord/RouteRecord'
 
 export default function useDialogCommand(dialog: Dialog) {
   const router = useRouter()
