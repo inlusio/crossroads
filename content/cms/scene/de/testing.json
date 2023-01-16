@@ -2,7 +2,7 @@
   "id": "testing",
   "name": "Testing",
   "dialogue": {
-    "code": "title: Start\nposition: 200,120\n---\nChat-Bot: Gratuliere, ihr seid Mrs. Bloom auf die Spur gekommen. 💪🏼\nChat-Bot: Toll wäre, wenn ihr nun noch ein paar Fragen beantworten könntet.\nChat-Bot: Das hilft uns das Spiel im nächsten Schritt weiterzuentwickeln. \nChat-Bot: Ich danke euch für die Teilnahme. 💚 \nChat-Bot: Klickt hierzu einfach auf den Link.\nChat-Bot: https://ww2.unipark.de/uc/crossroads/\n==="
+    "code": "title: Start\nposition: 200,120\n---\nChat-Bot: Gratuliere, ihr seid Mrs. Bloom auf die Spur gekommen. 💪🏼\nChat-Bot: Toll wäre, wenn ihr nun noch ein paar Fragen beantworten könntet.\nChat-Bot: Das hilft uns das Spiel im nächsten Schritt weiterzuentwickeln. \nChat-Bot: Ich danke euch für die Teilnahme. 💚 \nChat-Bot: Klickt hierzu einfach auf den Link.\nChat-Bot: https://ww2.unipark.de/uc/crossroads/\n<<page intro>>\n==="
   },
   "illustration": "/image/cms/scene/illustration/00_antarctica.jpg"
 }
