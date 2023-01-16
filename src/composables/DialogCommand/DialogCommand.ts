@@ -16,12 +16,13 @@ export default function useDialogCommand(dialog: Dialog) {
       case DialogCommand.AddHint:
         break
       case DialogCommand.AddHotspot:
-        const [coords, ...rawCommand] = args
+        const [label, coords, ...rawCommand] = args
         const [x, y] = coords.split(',').map((n) => parseInt(n, 10))
 
         dialog.hotspots.push({
           x,
           y,
+          label,
           commandData: {
             command: rawCommand.join(' '),
             metadata: commandResult.metadata,

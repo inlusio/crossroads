@@ -3,8 +3,10 @@
   import useBem from '@/composables/Bem/Bem'
   import type { UseBemProps } from '@/composables/Bem/BemFacetOptions'
   import type { CSSProperties } from 'vue'
-  import { computed } from 'vue'
+  import { computed, ref } from 'vue'
   import type { DialogHotspot } from '@/models/DialogHotspot/DialogHotspot'
+  import useSegment from '@/composables/Segment/Segment'
+  import type { Rect } from '@/models/Segment/Segment'
 
   interface Props extends UseBemProps {
     facets?: Array<string>
@@ -20,8 +22,17 @@
   const props = defineProps<Props>()
   const emit = defineEmits<Emits>()
   const { width, height } = useWindowSize()
-  const { bemFacets } = useBem('c-image-map-tooltip', props, {})
+  const { bemAdd, bemFacets } = useBem('c-image-map-tooltip', props, {})
 
+  const segmentRect = ref<Rect>({ x: 0, y: 0, width: props.width, height: props.height })
+  const { getSegmentFeatures, getSegmentIdxOfPoint } = useSegment(segmentRect, [3, 3])
+
+  const segmentIdx = computed<number>(() => {
+    return getSegmentIdxOfPoint({
+      x: props.hotspot.x,
+      y: props.hotspot.y,
+    })
+  })
   const areaLabelStyles = computed<CSSProperties>(() => {
     const x = (props.hotspot.x / props.width) * 100
     const y = (props.hotspot.y / props.height) * 100
@@ -36,6 +47,16 @@
     return [...bemFacets.value]
   })
 
+  const labelClasses = computed<Array<string>>(() => {
+    if (segmentIdx.value == null) {
+      return []
+    }
+
+    return Object.entries(getSegmentFeatures(segmentIdx.value)).map(([key, value]) => {
+      return bemAdd(`${key}-${value}`, 'label')
+    })
+  })
+
   const onActionRequested = () => {
     emit('action')
   }
@@ -43,9 +64,12 @@
 
 <template>
   <span :class="rootClasses" :style="areaLabelStyles" class="c-image-map-tooltip">
-    <button @click="onActionRequested" class="c-image-map-tooltip__btn">
+    <button class="c-image-map-tooltip__btn" @click="onActionRequested">
       <span class="c-image-map-tooltip__circle-inner" />
     </button>
+    <span :class="labelClasses" class="c-image-map-tooltip__label">
+      <slot :label="hotspot.label" />
+    </span>
   </span>
 </template>
 
@@ -61,6 +85,7 @@
   $sz--circle: 40px;
   $sz--circle-outer: 80px;
   $sz--circle-inner: 28px;
+  $sz--label-offset: math.div($sz--circle, 2) + 12px;
 
   @keyframes pulse-ring {
     0% {
@@ -163,5 +188,54 @@
     transform: translate(-50%, -50%);
     background-color: col.$monochrome-white;
     border-radius: $sz--circle;
+  }
+
+  .c-image-map-tooltip__label {
+    @include type.copy-x-small;
+    @include font.base-bold;
+    @include trs.common-props;
+    position: absolute;
+    display: block;
+    background-color: col.$monochrome-black;
+    border: 1px solid col.$monochrome-lead;
+    color: col.$monochrome-white;
+    padding: 4px 6px 3px;
+    border-radius: 2px;
+    white-space: nowrap;
+
+    // Rows
+    &.c-image-map-tooltip__label--row-0 {
+      top: 0;
+    }
+
+    &.c-image-map-tooltip__label--row-1 {
+      top: 0;
+      transform: translateY(-50%);
+    }
+
+    &.c-image-map-tooltip__label--row-2 {
+      bottom: 0;
+    }
+
+    // Columns
+    &.c-image-map-tooltip__label--col-0 {
+      left: $sz--label-offset;
+    }
+
+    &.c-image-map-tooltip__label--col-1 {
+      top: $sz--label-offset;
+      bottom: unset;
+      transform: translateX(-50%);
+    }
+
+    &.c-image-map-tooltip__label--col-2 {
+      right: $sz--label-offset;
+    }
+
+    // Segments
+    &.c-image-map-tooltip__label--seg-5 {
+      top: unset;
+      bottom: $sz--label-offset;
+    }
   }
 </style>
