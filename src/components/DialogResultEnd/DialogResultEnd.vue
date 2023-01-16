@@ -2,7 +2,7 @@
 
 <template>
   <div class="c-dialog-result-end">
-    <i>end</i>
+    <i>&nbsp;</i>
   </div>
 </template>
 
