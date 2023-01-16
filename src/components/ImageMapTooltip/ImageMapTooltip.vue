@@ -2,7 +2,8 @@
   import { useWindowSize } from '@vueuse/core'
   import useBem from '@/composables/Bem/Bem'
   import type { UseBemProps } from '@/composables/Bem/BemFacetOptions'
-  import { computed, CSSProperties } from 'vue'
+  import type { CSSProperties } from 'vue'
+  import { computed } from 'vue'
   import type { DialogHotspot } from '@/models/DialogHotspot/DialogHotspot'
 
   interface Props extends UseBemProps {
@@ -22,8 +23,8 @@
   const { bemFacets } = useBem('c-image-map-tooltip', props, {})
 
   const areaLabelStyles = computed<CSSProperties>(() => {
-    const x = props.hotspot.x / props.width * 100
-    const y = props.hotspot.y / props.height * 100
+    const x = (props.hotspot.x / props.width) * 100
+    const y = (props.hotspot.y / props.height) * 100
 
     return {
       top: `${y}%`,
@@ -32,9 +33,7 @@
   })
 
   const rootClasses = computed<Array<string>>(() => {
-    return [
-      ...bemFacets.value,
-    ]
+    return [...bemFacets.value]
   })
 
   const onActionRequested = () => {
