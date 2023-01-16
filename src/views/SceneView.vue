@@ -30,26 +30,30 @@
           <ViewShell :background="content.illustration" :facets="[ViewShellFacet.Scene]" :height="900" :width="1600">
             <template #content="{ width, height }">
               <ResponsiveShell
-                :outer-width="width"
                 :outer-height="height"
+                :outer-width="width"
                 class="p-page-scene__responsive-shell u-typography-root"
               >
                 <ul class="u-reset p-page-scene__image-tooltip-list">
                   <li
-                    class="p-page-scene__image-tooltip-entry"
                     v-for="(hotspot, hotspotIdx) in dialog.hotspots"
                     :key="hotspotIdx"
+                    class="p-page-scene__image-tooltip-entry"
                   >
                     <ImageMapTooltip
-                      @action="onActionRequested(hotspot)"
-                      :width="width"
-                      :hotspot="hotspot"
                       :height="height"
-                    />
+                      :hotspot="hotspot"
+                      :width="width"
+                      @action="onActionRequested(hotspot)"
+                    >
+                      <template #default="{ label }">
+                        {{ label }}
+                      </template>
+                    </ImageMapTooltip>
                   </li>
                 </ul>
               </ResponsiveShell>
-              <div class="s-container s-container--full-width" v-if="isDebug">
+              <div v-if="isDebug" class="s-container s-container--full-width">
                 <div class="s-container__container">
                   <span>scene: {{ scene }}</span>
                   <br />
