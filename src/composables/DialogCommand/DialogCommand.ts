@@ -36,6 +36,8 @@ export default function useDialogCommand(dialog: Dialog) {
       case DialogCommand.Jump:
         dialog.runner.jump(...args)
         break
+      case DialogCommand.GotoExternal:
+        window.location = args[0] as unknown as Location
       case DialogCommand.GotoRoute:
         const name = args[0] as RouteRecordId
         await router.push(toRoute({ name }))
