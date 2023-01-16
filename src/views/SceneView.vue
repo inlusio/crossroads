@@ -38,8 +38,8 @@
               >
                 <ul class="u-reset p-page-scene__image-tooltip-list">
                   <li
-                    v-for="(hotspot, hotspotIdx) in dialog.hotspots"
-                    :key="hotspotIdx"
+                    v-for="hotspot in dialog.hotspots"
+                    :key="hotspot.label"
                     class="p-page-scene__image-tooltip-entry"
                   >
                     <ImageMapTooltip
