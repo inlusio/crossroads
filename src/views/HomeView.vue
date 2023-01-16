@@ -29,6 +29,7 @@
             <h1 class="p-page-home__title">«Crossroads»</h1>
             <span class="p-page-home__subtitle"> Die Suche nach der verschwundenen Wissenschaftlerin Mrs. Bloom </span>
 
+            <!--
             <div class="p-page-home__intro">
               <p>
                 Vorbemerkung: Bei dem folgenden Spiel handelt es sich um einen ersten Prototypen, um die Story und erste
@@ -36,6 +37,7 @@
                 Glück bei der Suche nach Mrs. Bloom.
               </p>
             </div>
+            -->
 
             <div class="p-page-home__actions">
               <template v-if="dialog.hasStarted">
