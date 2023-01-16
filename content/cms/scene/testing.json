@@ -1,0 +1,8 @@
+{
+  "id": "testing",
+  "name": "Testing",
+  "dialogue": {
+    "code": "title: Start\nposition: 200,120\n---\nConroy: Ob ich Mrs. Bloom bei der Aussenstation finden werde? #Thoughts\nConroy: Und was hat sie wohl herausgefunden, dass sie ganz alleine aufgebrochen ist? #Thoughts\nConroy: Wir werden sehen... #Thoughts\nConroy: Es ist wohl wirklich alles eine Frage der Perspekive. #Thoughts\n==="
+  },
+  "illustration": "/image/cms/scene/illustration/chat_bot.jpg"
+}
