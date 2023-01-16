@@ -44,15 +44,16 @@
 
 <template>
   <span :class="rootClasses" :style="areaLabelStyles" class="c-image-map-tooltip">
-    <span class="c-image-map-tooltip__circle">
-      <button @click="onActionRequested" class="c-image-map-tooltip__btn" />
-    </span>
+    <button class="c-image-map-tooltip__btn">
+      <span @click="onActionRequested" class="c-image-map-tooltip__circle-inner" />
+    </button>
   </span>
 </template>
 
 <style lang="scss" scoped>
   @use 'sass:color';
   @use 'sass:math';
+  @use '@nirazul/scss-utils' as utils;
   @use '@/assets/scss/util/color/color' as col;
   @use '@/assets/scss/util/transition' as trs;
   @use '@/assets/scss/base/font/font' as font;
@@ -95,8 +96,10 @@
     transform: translateX(var(--value));
   }
 
-  .c-image-map-tooltip__circle {
+  .c-image-map-tooltip__btn {
     @include trs.common-props;
+    pointer-events: auto;
+    cursor: pointer;
     z-index: 2;
     position: relative;
     display: block;
@@ -108,9 +111,16 @@
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
 
+    @include utils.has-focus {
+      &::after {
+        background-color: col.$brand-red;
+      }
+    }
+
     &::before,
     &::after {
       @include trs.common-props;
+      pointer-events: none;
       content: '';
       position: absolute;
       top: 50%;
@@ -141,10 +151,9 @@
     }
   }
 
-  .c-image-map-tooltip__btn {
+  .c-image-map-tooltip__circle-inner {
     @include trs.common-props;
-    pointer-events: auto;
-    cursor: pointer;
+    pointer-events: none;
     z-index: 2;
     position: relative;
     top: 50%;
@@ -155,9 +164,5 @@
     transform: translate(-50%, -50%);
     background-color: col.$monochrome-white;
     border-radius: $sz--circle;
-  }
-
-  .c-image-map-tooltip--is-visible {
-    z-index: 10;
   }
 </style>
