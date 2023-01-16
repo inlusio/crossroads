@@ -27,7 +27,7 @@ export default function useSegment(area: Ref<Rect> = defaultRect, parts: Segment
 
   const getSegmentIdxOfPoint = (target: Point) => {
     return segments.value.findIndex(({ x, y, width, height }) => {
-      return target.x > x && target.x < x + width && target.y > y && target.y < y + height
+      return target.x > x && target.x <= x + width && target.y > y && target.y <= y + height
     })
   }
 
