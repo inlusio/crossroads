@@ -191,7 +191,7 @@
   }
 
   .c-image-map-tooltip__label {
-    @include type.copy-x-small;
+    @include type.copy-medium;
     @include font.base-bold;
     @include trs.common-props;
     position: absolute;
@@ -199,7 +199,7 @@
     background-color: col.$monochrome-black;
     border: 1px solid col.$monochrome-lead;
     color: col.$monochrome-white;
-    padding: 4px 6px 3px;
+    padding: 6px 10px 5px;
     border-radius: 2px;
     white-space: nowrap;
 

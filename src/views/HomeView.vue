@@ -45,7 +45,7 @@
                   class="u-reset btn btn--medium btn--highlight"
                   :to="{ name: 'scene', params: { scene: GameSceneId.Map } }"
                 >
-                  Story weiterführen
+                  Story fortsetzen
                 </RouterLink>
                 <button @click="onReset" class="u-reset btn btn--medium btn--highlight">Story neustarten</button>
               </template>
@@ -57,6 +57,11 @@
                   Story starten
                 </RouterLink>
               </template>
+            </div>
+            <div class="p-page-home__actions">
+              <a href="https://ww2.unipark.de/uc/crossroads/" class="u-reset btn btn--medium btn--highlight">
+                Zur Umfrage
+              </a>
             </div>
           </div>
         </div>
@@ -92,7 +97,7 @@
   .p-page-home__subtitle {
     @include type.h2;
     display: block;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
   }
 
   .p-page-home__intro {
@@ -105,5 +110,9 @@
     display: flex;
     flex-flow: row nowrap;
     gap: 12px;
+
+    ~ .p-page-home__actions {
+      margin-top: 32px;
+    }
   }
 </style>

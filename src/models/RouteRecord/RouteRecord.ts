@@ -1,7 +1,7 @@
 import type { RouteParams } from 'vue-router'
 
 export enum RouteRecordId {
-  Home = 'index',
+  Home = 'home',
   Scene = 'scene',
 }
 

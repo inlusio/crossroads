@@ -2,7 +2,7 @@ export enum DialogCommand {
   AddHint = 'addhint',
   AddHotspot = 'hotspot',
   GotoExternal = 'external',
-  GotoRoute = 'goto',
+  GotoRoute = 'page',
   GotoScene = 'scene',
   Jump = 'jump',
 }

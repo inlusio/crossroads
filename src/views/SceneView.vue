@@ -12,6 +12,8 @@
   import type { DialogHotspot } from '@/models/DialogHotspot/DialogHotspot'
   import useDialogCommand from '@/composables/DialogCommand/DialogCommand'
   import useTranslation from '@/composables/Translation/Translation'
+  import { RouteRecordId } from '@/models/RouteRecord/RouteRecord'
+  import useRouteRecord from '@/composables/RouteRecord/RouteRecord'
 
   const { t } = useTranslation()
   const { content, scene } = useGameScene()
@@ -26,6 +28,9 @@
 
 <template>
   <main class="p-page-scene s-layout-game s-layout-game--has-header">
+    <div class="p-page-scene__back">
+      <RouterLink :to="{ name: RouteRecordId.Home }" class="btn btn--small btn--bubble btn--highlight">?</RouterLink>
+    </div>
     <div class="s-layout-game__main">
       <div class="s-layout-game__viewer">
         <div v-if="content" class="s-layout-game__viewer-frame">
@@ -37,11 +42,7 @@
                 class="p-page-scene__responsive-shell u-typography-root"
               >
                 <ul class="u-reset p-page-scene__image-tooltip-list">
-                  <li
-                    v-for="hotspot in dialog.hotspots"
-                    :key="hotspot.label"
-                    class="p-page-scene__image-tooltip-entry"
-                  >
+                  <li v-for="hotspot in dialog.hotspots" :key="hotspot.label" class="p-page-scene__image-tooltip-entry">
                     <ImageMapTooltip
                       :height="height"
                       :hotspot="hotspot"
@@ -87,5 +88,12 @@
   .p-page-scene__responsive-shell {
     @include utils.overlay;
     pointer-events: none;
+  }
+
+  .p-page-scene__back {
+    z-index: 10;
+    position: fixed;
+    top: 12px;
+    right: 12px;
   }
 </style>
