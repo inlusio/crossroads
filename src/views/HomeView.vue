@@ -58,7 +58,7 @@
                 </RouterLink>
               </template>
             </div>
-            <div class="p-page-home__actions">
+            <div class="p-page-home__actions" v-if="dialog.hasStarted">
               <a href="https://ww2.unipark.de/uc/crossroads/" class="u-reset btn btn--medium btn--highlight">
                 Zur Umfrage
               </a>
