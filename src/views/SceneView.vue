@@ -43,16 +43,18 @@
               >
                 <ul class="u-reset p-page-scene__image-tooltip-list">
                   <li v-for="hotspot in dialog.hotspots" :key="hotspot.label" class="p-page-scene__image-tooltip-entry">
-                    <ImageMapTooltip
-                      :height="height"
-                      :hotspot="hotspot"
-                      :width="width"
-                      @action="onActionRequested(hotspot)"
-                    >
-                      <template #default="{ label }">
-                        {{ t(label) }}
-                      </template>
-                    </ImageMapTooltip>
+                    <Transition appear name="trs-simple-fade">
+                      <ImageMapTooltip
+                        :height="height"
+                        :hotspot="hotspot"
+                        :width="width"
+                        @action="onActionRequested(hotspot)"
+                      >
+                        <template #default="{ label }">
+                          {{ t(label) }}
+                        </template>
+                      </ImageMapTooltip>
+                    </Transition>
                   </li>
                 </ul>
               </ResponsiveShell>
