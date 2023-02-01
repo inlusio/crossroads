@@ -24,6 +24,7 @@
     "@vueuse/core": "^9.10.0",
     "lodash-es": "^4.17.21",
     "pinia": "^2.0.28",
+    "screenfull": "^6.0.2",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",
     "yarn-bound": "^0.3.1"
@@ -50,6 +51,7 @@
     "sass": "^1.57.1",
     "typescript": "~4.7.4",
     "vite": "^4.0.0",
+    "vite-svg-loader": "^4.0.0",
     "vitest": "^0.25.6",
     "vue-i18n": "^9.2.2",
     "vue-tsc": "^1.0.12"
