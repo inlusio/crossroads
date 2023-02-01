@@ -1,0 +1,14 @@
+@use '@nirazul/scss-utils' as utils;
+@use '@/assets/scss/util/transition' as trs;
+
+.trs-no-fade {
+  &-enter-active,
+  &-leave-active {
+    transition: 1ms linear opacity;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+  }
+}
