@@ -30,10 +30,7 @@
   <div class="main-actions-nav u-typography-root" :class="bemFacets">
     <ul class="main-actions-nav__list u-reset">
       <li class="main-actions-nav__entry">
-        <button
-          disabled
-          class="main-actions-nav__btn btn btn--icon-medium btn--bubble btn--highlight"
-        >
+        <button disabled class="main-actions-nav__btn btn btn--icon-medium btn--bubble btn--highlight">
           <UiIcon :id="UiIconId.VolumeOff" :colorize="true" :size="UiIconSizeId.Medium" />
           <span class="s-tooltip-label main-actions-nav__btn-tooltip">
             <template v-if="false">

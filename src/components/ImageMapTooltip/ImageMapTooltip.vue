@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-  import { useWindowSize } from '@vueuse/core'
   import useBem from '@/composables/Bem/Bem'
   import type { UseBemProps } from '@/composables/Bem/BemFacetOptions'
   import type { CSSProperties } from 'vue'
@@ -21,7 +20,6 @@
 
   const props = defineProps<Props>()
   const emit = defineEmits<Emits>()
-  const { width, height } = useWindowSize()
   const { bemAdd, bemFacets } = useBem('c-image-map-tooltip', props, {})
 
   const segmentRect = ref<Rect>({ x: 0, y: 0, width: props.width, height: props.height })

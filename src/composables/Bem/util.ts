@@ -13,13 +13,7 @@ export const DEFAULT_OPTIONS = {
  * @return {string} The resulting CSS class
  */
 export function createBemClass(bemClassParts: BemClassParts) {
-  const {
-    blockName,
-    modifierName = '',
-    elementName = '',
-    bemModifierMarker,
-    bemElementMarker,
-  } = bemClassParts
+  const { blockName, modifierName = '', elementName = '', bemModifierMarker, bemElementMarker } = bemClassParts
 
   const elementPart = elementName ? `${bemElementMarker}${elementName}` : ''
   const modifierPart = modifierName ? `${bemModifierMarker}${modifierName}` : ''
@@ -37,9 +31,7 @@ export function mapFacets(blockName: string, facets: Array<string>, options = DE
   const { defaultFacet, ...rest } = options
 
   // Apply multiple facets by using an array
-  const result = facets
-    .filter(Boolean)
-    .map((modifierName) => createBemClass({ blockName, modifierName, ...rest }))
+  const result = facets.filter(Boolean).map((modifierName) => createBemClass({ blockName, modifierName, ...rest }))
 
   // As `facet` can still be an empty string, we'll provide a base facet as a fallback
   if (!result.length) {

@@ -17,7 +17,7 @@ export default function useFullscreenController() {
     }
   }
 
-  screenfull.on('change', (event) => {
+  screenfull.on('change', () => {
     showFullscreen.value = screenfull.isFullscreen
   })
 

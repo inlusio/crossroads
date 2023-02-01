@@ -1,5 +1,3 @@
-// @ts-ignore
-import YarnBound from 'yarn-bound/src'
 import useDialogRunner from '@/composables/DialogRunner/DialogRunner'
 import type { Dialog } from '@/models/Dialog/Dialog'
 import { reactive, watch } from 'vue'

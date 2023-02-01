@@ -1,10 +1,6 @@
 // @ts-ignore
 import YarnBound from 'yarn-bound/src'
-import type {
-  DialogResultContentData,
-  DialogResultMarkup,
-  DialogResultTextData,
-} from '@/models/DialogResult/DialogResult'
+import type { DialogResultContentData, DialogResultMarkup } from '@/models/DialogResult/DialogResult'
 import { DialogResultType } from '@/models/DialogResult/DialogResult'
 import DialogResultText from '@/components/DialogResultText/DialogResultText.vue'
 import DialogResultOptionList from '@/components/DialogResultOptionList/DialogResultOptionList.vue'
@@ -57,7 +53,7 @@ export default function useDialogResult() {
   const getResultFacets = (textResult: DialogResultContentData): Array<string> => {
     const result: Array<string> = []
     const charName = getCharacter(textResult.markup)
-    const [char] = Object.entries(DialogCharacter).find(([key, value]) => value === charName) ?? []
+    const [char] = Object.entries(DialogCharacter).find(([_key, value]) => value === charName) ?? []
 
     if (char) {
       result.push(DialogResultTextFacet[char as keyof typeof DialogResultTextFacet])

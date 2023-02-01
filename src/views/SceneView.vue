@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-  //@ts-ignore
-  import YarnBound from 'yarn-bound/src'
   import useGameScene from '@/composables/GameScene/GameScene'
   import { ViewShellFacet } from '@/components/ViewShell/ViewShellFacet'
   import ViewShell from '@/components/ViewShell/ViewShell.vue'

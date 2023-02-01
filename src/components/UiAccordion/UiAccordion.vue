@@ -131,12 +131,7 @@
     >
       <slot :is-open="open" name="head" />
     </div>
-    <div
-      ref="body"
-      class="c-ui-accordion__body"
-      role="presentation"
-      @transitionend="onTransitionEnd"
-    >
+    <div ref="body" class="c-ui-accordion__body" role="presentation" @transitionend="onTransitionEnd">
       <slot :is-open="open" :is-visible="isVisible" name="body" />
     </div>
   </div>

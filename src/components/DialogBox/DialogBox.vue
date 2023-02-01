@@ -76,7 +76,7 @@
         <div class="c-dialog-box__wrap">
           <div ref="scrollEl" class="c-dialog-box__scroller">
             <ul class="c-dialog-box__history-entries u-reset">
-              <li v-for="entry in resultHistory" class="c-dialog-box__history-entry">
+              <li v-for="entry in resultHistory" class="c-dialog-box__history-entry" :key="entry.timestamp">
                 <Transition appear :name="'trs-simple-fade'" @after-enter="onAfterEnter(entry)">
                   <UiAccordion
                     :data-open="entry.isOpen"

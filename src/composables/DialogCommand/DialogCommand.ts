@@ -18,7 +18,7 @@ export default function useDialogCommand(dialog: Dialog) {
     switch (command as DialogCommand) {
       case DialogCommand.AddHint:
         break
-      case DialogCommand.AddHotspot:
+      case DialogCommand.AddHotspot: {
         const [label, coords, ...rawCommand] = args
         const [x, y] = coords.split(',').map((n) => parseInt(n, 10))
 
@@ -33,15 +33,18 @@ export default function useDialogCommand(dialog: Dialog) {
           },
         })
         break
+      }
       case DialogCommand.Jump:
         dialog.runner.jump(...args)
         break
       case DialogCommand.GotoExternal:
         window.location.href = args[0]
-      case DialogCommand.GotoRoute:
+        break
+      case DialogCommand.GotoRoute: {
         const name = args[0] as RouteRecordId
         await router.push(toRoute({ name }))
         break
+      }
       case DialogCommand.GotoScene:
         await router.push(toGameScene(args[0] as GameSceneId))
         break

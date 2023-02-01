@@ -28,7 +28,7 @@
   const maxResolution = computed(() => Math.max(...props.resolutions))
   const rootAttrs = computed(() => getResponsiveImage(props.src, props.width))
   const alt = computed<string | undefined>(() => {
-    return attrs.alt as string || ''
+    return (attrs.alt as string) || ''
   })
 
   const getResponsiveImage = (path: string, w: number): RootAttrs => {

@@ -50,7 +50,8 @@
   <div :class="rootClasses" class="c-dialog-result-option-list">
     <ul class="c-dialog-result-option-list__list u-reset">
       <li
-        v-for="option in availableOptions"
+        v-for="(option, optionIdx) in availableOptions"
+        :key="optionIdx"
         :class="getOptionEntryClasses(option)"
         class="c-dialog-result-option-list__entry"
       >

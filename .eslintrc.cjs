@@ -9,6 +9,9 @@ module.exports = {
     '@vue/eslint-config-typescript',
     '@vue/eslint-config-prettier',
   ],
+  rules: {
+    '@typescript-eslint/no-unused-vars': ['error', { args: 'after-used', destructuredArrayIgnorePattern: '^_' }],
+  },
   parserOptions: {
     ecmaVersion: 'latest',
   },
