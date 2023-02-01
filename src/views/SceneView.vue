@@ -12,8 +12,7 @@
   import type { DialogHotspot } from '@/models/DialogHotspot/DialogHotspot'
   import useDialogCommand from '@/composables/DialogCommand/DialogCommand'
   import useTranslation from '@/composables/Translation/Translation'
-  import { RouteRecordId } from '@/models/RouteRecord/RouteRecord'
-  import useRouteRecord from '@/composables/RouteRecord/RouteRecord'
+  import MainActionsNav from '@/components/MainActionsNav/MainActionsNav.vue'
 
   const { t } = useTranslation()
   const { content, scene } = useGameScene()
@@ -28,9 +27,7 @@
 
 <template>
   <main class="p-page-scene s-layout-game s-layout-game--has-header">
-    <div class="p-page-scene__back">
-      <RouterLink :to="{ name: RouteRecordId.Home }" class="btn btn--small btn--bubble btn--highlight">?</RouterLink>
-    </div>
+    <MainActionsNav class="p-page-scene__main-actions-nav" />
     <div class="s-layout-game__main">
       <div class="s-layout-game__viewer">
         <div v-if="content" class="s-layout-game__viewer-frame">
@@ -92,7 +89,7 @@
     pointer-events: none;
   }
 
-  .p-page-scene__back {
+  .p-page-scene__main-actions-nav {
     z-index: 10;
     position: fixed;
     top: 12px;

@@ -44,6 +44,10 @@
       @include facet.icon-medium;
     }
 
+    &.btn--icon-small {
+      @include facet.icon-small;
+    }
+
     // Facets
     &.btn--highlight {
       @include facet.highlight;

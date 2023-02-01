@@ -52,7 +52,7 @@
 
   watch(
     currentResult,
-    (value, prevValue) => {
+    () => {
       resultHistory.value
         .filter(({ result }) => getResultType(result) === DialogResultType.Options)
         .forEach((result) => {
