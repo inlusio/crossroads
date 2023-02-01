@@ -1,0 +1,33 @@
+.c-ui-accordion__head {
+    cursor: auto;
+}
+
+
+.c-ui-accordion__body {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: opacity 300ms ease;
+}
+
+.c-ui-accordion {
+    &.c-ui-accordion--is-open {
+        .c-ui-accordion__body {
+            opacity: 1;
+        }
+    }
+
+    &.c-ui-accordion--is-animating {
+        .c-ui-accordion__body {
+            transition: opacity 300ms ease, max-height 300ms ease;
+        }
+    }
+
+    &.c-ui-accordion--message-frame {
+        width: 100%;
+
+        .c-ui-accordion__body {
+            overflow: visible;
+        }
+    }
+}
