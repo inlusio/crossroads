@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import { computed, nextTick, onMounted, ref, watch } from 'vue'
   import useBem from '@/composables/Bem/Bem'
-  import { UseBemProps } from '@/composables/Bem/BemFacetOptions'
+  import type { UseBemProps } from '@/composables/Bem/BemFacetOptions'
   import useIsMounted from '@/composables/IsMounted/IsMounted'
 
   interface Emits {

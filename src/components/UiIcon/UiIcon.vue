@@ -7,9 +7,9 @@
 <script lang="ts" setup>
   import { computed, defineAsyncComponent } from 'vue'
 
-  import { UseBemProps } from '@/composables/Bem/BemFacetOptions'
+  import type { UseBemProps } from '@/composables/Bem/BemFacetOptions'
   import useBem from '@/composables/Bem/Bem'
-  import { UiIconEntry, UiIconId, UiIconSizeId } from '@/models/UiIcon/UiIcon'
+  import type { UiIconEntry, UiIconId, UiIconSizeId } from '@/models/UiIcon/UiIcon'
   import useUiIcon from '@/composables/UiIcon/UiIcon'
 
   // NOTE: Props extension currently not supported
