@@ -45,4 +45,10 @@
       @content;
     }
   }
+
+  @if $state == 'toggled' {
+    @include states.toggled {
+      @content;
+    }
+  }
 }

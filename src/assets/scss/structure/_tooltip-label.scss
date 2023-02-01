@@ -1,0 +1,17 @@
+@use '@/assets/scss/util/color/color' as col;
+@use '@/assets/scss/util/transition' as trs;
+@use '@/assets/scss/base/font/font' as font;
+@use '@/assets/scss/base/typography/typography' as type;
+
+.s-tooltip-label {
+  @include type.copy-medium;
+  @include font.base-bold;
+  @include trs.common-props;
+  display: block;
+  background-color: col.$monochrome-black;
+  border: 1px solid col.$monochrome-lead;
+  color: col.$monochrome-white;
+  padding: 6px 10px 5px;
+  border-radius: 2px;
+  white-space: nowrap;
+}

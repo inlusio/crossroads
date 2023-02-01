@@ -1,7 +1,7 @@
 <template>
-  <div class="c-ui-icon" v-if="entry" :class="rootClasses">
+  <span class="c-ui-icon" v-if="entry" :class="rootClasses">
     <component :is="icon" class="c-ui-icon--svg" />
-  </div>
+  </span>
 </template>
 
 <script lang="ts" setup>
@@ -37,9 +37,10 @@
     return getEntry(props.id)
   })
 
-  const icon = defineAsyncComponent(() =>
-    import(`../../assets/svg/${entry.value?.icon}.svg`)
-  );
+  const icon = computed(() => {
+    console.log(entry.value?.icon)
+    return defineAsyncComponent(() => import(`../../assets/svg/${entry.value?.icon}.svg`))
+  })
 </script>
 
 <style lang="scss" src="./_UiIcon.scss" />

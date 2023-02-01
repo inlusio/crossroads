@@ -67,7 +67,7 @@
     <button class="c-image-map-tooltip__btn" @click="onActionRequested">
       <span class="c-image-map-tooltip__circle-inner" />
     </button>
-    <span :class="labelClasses" class="c-image-map-tooltip__label">
+    <span :class="labelClasses" class="s-tooltip-label c-image-map-tooltip__label">
       <slot :label="hotspot.label" />
     </span>
   </span>
@@ -191,17 +191,8 @@
   }
 
   .c-image-map-tooltip__label {
-    @include type.copy-medium;
-    @include font.base-bold;
-    @include trs.common-props;
+    pointer-events: none;
     position: absolute;
-    display: block;
-    background-color: col.$monochrome-black;
-    border: 1px solid col.$monochrome-lead;
-    color: col.$monochrome-white;
-    padding: 6px 10px 5px;
-    border-radius: 2px;
-    white-space: nowrap;
 
     // Rows
     &.c-image-map-tooltip__label--row-0 {

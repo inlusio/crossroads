@@ -34,6 +34,14 @@
   @include util.apply-states(('disabled')) {
     @include highlight-disabled;
   }
+
+  // Toggled
+  @include util.apply-states(('toggled')) {
+    @include highlight-toggled;
+  }
+  @include util.apply-states(('focus', 'toggled')) {
+    @include highlight-toggled-focused;
+  }
 }
 
 /// Base
@@ -47,14 +55,16 @@
 /// Focus
 ///
 @mixin highlight-focus {
-  border-color: col.$brand-yellow-light;
+  color: col.$monochrome-black;
+  border-color: col.$brand-yellow;
+  //background-color: col.$brand-yellow-light;
 }
 
 /// Active
 ///
 @mixin highlight-active {
   color: col.$monochrome-black;
-  background-color: col.$brand-yellow-light;
+  background-color: col.$brand-yellow;
 }
 
 /// Disabled
@@ -63,4 +73,19 @@
   color: col.$monochrome-steel;
   border-color: col.$monochrome-tornado;
   background-color: col.$monochrome-tornado;
+}
+
+/// Toggled
+///
+@mixin highlight-toggled {
+  color: col.$brand-yellow-dark;
+  border-color: col.$brand-yellow-light;
+  background-color: col.$brand-yellow-light;
+}
+
+/// Toggled & focused
+///
+@mixin highlight-toggled-focused {
+  color: col.$monochrome-black;
+  border-color: col.$brand-yellow-dark;
 }
