@@ -9,6 +9,6 @@ export enum DialogCommand {
 }
 
 export enum DialogBool {
-  True = 'True',
-  False = 'False',
+  True = 'true',
+  False = 'false',
 }
