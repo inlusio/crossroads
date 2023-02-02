@@ -1,11 +1,11 @@
 import { useLocalStorage } from '@/composables/LocalStorage/LocalStorage'
-import type { DialogVariableStorage } from '@/models/DialogStorage/DialogStorage'
+import type { DialogVariableStorage, DialogVariableStorageHandler } from '@/models/DialogStorage/DialogStorage'
 import type { Dialog } from '@/models/Dialog/Dialog'
 
 export function useDialogStorage(dialog: Dialog) {
   const { setItem } = useLocalStorage()
 
-  const storage = {
+  const storage: DialogVariableStorageHandler = {
     get: (key: string): string | boolean | number | undefined => {
       const result = dialog.variables[key]
       return result ? JSON.parse(result) : undefined
