@@ -13,6 +13,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['error', { args: 'after-used', destructuredArrayIgnorePattern: '^_' }],
   },
   parserOptions: {
+    parser: '@typescript-eslint/parser',
     ecmaVersion: 'latest',
   },
 }

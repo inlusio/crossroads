@@ -14,5 +14,8 @@
     {
       "path": "./tsconfig.vitest.json"
     }
-  ]
+  ],
+  "parserOptions": {
+  
+  }
 }

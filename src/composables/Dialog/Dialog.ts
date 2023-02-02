@@ -5,7 +5,6 @@ import useGameScene from '@/composables/GameScene/GameScene'
 import type { GameSceneContent } from '@/models/GameScene/GameScene'
 import { useLocalStorage } from '@/composables/LocalStorage/LocalStorage'
 import { useDialogStorage } from '@/composables/DialogStorage/DialogStorage'
-import { useDialogHotspot } from '@/composables/DialogHotspot/DialogHotspot'
 
 export default function useDialog() {
   const { content } = useGameScene()
@@ -22,7 +21,6 @@ export default function useDialog() {
 
   const { createRunner } = useDialogRunner(dialog)
   const { storage, resetStorage } = useDialogStorage(dialog)
-  const {} = useDialogHotspot(dialog)
 
   const createDialog = (content: GameSceneContent) => {
     dialog.hotspots = []

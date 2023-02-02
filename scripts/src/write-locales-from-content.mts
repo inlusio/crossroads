@@ -1,5 +1,4 @@
 // @ts-ignore
-import { camelCase, startCase } from 'lodash-es'
 import { createWriteStream, mkdirSync, readdirSync, readFileSync } from 'node:fs'
 import { extname, join, resolve } from 'node:path'
 

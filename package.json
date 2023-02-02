@@ -16,7 +16,9 @@
     "scripts:install": "npm --prefix ./scripts install",
     "scripts:use": "npm --prefix ./scripts run use",
     "watch": "npm run watch:locales",
-    "watch:locales": "npx watch 'npm --prefix ./scripts run execute:locales' ./content/cms/translation"
+    "watch:locales": "npx watch 'npm --prefix ./scripts run execute:locales' ./content/cms/translation",
+    "prepare": "husky install",
+    "test": "npm run lint && npm run type-check"
   },
   "dependencies": {
     "@nirazul/scss-mq": "^1.2.1",
@@ -43,6 +45,7 @@
     "concurrently": "^7.6.0",
     "eslint": "^8.22.0",
     "eslint-plugin-vue": "^9.3.0",
+    "husky": "^8.0.3",
     "jsdom": "^20.0.3",
     "netlify-cli": "^12.5.0",
     "npm-run-all": "^4.1.5",

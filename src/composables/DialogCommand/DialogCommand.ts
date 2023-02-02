@@ -63,10 +63,11 @@ export default function useDialogCommand(dialog: Dialog) {
       case DialogCommand.Jump:
         dialog.runner.jump(...args)
         break
-      case DialogCommand.ShowHotspot:
+      case DialogCommand.ShowHotspot: {
         const [label, showFlag] = args
         setHotspotShown(label, parseBoolean(showFlag))
         break
+      }
     }
   }
 
