@@ -11,12 +11,14 @@
   import useDialogCommand from '@/composables/DialogCommand/DialogCommand'
   import useTranslation from '@/composables/Translation/Translation'
   import MainActionsNav from '@/components/MainActionsNav/MainActionsNav.vue'
+  import { useDialogHotspot } from '@/composables/DialogHotspot/DialogHotspot'
 
   const { t } = useTranslation()
   const { content, scene } = useGameScene()
   const { dialog } = useDialog()
   const { isDebug } = useDebug()
   const { handleCommand } = useDialogCommand(dialog)
+  const { isHotspotShown } = useDialogHotspot(dialog)
 
   const onActionRequested = (hotspot: DialogHotspot) => {
     handleCommand(hotspot.commandData)
@@ -40,6 +42,7 @@
                   <li v-for="hotspot in dialog.hotspots" :key="hotspot.label" class="p-page-scene__image-tooltip-entry">
                     <Transition appear name="trs-simple-fade">
                       <ImageMapTooltip
+                        v-if="isHotspotShown(hotspot.label)"
                         :height="height"
                         :hotspot="hotspot"
                         :width="width"

@@ -38,7 +38,6 @@
   })
 
   const icon = computed(() => {
-    console.log(entry.value?.icon)
     return defineAsyncComponent(() => import(`../../assets/svg/${entry.value?.icon}.svg`))
   })
 </script>

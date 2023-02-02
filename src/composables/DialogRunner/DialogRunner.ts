@@ -11,10 +11,10 @@ export default function useDialogRunner(dialog: Dialog) {
 
   const runner = ref<YarnBound | null>(null)
 
-  const createRunner = (dialog: Dialog, variableStorage: DialogVariableStorageHandler, code: string): YarnBound => {
+  const createRunner = (dialog: Dialog, storage: DialogVariableStorageHandler, code: string): YarnBound => {
     runner.value = new YarnBound({
       dialogue: code,
-      variableStorage,
+      variableStorage: storage,
       handleCommand,
     } as YarnBoundOptions)
 

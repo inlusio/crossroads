@@ -5,6 +5,7 @@ import useGameScene from '@/composables/GameScene/GameScene'
 import type { GameSceneContent } from '@/models/GameScene/GameScene'
 import { useLocalStorage } from '@/composables/LocalStorage/LocalStorage'
 import { useDialogStorage } from '@/composables/DialogStorage/DialogStorage'
+import { useDialogHotspot } from '@/composables/DialogHotspot/DialogHotspot'
 
 export default function useDialog() {
   const { content } = useGameScene()
@@ -20,20 +21,21 @@ export default function useDialog() {
   })
 
   const { createRunner } = useDialogRunner(dialog)
-  const { variableStorage, resetVariableStorage } = useDialogStorage(dialog)
+  const { storage, resetStorage } = useDialogStorage(dialog)
+  const {} = useDialogHotspot(dialog)
 
   const createDialog = (content: GameSceneContent) => {
     dialog.hotspots = []
     dialog.sceneId = content.id
     dialog.isReady = true
     dialog.hasStarted = true
-    dialog.runner = createRunner(dialog, variableStorage, content.dialogue.code)
+    dialog.runner = createRunner(dialog, storage, content.dialogue.code)
     return dialog
   }
 
   const resetDialog = () => {
     dialog.hasStarted = false
-    resetVariableStorage()
+    resetStorage()
   }
 
   watch(
