@@ -1,4 +1,6 @@
-import { DialogBool, DialogCommand } from '@/models/DialogCommand/DialogCommand'
+import { parseArgs } from 'string-args-parser'
+import arg from 'arg'
+import { DialogBool, dialogCommandDict, DialogCommandId } from '@/models/DialogCommand/DialogCommand'
 import useGameScene from '@/composables/GameScene/GameScene'
 import type { GameSceneId } from '@/models/GameScene/GameScene'
 import type { DialogResultCommandData } from '@/models/DialogResult/DialogResult'
@@ -7,6 +9,12 @@ import type { Dialog } from '@/models/Dialog/Dialog'
 import useRouteRecord from '@/composables/RouteRecord/RouteRecord'
 import type { RouteRecordId } from '@/models/RouteRecord/RouteRecord'
 import { useDialogHotspot } from '@/composables/DialogHotspot/DialogHotspot'
+import type { DialogCommandResultAddHotspot } from '@/models/DialogCommand/DialogCommandSpec'
+
+const PARSE_OPTIONS: arg.Options = {
+  permissive: true,
+  stopAtPositional: false,
+}
 
 const parseBoolean = (flag: string) => {
   switch (flag) {
@@ -19,6 +27,19 @@ const parseBoolean = (flag: string) => {
   }
 }
 
+const parseCommand = (command: string) => {
+  const argv = parseArgs(command)
+  const { spec } = dialogCommandDict[argv[0] as DialogCommandId]
+  const result = arg(spec, { ...PARSE_OPTIONS, argv })
+  Object.keys(result).forEach((key) => {
+    const value = result[key]
+    delete result[key]
+    result[key.replace(/^-+/, '')] = value
+  })
+
+  return result
+}
+
 export default function useDialogCommand(dialog: Dialog) {
   const router = useRouter()
   const { toRoute } = useRouteRecord()
@@ -26,48 +47,50 @@ export default function useDialogCommand(dialog: Dialog) {
   const { isHotspotShown, setHotspotShown } = useDialogHotspot(dialog)
 
   const handleCommand = async (commandResult: DialogResultCommandData) => {
-    const [command, ...args] = commandResult.command.split(' ')
+    const parsed = parseCommand(commandResult.command)
+    const [command, ...args] = parsed._
 
-    switch (command as DialogCommand) {
-      case DialogCommand.AddHint:
+    switch (command as DialogCommandId) {
+      case DialogCommandId.AddHint:
         console.warn('Dialog command "hint" is not implemented yet')
         break
-      case DialogCommand.AddHotspot: {
-        const [label, coords, ...rawCommand] = args
-        const [x, y] = coords.split(',').map((n) => parseInt(n, 10))
-
-        dialog.hotspots.push({
-          x,
-          y,
-          label,
-          commandData: {
-            command: rawCommand.join(' '),
+      case DialogCommandId.AddHotspot: {
+        const [label] = args
+        const { x, y, click } = parsed as unknown as DialogCommandResultAddHotspot
+        const commandData = click.map((command) => {
+          return {
+            command,
             metadata: commandResult.metadata,
             hashtags: commandResult.hashtags,
-          },
+          }
         })
+
+        dialog.hotspots.push({ x, y, label, commandData })
         setHotspotShown(label, isHotspotShown(label) ?? true)
         break
       }
-      case DialogCommand.GotoExternal:
+      case DialogCommandId.GotoExternal:
         window.location.href = args[0]
         break
-      case DialogCommand.GotoRoute: {
+      case DialogCommandId.GotoRoute: {
         const name = args[0] as RouteRecordId
         await router.push(toRoute({ name }))
         break
       }
-      case DialogCommand.GotoScene:
+      case DialogCommandId.GotoScene:
         await router.push(toGameScene(args[0] as GameSceneId))
         break
-      case DialogCommand.Jump:
+      case DialogCommandId.Jump:
         dialog.runner.jump(...args)
         break
-      case DialogCommand.ShowHotspot: {
+      case DialogCommandId.ShowHotspot: {
         const [label, showFlag] = args
         setHotspotShown(label, parseBoolean(showFlag))
         break
       }
+      case DialogCommandId.Test:
+        console.log(parsed)
+        break
     }
   }
 

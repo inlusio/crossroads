@@ -4,5 +4,5 @@ export interface DialogHotspot {
   x: number
   y: number
   label: string
-  commandData: DialogResultCommandData
+  commandData: Array<DialogResultCommandData>
 }

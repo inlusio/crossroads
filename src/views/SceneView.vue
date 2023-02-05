@@ -21,7 +21,7 @@
   const { isHotspotShown } = useDialogHotspot(dialog)
 
   const onActionRequested = (hotspot: DialogHotspot) => {
-    handleCommand(hotspot.commandData)
+    hotspot.commandData.forEach((command) => handleCommand(command))
   }
 </script>
 
