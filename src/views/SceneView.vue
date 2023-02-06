@@ -22,8 +22,6 @@
   const { isHotspotShown } = useDialogHotspot(dialog)
   const { transitionName, transitionMode } = useSceneTransition()
 
-  console.log(transitionName, transitionMode)
-
   const onActionRequested = (hotspot: DialogHotspot) => {
     hotspot.commandData.forEach((command) => handleCommand(command))
   }
@@ -36,7 +34,13 @@
       <div class="s-layout-game__viewer">
         <Transition :name="transitionName" :mode="transitionMode">
           <div :key="sceneId" v-if="content" class="s-layout-game__viewer-frame">
-            <ViewShell :background="content.illustration" :facets="[ViewShellFacet.Scene]" :height="900" :width="1600">
+            <ViewShell
+              :key="sceneId"
+              :background="content.illustration"
+              :facets="[ViewShellFacet.Scene]"
+              :height="900"
+              :width="1600"
+            >
               <template #content="{ width, height }">
                 <ResponsiveShell
                   :outer-height="height"

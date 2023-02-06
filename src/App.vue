@@ -17,12 +17,15 @@
     </div>
   </header>
 
-  <!--  <RouterView class="s-app__main" v-slot="{ Component }">-->
-  <!--    <Transition :name="transitionName" :mode="transitionMode">-->
-  <!--      <Component :is="Component" :key="sceneParam" />-->
-  <!--    </Transition>-->
+  <!--  <RouterView class="s-app__main">-->
+  <!--    <template #default="{ Component }">-->
+  <!--      <Transition :name="transitionName" :mode="transitionMode">-->
+  <!--        <Component :is="Component" :key="sceneParam" />-->
+  <!--      </Transition>-->
+  <!--    </template>-->
   <!--  </RouterView>-->
+
   <RouterView class="s-app__main" />
 </template>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped></style>

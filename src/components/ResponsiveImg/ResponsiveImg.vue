@@ -9,6 +9,10 @@
     src: string
   }
 
+  interface Emits {
+    (e: 'load', value: boolean): void
+  }
+
   interface Props {
     src: string
     width: number
@@ -16,12 +20,10 @@
     resolutions?: Array<number>
   }
 
-  // TODO: https://youtrack.jetbrains.com/issue/WEB-54555/Props-Destructure-syntax-in-Vue-script-setup
-  // const { src, width, loading = LoadingStrategy.Auto, resolutions = [1, 2] } = defineProps<Props>()
-  /* TODO: replace when ready */
+  const emit = defineEmits<Emits>()
   const props = withDefaults(defineProps<Props>(), {
     loading: 'auto',
-    resolutions: () => [1, 2],
+    resolutions: () => [1,2]
   })
   const attrs = useAttrs()
 
@@ -57,7 +59,7 @@
 </script>
 
 <template>
-  <img :alt="alt" :loading="loading" class="c-responsive-img" v-bind="rootAttrs" />
+  <img @load="emit('load', true)" :alt="alt" :loading="loading" class="c-responsive-img" v-bind="rootAttrs" />
 </template>
 
 <style lang="scss" scoped>

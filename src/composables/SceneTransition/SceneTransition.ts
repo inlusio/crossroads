@@ -12,7 +12,7 @@ export default function useSceneTransition() {
     () => sceneParam.value,
     (value, oldValue) => {
       if ([value, oldValue].every((v) => Object.values(GameSceneId).includes(v as GameSceneId))) {
-        transitionName.value = 'trs-simple-fade'
+        transitionName.value = 'trs-scene-fade'
         transitionMode.value = 'out-in'
       } else {
         transitionName.value = ''

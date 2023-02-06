@@ -3,6 +3,7 @@
   import useBem from '@/composables/Bem/Bem'
   import ResponsiveShell from '@/components/ResponsiveShell/ResponsiveShell.vue'
   import ResponsiveImg from '@/components/ResponsiveImg/ResponsiveImg.vue'
+  import { computed, ref } from 'vue'
 
   interface Props extends UseBemProps {
     facets?: Array<string>
@@ -11,9 +12,25 @@
     height: number
   }
 
-  // TODO: https://youtrack.jetbrains.com/issue/WEB-54555/Props-Destructure-syntax-in-Vue-script-setup
-  const props = defineProps<Props>()
-  const { bemFacets } = useBem('c-view-shell', props, {})
+  const props = withDefaults(defineProps<Props>(), {
+    facets: () => [],
+    background: '',
+  })
+  const { bemAdd, bemFacets } = useBem('c-view-shell', props, {})
+
+  const isBackgroundLoaded = ref<boolean>(false)
+
+  const blurImageClasses = computed<Array<string>>(() => {
+    return [bemAdd(isBackgroundLoaded.value ? 'is-shown' : '', 'blur-image')]
+  })
+
+  const mainImageClasses = computed<Array<string>>(() => {
+    return [bemAdd(isBackgroundLoaded.value ? 'is-shown' : '', 'main-image')]
+  })
+
+  const onLoad = () => {
+    isBackgroundLoaded.value = true
+  }
 </script>
 
 <template>
@@ -22,8 +39,24 @@
       <ResponsiveShell :outer-width="width" :outer-height="height" class="c-view-shell__background-shell">
         <div class="c-view-shell__background-element" />
       </ResponsiveShell>
-      <ResponsiveImg :resolutions="[1]" :src="background" :width="width" alt="" class="c-view-shell__blur" />
-      <ResponsiveImg :resolutions="[1]" :src="background" :width="width" alt="" class="c-view-shell__image" />
+      <ResponsiveImg
+        @load="onLoad"
+        :resolutions="[1]"
+        :class="blurImageClasses"
+        :src="background"
+        :width="width"
+        alt=""
+        class="c-view-shell__blur-image"
+      />
+      <ResponsiveImg
+        @load="onLoad"
+        :resolutions="[1]"
+        :class="mainImageClasses"
+        :src="background"
+        :width="width"
+        alt=""
+        class="c-view-shell__main-image"
+      />
     </div>
     <div class="c-view-shell__content">
       <slot :height="height" :width="width" name="content" />
@@ -39,6 +72,7 @@
   @use 'sass:math';
   @use '@nirazul/scss-utils' as utils;
   @use '@/assets/scss/util/color/color' as col;
+  @use '@/assets/scss/util/transition' as trs;
 
   $blur: 40px;
 
@@ -60,8 +94,6 @@
     align-items: center;
     width: 100%;
     height: 100%;
-
-    background-color: col.$monochrome-white;
   }
 
   .c-view-shell__background-shell {
@@ -72,7 +104,7 @@
     @include utils.overlay;
   }
 
-  .c-view-shell__blur {
+  .c-view-shell__blur-image {
     z-index: 1;
     position: absolute;
     top: 50%;
@@ -85,7 +117,16 @@
     max-height: unset;
   }
 
-  .c-view-shell__image {
+  .c-view-shell__blur-image {
+    opacity: 0;
+    transition: 200ms trs.$default-fn opacity;
+
+    &.c-view-shell__blur-image--is-shown {
+      opacity: 1;
+    }
+  }
+
+  .c-view-shell__main-image {
     z-index: 2;
     position: relative;
     display: block;
@@ -93,6 +134,12 @@
     height: 100%;
     object-fit: contain;
     object-position: center;
+    opacity: 0;
+    transition: 1600ms trs.$default-fn opacity;
+
+    &.c-view-shell__main-image--is-shown {
+      opacity: 1;
+    }
   }
 
   .c-view-shell__content {
@@ -118,7 +165,7 @@
     $image-h: 900px;
     $image-ratio: math.div($image-h, $image-w);
 
-    .c-view-shell__image {
+    .c-view-shell__main-image {
       max-width: $image-w;
       max-height: $image-h;
     }

@@ -1,0 +1,14 @@
+@use '@nirazul/scss-utils' as utils;
+@use '@/assets/scss/util/transition' as trs;
+
+.trs-scene-fade {
+  &-enter-active,
+  &-leave-active {
+    transition: 400ms trs.$default-fn opacity;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+  }
+}
