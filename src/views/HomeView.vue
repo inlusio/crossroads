@@ -43,7 +43,7 @@
               <template v-if="dialog.hasStarted">
                 <RouterLink
                   class="u-reset btn btn--medium btn--highlight"
-                  :to="{ name: 'scene', params: { sceneId: GameSceneId.Map } }"
+                  :to="{ name: 'scene', params: { scene: GameSceneId.Map } }"
                 >
                   Story fortsetzen
                 </RouterLink>
@@ -52,7 +52,7 @@
               <template v-else>
                 <RouterLink
                   class="u-reset btn btn--medium btn--highlight"
-                  :to="{ name: 'scene', params: { sceneId: GameSceneId.Intro } }"
+                  :to="{ name: 'scene', params: { scene: GameSceneId.Intro } }"
                 >
                   Story starten
                 </RouterLink>

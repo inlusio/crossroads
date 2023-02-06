@@ -23,7 +23,7 @@
   const emit = defineEmits<Emits>()
   const props = withDefaults(defineProps<Props>(), {
     loading: 'auto',
-    resolutions: () => [1,2]
+    resolutions: () => [1, 2],
   })
   const attrs = useAttrs()
 
