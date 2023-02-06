@@ -12,6 +12,7 @@
   import useTranslation from '@/composables/Translation/Translation'
   import MainActionsNav from '@/components/MainActionsNav/MainActionsNav.vue'
   import { useDialogHotspot } from '@/composables/DialogHotspot/DialogHotspot'
+  import useSceneTransition from '@/composables/SceneTransition/SceneTransition'
 
   const { t } = useTranslation()
   const { content, scene } = useGameScene()
@@ -19,6 +20,9 @@
   const { isDebug } = useDebug()
   const { handleCommand } = useDialogCommand(dialog)
   const { isHotspotShown } = useDialogHotspot(dialog)
+  const { transitionName, transitionMode } = useSceneTransition()
+
+  console.log(transitionName, transitionMode)
 
   const onActionRequested = (hotspot: DialogHotspot) => {
     hotspot.commandData.forEach((command) => handleCommand(command))

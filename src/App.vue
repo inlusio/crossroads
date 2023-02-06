@@ -9,13 +9,19 @@
   <header>
     <!--<img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />-->
 
-    <div class="wrapper">
+    <div class="s-app__wrapper">
       <nav>
         <!--<RouterLink to="/">Home</RouterLink>-->
+        <!--<pre>{{ transitionName }}</pre>-->
       </nav>
     </div>
   </header>
 
+  <!--  <RouterView class="s-app__main" v-slot="{ Component }">-->
+  <!--    <Transition :name="transitionName" :mode="transitionMode">-->
+  <!--      <Component :is="Component" :key="sceneParam" />-->
+  <!--    </Transition>-->
+  <!--  </RouterView>-->
   <RouterView class="s-app__main" />
 </template>
 
