@@ -15,7 +15,7 @@
   import useSceneTransition from '@/composables/SceneTransition/SceneTransition'
 
   const { t } = useTranslation()
-  const { content, scene } = useGameScene()
+  const { content, sceneId } = useGameScene()
   const { dialog } = useDialog()
   const { isDebug } = useDebug()
   const { handleCommand } = useDialogCommand(dialog)
@@ -34,45 +34,51 @@
     <MainActionsNav class="p-page-scene__main-actions-nav" />
     <div class="s-layout-game__main">
       <div class="s-layout-game__viewer">
-        <div v-if="content" class="s-layout-game__viewer-frame">
-          <ViewShell :background="content.illustration" :facets="[ViewShellFacet.Scene]" :height="900" :width="1600">
-            <template #content="{ width, height }">
-              <ResponsiveShell
-                :outer-height="height"
-                :outer-width="width"
-                class="p-page-scene__responsive-shell u-typography-root"
-              >
-                <ul class="u-reset p-page-scene__image-tooltip-list">
-                  <li v-for="hotspot in dialog.hotspots" :key="hotspot.label" class="p-page-scene__image-tooltip-entry">
-                    <Transition appear name="trs-simple-fade">
-                      <ImageMapTooltip
-                        v-if="isHotspotShown(hotspot.label)"
-                        :height="height"
-                        :hotspot="hotspot"
-                        :width="width"
-                        @action="onActionRequested(hotspot)"
-                      >
-                        <template #default="{ label }">
-                          {{ t(label) }}
-                        </template>
-                      </ImageMapTooltip>
-                    </Transition>
-                  </li>
-                </ul>
-              </ResponsiveShell>
-              <div v-if="isDebug" class="s-container s-container--full-width">
-                <div class="s-container__container">
-                  <span>scene: {{ scene }}</span>
-                  <br />
-                  <details>
-                    <summary>Raw content</summary>
-                    <pre>{{ content }}</pre>
-                  </details>
+        <Transition :name="transitionName" :mode="transitionMode">
+          <div :key="sceneId" v-if="content" class="s-layout-game__viewer-frame">
+            <ViewShell :background="content.illustration" :facets="[ViewShellFacet.Scene]" :height="900" :width="1600">
+              <template #content="{ width, height }">
+                <ResponsiveShell
+                  :outer-height="height"
+                  :outer-width="width"
+                  class="p-page-scene__responsive-shell u-typography-root"
+                >
+                  <ul class="u-reset p-page-scene__image-tooltip-list">
+                    <li
+                      v-for="hotspot in dialog.hotspots"
+                      :key="hotspot.label"
+                      class="p-page-scene__image-tooltip-entry"
+                    >
+                      <Transition appear name="trs-simple-fade">
+                        <ImageMapTooltip
+                          v-if="isHotspotShown(hotspot.label)"
+                          :height="height"
+                          :hotspot="hotspot"
+                          :width="width"
+                          @action="onActionRequested(hotspot)"
+                        >
+                          <template #default="{ label }">
+                            {{ t(label) }}
+                          </template>
+                        </ImageMapTooltip>
+                      </Transition>
+                    </li>
+                  </ul>
+                </ResponsiveShell>
+                <div v-if="isDebug" class="s-container s-container--full-width">
+                  <div class="s-container__container">
+                    <span>scene: {{ sceneId }}</span>
+                    <br />
+                    <details>
+                      <summary>Raw content</summary>
+                      <pre>{{ content }}</pre>
+                    </details>
+                  </div>
                 </div>
-              </div>
-            </template>
-          </ViewShell>
-        </div>
+              </template>
+            </ViewShell>
+          </div>
+        </Transition>
       </div>
       <div class="s-layout-game__dialog-box">
         <DialogBox v-if="dialog.isReady" :key="dialog.sceneId" :runner="dialog.runner" />

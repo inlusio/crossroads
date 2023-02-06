@@ -6,7 +6,7 @@ export default function useSceneTransition() {
   const { sceneParam } = useRouteRecord()
 
   const transitionName = ref<string>('')
-  const transitionMode = ref<string>('')
+  const transitionMode = ref<'default' | 'out-in' | 'in-out'>('default')
 
   watch(
     () => sceneParam.value,
@@ -16,7 +16,7 @@ export default function useSceneTransition() {
         transitionMode.value = 'out-in'
       } else {
         transitionName.value = ''
-        transitionMode.value = ''
+        transitionMode.value = 'default'
       }
     },
     { immediate: true },

@@ -6,6 +6,7 @@
   import { DialogResultType } from '@/models/DialogResult/DialogResult'
   import useDialogResult from '@/composables/DialogResult/DialogResult'
   import UiAccordion from '@/components/UiAccordion/UiAccordion.vue'
+  import useSceneTransition from '@/composables/SceneTransition/SceneTransition'
 
   export interface Props {
     facets?: Array<string>
@@ -20,6 +21,7 @@
 
   const props = defineProps<Props>()
   const { getResultType, getResultComponent } = useDialogResult()
+  const { transitionName, transitionMode } = useSceneTransition()
 
   const scrollEl = ref<HTMLDivElement | null>(null)
   const resultHistory = ref<Array<ResultHistoryEntry>>([])
@@ -73,40 +75,42 @@
   <div class="c-dialog-box">
     <div class="s-container--dialog">
       <div class="c-dialog-box__container s-container__container">
-        <div class="c-dialog-box__wrap">
-          <div ref="scrollEl" class="c-dialog-box__scroller">
-            <ul class="c-dialog-box__history-entries u-reset">
-              <li v-for="entry in resultHistory" class="c-dialog-box__history-entry" :key="entry.timestamp">
-                <Transition appear :name="'trs-simple-fade'" @after-enter="onAfterEnter(entry)">
-                  <UiAccordion
-                    :data-open="entry.isOpen"
-                    :key="entry.timestamp"
-                    :facets="[]"
-                    :open="entry.isOpen"
-                    :passive="true"
-                  >
-                    <template #body>
-                      <component
-                        :is="getResultComponent(entry.result)"
-                        v-bind="entry.result"
-                        @choose="onOptionChosen($event)"
-                      />
-                    </template>
-                  </UiAccordion>
-                </Transition>
-              </li>
-            </ul>
+        <Transition :name="transitionName" :mode="transitionMode">
+          <div class="c-dialog-box__wrap">
+            <div ref="scrollEl" class="c-dialog-box__scroller">
+              <ul class="c-dialog-box__history-entries u-reset">
+                <li v-for="entry in resultHistory" class="c-dialog-box__history-entry" :key="entry.timestamp">
+                  <Transition appear :name="'trs-simple-fade'" @after-enter="onAfterEnter(entry)">
+                    <UiAccordion
+                      :data-open="entry.isOpen"
+                      :key="entry.timestamp"
+                      :facets="[]"
+                      :open="entry.isOpen"
+                      :passive="true"
+                    >
+                      <template #body>
+                        <component
+                          :is="getResultComponent(entry.result)"
+                          v-bind="entry.result"
+                          @choose="onOptionChosen($event)"
+                        />
+                      </template>
+                    </UiAccordion>
+                  </Transition>
+                </li>
+              </ul>
+            </div>
+            <div class="c-dialog-box__actions">
+              <button
+                :disabled="isAdvanceDisabled"
+                class="c-dialog-box__advance btn btn--primary btn--small"
+                @click="advance"
+              >
+                weiter
+              </button>
+            </div>
           </div>
-          <div class="c-dialog-box__actions">
-            <button
-              :disabled="isAdvanceDisabled"
-              class="c-dialog-box__advance btn btn--primary btn--small"
-              @click="advance"
-            >
-              weiter
-            </button>
-          </div>
-        </div>
+        </Transition>
       </div>
     </div>
   </div>

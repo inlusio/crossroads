@@ -38,7 +38,7 @@ export default function useGameScene() {
 
   return {
     content,
-    scene: sceneParam,
+    sceneId: sceneParam,
     toGameScene,
   }
 }
