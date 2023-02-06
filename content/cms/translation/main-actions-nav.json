@@ -1,24 +1,24 @@
 {
-  "slug": "main-actions-nav",
+  "slug": "main_actions_nav",
   "items": [
     {
-      "key": "fullscreen-on",
+      "key": "fullscreen_on",
       "value_de": "Vollbildschirm deaktivieren"
     },
     {
-      "key": "fullscreen-off",
+      "key": "fullscreen_off",
       "value_de": "Vollbildschirm aktivieren"
     },
     {
-      "key": "to-home",
+      "key": "to_home",
       "value_de": "zum Startbildschirm"
     },
     {
-      "key": "audio-on",
+      "key": "audio_on",
       "value_de": "Musik deaktivieren"
     },
     {
-      "key": "audio-off",
+      "key": "audio_off",
       "value_de": "Musik aktivieren"
     }
   ]

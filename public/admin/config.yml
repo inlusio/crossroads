@@ -39,8 +39,8 @@ cms_mixins:
     name: 'id'
     label: 'Id'
     i18n: duplicate
-    pattern: [ '^[a-z0-9-]+$', 'Bitte nur Kleinbuchstaben, Zahlen und Bindestriche verwenden!' ]
-    hint: 'Technischer Identifikator, z.B. für die Verwendung in der URL. Bitte nur Kleinbuchstaben, Zahlen und Bindestriche verwenden, möglichst in Englisch schreiben und darauf achten, dass der Begriff einzigartig ist in seinem Bereich. Beispiel: "eingang-station"'
+    pattern: [ '^[a-z0-9_]+$', 'Bitte nur Kleinbuchstaben, Zahlen und Underscores verwenden!' ]
+    hint: 'Technischer Identifikator, z.B. für die Verwendung in der URL. Bitte nur Kleinbuchstaben, Zahlen und Underscores verwenden, möglichst in Englisch schreiben und darauf achten, dass der Begriff einzigartig ist in seinem Bereich. Beispiel: "eingang_station"'
   cms_field_name: &FIELD_NAME
     <<: *FIELD_STRING
     name: 'name'
@@ -97,7 +97,7 @@ collections:
       - name: 'slug'
         label: 'Gruppe'
         i18n: duplicate
-        pattern: [ '^[a-z0-9-]+$', 'Bitte nur Kleinbuchstaben, Zahlen und Bindestriche verwenden!' ]
+        pattern: [ '^[a-z0-9_]+$', 'Bitte nur Kleinbuchstaben, Zahlen und Underscores verwenden!' ]
         hint: 'Thematische Klammer oder Element, in denen die Übersetzungen verwendet werden.'
       - name: 'items'
         label: 'übersetzungen'
@@ -109,7 +109,7 @@ collections:
             name: 'key'
             label: 'Schlüssel'
             i18n: duplicate
-            pattern: [ '^([a-z0-9-\.])+$', 'Bitte nur Kleinbuchstaben, Bindestriche und Punkte verwenden!' ]
+            pattern: [ '^([a-z0-9_\.])+$', 'Bitte nur Kleinbuchstaben, Underscores und Punkte verwenden!' ]
             hint: 'Identifikator der Übersetzung, kann aus mehreren Untergruppen bestehen. Beispiel: "button.label"'
           - name: 'value_de'
             label: 'Übersetzung DE'

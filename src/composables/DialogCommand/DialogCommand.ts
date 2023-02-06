@@ -9,7 +9,10 @@ import type { Dialog } from '@/models/Dialog/Dialog'
 import useRouteRecord from '@/composables/RouteRecord/RouteRecord'
 import type { RouteRecordId } from '@/models/RouteRecord/RouteRecord'
 import { useDialogHotspot } from '@/composables/DialogHotspot/DialogHotspot'
-import type { DialogCommandResultAddHotspot } from '@/models/DialogCommand/DialogCommandSpec'
+import type {
+  DialogCommandResultAddHotspot,
+  DialogCommandSpecAddHotspot,
+} from '@/models/DialogCommand/DialogCommandSpec'
 
 const PARSE_OPTIONS: arg.Options = {
   permissive: true,
@@ -33,7 +36,6 @@ const parseCommand = (command: string) => {
   const result = arg(spec, { ...PARSE_OPTIONS, argv })
   Object.keys(result).forEach((key) => {
     const value = result[key]
-    delete result[key]
     result[key.replace(/^-+/, '')] = value
   })
 
@@ -55,8 +57,10 @@ export default function useDialogCommand(dialog: Dialog) {
         console.warn('Dialog command "hint" is not implemented yet')
         break
       case DialogCommandId.AddHotspot: {
+        type Test = arg.Result<DialogCommandSpecAddHotspot> & DialogCommandResultAddHotspot
+
         const [label] = args
-        const { x, y, click } = parsed as unknown as DialogCommandResultAddHotspot
+        const { x, y, click } = parsed as Test
         const commandData = click.map((command) => {
           return {
             command,

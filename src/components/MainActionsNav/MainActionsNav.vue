@@ -34,10 +34,10 @@
           <UiIcon :id="UiIconId.VolumeOff" :colorize="true" :size="UiIconSizeId.Medium" />
           <span class="s-tooltip-label main-actions-nav__btn-tooltip">
             <template v-if="false">
-              {{ t('main-actions-nav.audio-on') }}
+              {{ t('main_actions_nav.audio_on') }}
             </template>
             <template v-else>
-              {{ t('main-actions-nav.audio-off') }}
+              {{ t('main_actions_nav.audio_off') }}
             </template>
           </span>
         </button>
@@ -51,10 +51,10 @@
           <UiIcon :id="fullscreenIcon" :colorize="true" :size="UiIconSizeId.Medium" />
           <span class="s-tooltip-label main-actions-nav__btn-tooltip">
             <template v-if="showFullscreen">
-              {{ t('main-actions-nav.fullscreen-on') }}
+              {{ t('main_actions_nav.fullscreen_on') }}
             </template>
             <template v-else>
-              {{ t('main-actions-nav.fullscreen-off') }}
+              {{ t('main_actions_nav.fullscreen_off') }}
             </template>
           </span>
         </button>
@@ -66,7 +66,7 @@
         >
           <UiIcon :id="UiIconId.QuestionMark" :colorize="true" :size="UiIconSizeId.Medium" />
           <span class="s-tooltip-label main-actions-nav__btn-tooltip">
-            {{ t('main-actions-nav.to-home') }}
+            {{ t('main_actions_nav.to_home') }}
           </span>
         </RouterLink>
       </li>
