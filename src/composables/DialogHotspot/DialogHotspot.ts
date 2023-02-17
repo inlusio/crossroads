@@ -1,17 +1,21 @@
-import type { Dialog } from '@/models/Dialog/Dialog'
-import { useDialogStorage } from '@/composables/DialogStorage/DialogStorage'
+import { useDialogStore } from '@/stores/Dialog'
+import useStorageKey from '@/composables/StorageKey/StorageKey'
 
-const PREFIX = 'hotspot'
+const PREFIX = 'Hotspot'
 
-export function useDialogHotspot(dialog: Dialog) {
-  const { storage } = useDialogStorage(dialog)
+export function useDialogHotspot() {
+  const dialogStore = useDialogStore()
+  const { storage } = dialogStore
+  const { join } = useStorageKey()
 
   const setHotspotShown = (id: string, flag: boolean) => {
-    storage.set(`${PREFIX}.${id}`, flag)
+    const key = join(PREFIX, id)
+    storage.set(key, flag)
   }
 
   const isHotspotShown = (id: string): boolean | undefined => {
-    const result = storage.get(`${PREFIX}.${id}`)
+    const key = join(PREFIX, id)
+    const result = storage.get(key)
     return typeof result === 'boolean' ? result : undefined
   }
 

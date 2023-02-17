@@ -3,24 +3,25 @@ import type { Dialog } from '@/models/Dialog/Dialog'
 import { reactive, watch } from 'vue'
 import useGameScene from '@/composables/GameScene/GameScene'
 import type { GameSceneContent } from '@/models/GameScene/GameScene'
-import { useLocalStorage } from '@/composables/LocalStorage/LocalStorage'
-import { useDialogStorage } from '@/composables/DialogStorage/DialogStorage'
+import { useDialogStore } from '@/stores/Dialog'
+import { storeToRefs } from 'pinia'
 
 export default function useDialog() {
+  const dialogStore = useDialogStore()
+  const { storage, reset } = dialogStore
+  const { hasStarted, variables } = storeToRefs(dialogStore)
   const { content } = useGameScene()
-  const { getItem, setItem } = useLocalStorage()
 
   const dialog = reactive<Dialog>({
     isReady: false,
     sceneId: undefined,
     runner: null,
-    hasStarted: getItem('has-started') || false,
+    hasStarted,
     hotspots: [],
-    variables: getItem('variables') || {},
+    variables,
   })
 
   const { createRunner } = useDialogRunner(dialog)
-  const { storage, resetStorage } = useDialogStorage(dialog)
 
   const createDialog = (content: GameSceneContent) => {
     dialog.hotspots = []
@@ -33,7 +34,7 @@ export default function useDialog() {
 
   const resetDialog = () => {
     dialog.hasStarted = false
-    resetStorage()
+    reset()
   }
 
   watch(
@@ -46,14 +47,6 @@ export default function useDialog() {
       }
 
       createDialog(content.value)
-    },
-    { immediate: true },
-  )
-
-  watch(
-    () => dialog.hasStarted,
-    () => {
-      setItem('has-started', dialog.hasStarted)
     },
     { immediate: true },
   )

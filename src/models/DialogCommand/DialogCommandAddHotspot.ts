@@ -6,11 +6,7 @@ export interface DialogCommandSpecAddHotspot extends arg.Spec {
   '--click': [arg.Handler<string>]
 }
 
-interface DialogCommandResult {
-  _: Array<string>
-}
-
-export interface DialogCommandResultAddHotspot extends DialogCommandResult {
+export type DialogCommandResultAddHotspot = arg.Result<DialogCommandSpecAddHotspot> & {
   x: number
   y: number
   click: Array<string>

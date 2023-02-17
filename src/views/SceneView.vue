@@ -19,7 +19,7 @@
   const { dialog } = useDialog()
   const { isDebug } = useDebug()
   const { handleCommand } = useDialogCommand(dialog)
-  const { isHotspotShown } = useDialogHotspot(dialog)
+  const { isHotspotShown } = useDialogHotspot()
   const { transitionName, transitionMode } = useSceneTransition()
 
   const onActionRequested = (hotspot: DialogHotspot) => {

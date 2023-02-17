@@ -1,5 +1,5 @@
 import type arg from 'arg'
-import { dialogCommandSpecAddHotspot } from '@/models/DialogCommand/DialogCommandSpec'
+import { dialogCommandSpecAddHotspot } from '@/models/DialogCommand/DialogCommandAddHotspot'
 
 export enum DialogBool {
   True = 'true',
@@ -15,6 +15,7 @@ export enum DialogCommandId {
   GotoScene = 'scene',
   Jump = 'jump',
   ShowHotspot = 'show_hotspot',
+  PlayAudio = 'audio',
 }
 
 export interface DialogCommandEntry {
@@ -56,6 +57,10 @@ export const dialogCommandList: DialogCommandList = [
   },
   {
     id: DialogCommandId.ShowHotspot,
+    spec: {},
+  },
+  {
+    id: DialogCommandId.PlayAudio,
     spec: {},
   },
 ]

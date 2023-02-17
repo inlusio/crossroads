@@ -7,6 +7,7 @@
   import useBem from '@/composables/Bem/Bem'
   import type { UseBemProps } from '@/composables/Bem/BemFacetOptions'
   import useTranslation from '@/composables/Translation/Translation'
+  import useAudioController from '@/composables/AudioController/AudioController'
 
   interface Props extends UseBemProps {
     facets?: Array<string>
@@ -16,6 +17,11 @@
   const { t } = useTranslation()
   const { bemFacets } = useBem('c-main-actions-nav', props, {})
   const { showFullscreen, toggleFullscreen } = useFullscreenController()
+  const { allowAudio, toggleAllowAudio } = useAudioController()
+
+  const audioIcon = computed<UiIconId>(() => {
+    return allowAudio.value ? UiIconId.VolumeUp : UiIconId.VolumeOff
+  })
 
   const fullscreenIcon = computed<UiIconId>(() => {
     return showFullscreen.value ? UiIconId.FullscreenExit : UiIconId.Fullscreen
@@ -30,10 +36,13 @@
   <div class="main-actions-nav u-typography-root" :class="bemFacets">
     <ul class="main-actions-nav__list u-reset">
       <li class="main-actions-nav__entry">
-        <button disabled class="main-actions-nav__btn btn btn--icon-medium btn--bubble btn--highlight">
-          <UiIcon :id="UiIconId.VolumeOff" :colorize="true" :size="UiIconSizeId.Medium" />
+        <button
+          @click="toggleAllowAudio()"
+          class="main-actions-nav__btn btn btn--icon-medium btn--bubble btn--highlight"
+        >
+          <UiIcon :key="audioIcon" :id="audioIcon" :colorize="true" :size="UiIconSizeId.Medium" />
           <span class="s-tooltip-label main-actions-nav__btn-tooltip">
-            <template v-if="false">
+            <template v-if="allowAudio">
               {{ t('main_actions_nav.audio_on') }}
             </template>
             <template v-else>
@@ -48,7 +57,7 @@
           class="main-actions-nav__btn btn btn--icon-medium btn--bubble btn--highlight"
           :class="fullscreenBtnClasses"
         >
-          <UiIcon :id="fullscreenIcon" :colorize="true" :size="UiIconSizeId.Medium" />
+          <UiIcon :key="fullscreenIcon" :id="fullscreenIcon" :colorize="true" :size="UiIconSizeId.Medium" />
           <span class="s-tooltip-label main-actions-nav__btn-tooltip">
             <template v-if="showFullscreen">
               {{ t('main_actions_nav.fullscreen_on') }}
