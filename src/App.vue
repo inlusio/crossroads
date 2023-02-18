@@ -9,9 +9,7 @@
 </script>
 
 <template>
-  <template v-if="true">
-    <AudioPlayer v-for="channel in audioChannels" :key="channel.label" :channel="channel" />
-  </template>
+  <AudioPlayer v-for="channel in audioChannels" :key="`${channel.label}::${channel.file}`" :channel="channel" />
 
   <header>
     <div class="s-app__wrapper">

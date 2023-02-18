@@ -6,10 +6,11 @@
 
 <template>
   <div class="debug-panel">
-    <pre>Allow audio: {{ allowAudio }}</pre>
+    <pre><b>Allow audio:</b> {{ allowAudio }}</pre>
     <br />
-    <pre>Interaction occured: {{ interactionOccured }}</pre>
+    <pre><b>Interaction occured:</b> {{ interactionOccured }}</pre>
     <br />
+    <pre><b>Channels:</b></pre>
     <pre v-for="channel in audioChannels" :key="channel.label" v-text="channel" />
   </div>
 </template>

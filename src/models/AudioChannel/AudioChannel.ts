@@ -6,6 +6,8 @@ export interface AudioChannel {
   label: string
   file: string
   volume: number
+  repeat: number
+  behaviour: AudioChannelBehaviour
 }
 
 export type AudioChannelList = Array<AudioChannel>

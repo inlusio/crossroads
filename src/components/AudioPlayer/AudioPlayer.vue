@@ -1,11 +1,10 @@
 <template>
-  <audio :id="channel.label" ref="audioEl" loop>
+  <audio :id="channel.label" ref="audioEl" @ended="onEnded">
     <source :src="channelSrc" type="audio/mp3" />
   </audio>
 </template>
 
 <script lang="ts" setup>
-  import { isEqual } from 'lodash-es'
   import { computed, onMounted, ref, watch } from 'vue'
   import useAudioController from '@/composables/AudioController/AudioController'
   import type { AudioChannel } from '@/models/AudioChannel/AudioChannel'
@@ -19,18 +18,20 @@
   const { allowAudio, interactionOccured, audioFiles } = useAudioController()
 
   const audioEl = ref<HTMLAudioElement | null>(null)
+  const repeatCount = ref<number>(0)
   const channelSrc = computed<string>(() => {
     return audioFiles.value[props.channel.file].file
   })
 
-  const cancel = onClickOutside(audioEl, () => startPlayback())
+  const cancelListener = onClickOutside(audioEl, () => startPlayback())
 
   const startPlayback = async () => {
     if (allowAudio.value) {
       try {
+        audioEl.value!.currentTime = 0
         await audioEl.value!.play()
         audioEl.value!.volume = props.channel.volume
-        cancel && cancel()
+        cancelListener && cancelListener()
         interactionOccured.value = true
       } catch (exception) {
         // Audio couldn't be loaded, change state accordingly
@@ -46,32 +47,47 @@
     await audioEl.value!.pause()
   }
 
-  const updatePlayback = async () => {
-    audioEl.value!.volume = props.channel.volume
+  const handleRepeat = (repeat: number) => {
+    if (repeatCount.value >= repeat) {
+      stopPlayback()
+    } else {
+      startPlayback()
+    }
   }
 
-  watch([allowAudio, () => props.channel], ([n1, n2], [o1, o2]) => {
+  watch(allowAudio, (n) => {
     if (!audioEl.value) {
       return
     }
 
-    // NOTE: "allowAudio" changed from `false` to `true`
-    if (n1 && !o1) {
+    if (n) {
       startPlayback()
-      return
-    }
-
-    // NOTE: "allowAudio" changed from `true` to `false`
-    if (!n1 && o1) {
+    } else {
       stopPlayback()
-      return
-    }
-
-    // NOTE: "props.channel" changed / "allowAudio" stays `true`
-    if (n1 && !isEqual(n2, o2)) {
-      updatePlayback()
     }
   })
+
+  watch(repeatCount, () => {
+    handleRepeat(props.channel.repeat)
+  })
+
+  watch(
+    () => props.channel.volume,
+    (v) => {
+      audioEl.value!.volume = v
+    },
+  )
+
+  watch(
+    () => props.channel.repeat,
+    (v) => {
+      handleRepeat(v)
+    },
+  )
+
+  const onEnded = () => {
+    repeatCount.value += 1
+  }
 
   onMounted(() => {
     if (!audioEl.value) {

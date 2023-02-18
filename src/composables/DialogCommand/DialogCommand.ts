@@ -102,10 +102,15 @@ export default function useDialogCommand(dialog: ReactiveDialog) {
       case DialogCommandId.PlayAudio: {
         const parsed = parseCommand<DialogCommandSpecPlayAudio, DialogCommandResultPlayAudio>(commandResult.command)
         const [_, label] = parsed._
-        const { file, volume, loop, repeat, behaviour } = parsed
+        const { file, volume, repeat, behaviour } = parsed
 
-        console.log(label, file, volume, loop, repeat, behaviour)
-        audioChannels.value[label] = { label, file, volume: volume ?? 1 }
+        audioChannels.value[label] = {
+          label,
+          file,
+          volume: volume ?? 1,
+          repeat: repeat ?? Number.MAX_SAFE_INTEGER,
+          behaviour: behaviour ?? 'seamless',
+        }
         break
       }
       case DialogCommandId.Test:
