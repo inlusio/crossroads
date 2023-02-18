@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia'
 import { StoreId } from '@/models/Store'
 import usePersistentStorage from '@/composables/PersistentStorage/PersistentStorage'
-import type { DialogVariableStorage, DialogVariableStorageHandler } from '@/models/DialogStorage/DialogStorage'
+import type { DialogVariableStorage, DialogVariableStorageHandler } from '@/models/DialogVariable/DialogVariable'
 
-export const useDialogStore = defineStore(StoreId.Dialog, () => {
-  const { persistentRef } = usePersistentStorage(StoreId.Dialog)
-  const hasStarted = persistentRef<boolean>('hasStarted', false)
+export const useDialogVariablesStore = defineStore(StoreId.DialogVariables, () => {
+  const { persistentRef } = usePersistentStorage(StoreId.DialogVariables)
   const variables = persistentRef<DialogVariableStorage>('Variables', {})
 
   const storage: DialogVariableStorageHandler = {
@@ -23,7 +22,6 @@ export const useDialogStore = defineStore(StoreId.Dialog, () => {
   }
 
   return {
-    hasStarted,
     variables,
     storage,
     reset,

@@ -120,3 +120,29 @@ collections:
             widget: string
             required: false
             hint: 'Übersetzung (en)'
+
+
+  - name: 'audio'
+    label: 'Audio Files'
+    label_singular: 'Audio File'
+    folder: 'content/cms/audio'
+    slug: '{{fields.id}}'
+    widget: object
+    summary: '{{fields.id}}'
+    format: 'json'
+    create: true
+    editor:
+      preview: false
+    fields:
+      - *FIELD_ID
+      - name: 'file'
+        label: 'File'
+        required: true
+        widget: file
+        i18n: duplicate
+        pattern: [ '\.mp3$', 'Bitte eine Audiodatei vom Format "mp3" hochladen.' ]
+        hint: 'Nur Audio-Dateien vom Format "mp3" werden unterstützt. Konvertierung z.B. via "https://online-audio-converter.com/" möglich.'
+        allow_multiple: false
+        choose_url: false
+        media_folder: '/public/audio/cms/sounds/'
+        public_folder: '/audio/cms/sounds/'

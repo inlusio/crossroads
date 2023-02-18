@@ -1,29 +1,23 @@
 <script lang="ts" setup>
   import { RouterView } from 'vue-router'
   import { useBootstrapStore } from '@/stores/Bootstrap'
+  import AudioPlayer from '@/components/AudioPlayer/AudioPlayer.vue'
+  import useAudioController from '@/composables/AudioController/AudioController'
 
   useBootstrapStore()
+  const { audioChannels } = useAudioController()
 </script>
 
 <template>
-  <header>
-    <!--<img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />-->
+  <template v-if="true">
+    <AudioPlayer v-for="channel in audioChannels" :key="channel.label" :channel="channel" />
+  </template>
 
+  <header>
     <div class="s-app__wrapper">
-      <nav>
-        <!--<RouterLink to="/">Home</RouterLink>-->
-        <!--<pre>{{ transitionName }}</pre>-->
-      </nav>
+      <nav />
     </div>
   </header>
-
-  <!--  <RouterView class="s-app__main">-->
-  <!--    <template #default="{ Component }">-->
-  <!--      <Transition :name="transitionName" :mode="transitionMode">-->
-  <!--        <Component :is="Component" :key="sceneParam" />-->
-  <!--      </Transition>-->
-  <!--    </template>-->
-  <!--  </RouterView>-->
 
   <RouterView class="s-app__main" />
 </template>

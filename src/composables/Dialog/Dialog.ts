@@ -3,38 +3,51 @@ import type { Dialog } from '@/models/Dialog/Dialog'
 import { reactive, watch } from 'vue'
 import useGameScene from '@/composables/GameScene/GameScene'
 import type { GameSceneContent } from '@/models/GameScene/GameScene'
-import { useDialogStore } from '@/stores/Dialog'
+import { useDialogMainStore } from '@/stores/DialogMain'
 import { storeToRefs } from 'pinia'
+import { useDialogVariablesStore } from '@/stores/DialogVariables'
+import { useDialogHotspotsStore } from '@/stores/DialogHotspots'
 
 export default function useDialog() {
-  const dialogStore = useDialogStore()
-  const { storage, reset } = dialogStore
-  const { hasStarted, variables } = storeToRefs(dialogStore)
+  const dialogMainStore = useDialogMainStore()
+  const dialogVariablesStore = useDialogVariablesStore()
+  const dialogHotspotsStore = useDialogHotspotsStore()
+
+  const { reset: resetDialog } = dialogMainStore
+  const { reset: resetDialogVariables, storage } = dialogVariablesStore
+  const { reset: resetDialogHotspots } = dialogHotspotsStore
+
+  const { hasStarted } = storeToRefs(dialogMainStore)
+  const { variables } = storeToRefs(dialogVariablesStore)
+  const { hotspots } = storeToRefs(dialogHotspotsStore)
+
   const { content } = useGameScene()
 
   const dialog = reactive<Dialog>({
+    hotspots,
     isReady: false,
     sceneId: undefined,
     runner: null,
     hasStarted,
-    hotspots: [],
     variables,
   })
 
   const { createRunner } = useDialogRunner(dialog)
 
-  const createDialog = (content: GameSceneContent) => {
+  const createDialog = ({ id, dialogue }: GameSceneContent) => {
     dialog.hotspots = []
-    dialog.sceneId = content.id
+    dialog.sceneId = id
     dialog.isReady = true
     dialog.hasStarted = true
-    dialog.runner = createRunner(dialog, storage, content.dialogue.code)
+    dialog.runner = createRunner(dialog, storage, dialogue.code)
+
     return dialog
   }
 
-  const resetDialog = () => {
-    dialog.hasStarted = false
-    reset()
+  const reset = () => {
+    resetDialog()
+    resetDialogVariables()
+    resetDialogHotspots()
   }
 
   watch(
@@ -54,6 +67,6 @@ export default function useDialog() {
   return {
     dialog,
     createDialog,
-    resetDialog,
+    reset,
   }
 }

@@ -1,40 +1,46 @@
 <template>
-  <audio :id="channelId" ref="audioEl" loop>
-    <source :src="audioSrc" type="audio/mp3" />
+  <audio :id="channel.label" ref="audioEl" loop>
+    <source :src="channelSrc" type="audio/mp3" />
   </audio>
 </template>
 
 <script lang="ts" setup>
-  import { onMounted, ref, watch } from 'vue'
+  import { computed, onMounted, ref, watch } from 'vue'
   import useAudioController from '@/composables/AudioController/AudioController'
-  import type { AudioChannelId } from '@/models/AudioChannel/AudioChannelId'
+  import type { AudioChannel } from '@/models/AudioChannel/AudioChannel'
 
   interface Props {
-    channelId: AudioChannelId
+    channel: AudioChannel
   }
 
-  defineProps<Props>()
-  const { audioSrc, allowAudio, playAudio, togglePlayAudio } = useAudioController()
+  const props = defineProps<Props>()
+  const { allowAudio, audioFiles } = useAudioController()
 
   const audioEl = ref<HTMLAudioElement | null>(null)
+  const channelSrc = computed<string>(() => {
+    return audioFiles.value[props.channel.file].file
+  })
 
   const startAutoPlayIfPossible = async () => {
     if (!audioEl.value) {
       return
     }
 
-    if (playAudio.value) {
-      try {
-        await audioEl.value.play()
-      } catch (exception) {
-        // Audio couldn't be loaded, change state accordingly
-        await audioEl.value.pause()
-        togglePlayAudio(false)
-      }
-    } else {
-      await audioEl.value.pause()
-    }
+    // if (playAudio.value) {
+    //   try {
+    //     await audioEl.value.play()
+    //   } catch (exception) {
+    //     // Audio couldn't be loaded, change state accordingly
+    //     await audioEl.value.pause()
+    //     togglePlayAudio(false)
+    //   }
+    // } else {
+    //   await audioEl.value.pause()
+    // }
   }
+
+  // TODO
+  const playAudio = computed<boolean>(() => true)
 
   watch([allowAudio, playAudio], ([n1, n2], [o1, o2]) => {
     if (!audioEl.value) {

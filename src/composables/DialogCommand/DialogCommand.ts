@@ -9,8 +9,16 @@ import type { ReactiveDialog } from '@/models/Dialog/Dialog'
 import useRouteRecord from '@/composables/RouteRecord/RouteRecord'
 import type { RouteRecordId } from '@/models/RouteRecord/RouteRecord'
 import { useDialogHotspot } from '@/composables/DialogHotspot/DialogHotspot'
-import type { DialogCommandResultAddHotspot } from '@/models/DialogCommand/DialogCommandAddHotspot'
+import type {
+  DialogCommandResultAddHotspot,
+  DialogCommandSpecAddHotspot,
+} from '@/models/DialogCommand/DialogCommandAddHotspot'
 import type { DialogCommandResultGeneric, DialogCommandSpecGeneric } from '@/models/DialogCommand/DialogCommandGeneric'
+import type {
+  DialogCommandResultPlayAudio,
+  DialogCommandSpecPlayAudio,
+} from '@/models/DialogCommand/DialogCommandPlayAudio'
+import useAudioController from '@/composables/AudioController/AudioController'
 
 const PARSE_OPTIONS: arg.Options = {
   permissive: true,
@@ -45,28 +53,30 @@ export default function useDialogCommand(dialog: ReactiveDialog) {
   const router = useRouter()
   const { toRoute } = useRouteRecord()
   const { toGameScene } = useGameScene()
-  const { isHotspotShown, setHotspotShown } = useDialogHotspot()
+  const { hotspots, isHotspotShown, setHotspotShown } = useDialogHotspot()
+  const { audioChannels } = useAudioController()
 
   const handleCommand = async (commandResult: DialogResultCommandData) => {
-    const parsed = parseCommand<DialogCommandSpecGeneric, DialogCommandResultGeneric>(commandResult.command)
-    const [command, ...args] = parsed._
+    const { _: positional } = parseCommand<DialogCommandSpecGeneric, DialogCommandResultGeneric>(commandResult.command)
+    const [command, ...args] = positional
 
     switch (command as DialogCommandId) {
       case DialogCommandId.AddHint:
         console.warn('Dialog command "hint" is not implemented yet')
         break
       case DialogCommandId.AddHotspot: {
-        const [label] = args
-        const { x, y, click } = parsed as DialogCommandResultAddHotspot
-        const commandData = click.map((command) => {
+        const parsed = parseCommand<DialogCommandSpecAddHotspot, DialogCommandResultAddHotspot>(commandResult.command)
+        const [_, label] = parsed._
+        const { x, y, click } = parsed
+        const commandData = click.map((instruction) => {
           return {
-            command,
+            command: instruction,
             metadata: commandResult.metadata,
             hashtags: commandResult.hashtags,
           }
         })
 
-        dialog.hotspots.push({ x, y, label, commandData })
+        hotspots.value.push({ x, y, label, commandData })
         setHotspotShown(label, isHotspotShown(label) ?? true)
         break
       }
@@ -89,11 +99,17 @@ export default function useDialogCommand(dialog: ReactiveDialog) {
         setHotspotShown(label, parseBoolean(showFlag))
         break
       }
-      case DialogCommandId.PlayAudio:
-        console.log('AUDIO COMMAND')
+      case DialogCommandId.PlayAudio: {
+        const parsed = parseCommand<DialogCommandSpecPlayAudio, DialogCommandResultPlayAudio>(commandResult.command)
+        const [_, label] = parsed._
+        const { file, volume, loop, repeat, behaviour } = parsed
+
+        console.log(label, file, volume, loop, repeat, behaviour)
+        audioChannels.value[label] = { label, file }
         break
+      }
       case DialogCommandId.Test:
-        console.log(parsed)
+        console.log('test')
         break
     }
   }

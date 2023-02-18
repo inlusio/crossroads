@@ -4,7 +4,7 @@ import { ref } from 'vue'
 import type { YarnBoundOptions } from '@/models/YarnBound/YarnBound'
 import useDialogCommand from '@/composables/DialogCommand/DialogCommand'
 import type { ReactiveDialog } from '@/models/Dialog/Dialog'
-import type { DialogVariableStorageHandler } from '@/models/DialogStorage/DialogStorage'
+import type { DialogVariableStorageHandler } from '@/models/DialogVariable/DialogVariable'
 
 export default function useDialogRunner(dialog: ReactiveDialog) {
   const { handleCommand } = useDialogCommand(dialog)

@@ -1,5 +1,7 @@
 export const enum StoreId {
   Audio = 'Audio',
   Bootstrap = 'Bootstrap',
-  Dialog = 'Dialog',
+  DialogMain = 'DialogMain',
+  DialogHotspots = 'DialogHotspots',
+  DialogVariables = 'DialogVariables',
 }

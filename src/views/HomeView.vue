@@ -4,13 +4,17 @@
   import useRouteRecord from '@/composables/RouteRecord/RouteRecord'
   import { RouteRecordId } from '@/models/RouteRecord/RouteRecord'
   import { GameSceneId } from '@/models/GameScene/GameScene'
+  import useAudioController from '@/composables/AudioController/AudioController'
 
   const router = useRouter()
   const { toRoute } = useRouteRecord()
-  const { dialog, resetDialog } = useDialog()
+  const { dialog, reset: resetDialog } = useDialog()
+  const { reset: resetAudio } = useAudioController()
 
   const onReset = () => {
     resetDialog()
+    resetAudio()
+
     router.push(
       toRoute({
         name: RouteRecordId.Scene,

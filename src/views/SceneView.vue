@@ -14,6 +14,8 @@
   import { useDialogHotspot } from '@/composables/DialogHotspot/DialogHotspot'
   import useSceneTransition from '@/composables/SceneTransition/SceneTransition'
 
+  const { hotspots } = useDialogHotspot()
+
   const { t } = useTranslation()
   const { content, sceneId } = useGameScene()
   const { dialog } = useDialog()
@@ -48,11 +50,7 @@
                   class="p-page-scene__responsive-shell u-typography-root"
                 >
                   <ul class="u-reset p-page-scene__image-tooltip-list">
-                    <li
-                      v-for="hotspot in dialog.hotspots"
-                      :key="hotspot.label"
-                      class="p-page-scene__image-tooltip-entry"
-                    >
+                    <li v-for="hotspot in hotspots" :key="hotspot.label" class="p-page-scene__image-tooltip-entry">
                       <Transition appear name="trs-simple-fade">
                         <ImageMapTooltip
                           v-if="isHotspotShown(hotspot.label)"
