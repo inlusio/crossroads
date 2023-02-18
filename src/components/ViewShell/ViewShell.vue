@@ -150,16 +150,6 @@
     padding-right: var(--scroll-lock);
   }
 
-  .c-view-shell__debug {
-    z-index: 1000;
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: col.$monochrome-white;
-    background-color: col.$monochrome-black;
-  }
-
   .c-view-shell--scene {
     $image-w: 1600px;
     $image-h: 900px;

@@ -1,7 +1,10 @@
-import { watch } from 'vue'
+import { ref } from 'vue'
 import { useToggle } from '@vueuse/core'
 import { useAudioStore } from '@/stores/Audio'
 import { storeToRefs } from 'pinia'
+
+const interactionOccured = ref<boolean | undefined>(undefined)
+const audioContentLoaded = ref<boolean>(false)
 
 export default function useAudioController() {
   const audioStore = useAudioStore()
@@ -10,25 +13,14 @@ export default function useAudioController() {
 
   const toggleAllowAudio = useToggle(allowAudio)
 
-  // const handleAudioEntrance = () => {
-  //   Object.entries(audioChannels.value).forEach(([key, value]) => {
-  //     console.log(key, value)
-  //   })
-  // }
-
-  load().then(() => console.log('audio loaded'))
-
-  watch(
-    allowAudio,
-    (v) => {
-      console.log('TODO')
-      console.log(v)
-    },
-    { immediate: true },
-  )
+  load().then(() => {
+    audioContentLoaded.value = true
+  })
 
   return {
     allowAudio,
+    audioContentLoaded,
+    interactionOccured,
     audioChannels,
     audioFiles,
     toggleAllowAudio,

@@ -105,7 +105,7 @@ export default function useDialogCommand(dialog: ReactiveDialog) {
         const { file, volume, loop, repeat, behaviour } = parsed
 
         console.log(label, file, volume, loop, repeat, behaviour)
-        audioChannels.value[label] = { label, file }
+        audioChannels.value[label] = { label, file, volume: volume ?? 1 }
         break
       }
       case DialogCommandId.Test:

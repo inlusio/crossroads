@@ -13,6 +13,8 @@
   import MainActionsNav from '@/components/MainActionsNav/MainActionsNav.vue'
   import { useDialogHotspot } from '@/composables/DialogHotspot/DialogHotspot'
   import useSceneTransition from '@/composables/SceneTransition/SceneTransition'
+  import Debug from '@/components/DebugPanel/DebugPanel.vue'
+  import { GameSceneId } from '@/models/GameScene/GameScene'
 
   const { hotspots } = useDialogHotspot()
 
@@ -43,6 +45,9 @@
               :height="900"
               :width="1600"
             >
+              <template #debug>
+                <Debug v-if="sceneId === GameSceneId.Testing" />
+              </template>
               <template #content="{ width, height }">
                 <ResponsiveShell
                   :outer-height="height"

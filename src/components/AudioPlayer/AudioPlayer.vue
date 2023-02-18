@@ -5,68 +5,71 @@
 </template>
 
 <script lang="ts" setup>
+  import { isEqual } from 'lodash-es'
   import { computed, onMounted, ref, watch } from 'vue'
   import useAudioController from '@/composables/AudioController/AudioController'
   import type { AudioChannel } from '@/models/AudioChannel/AudioChannel'
+  import { onClickOutside } from '@vueuse/core'
 
   interface Props {
     channel: AudioChannel
   }
 
   const props = defineProps<Props>()
-  const { allowAudio, audioFiles } = useAudioController()
+  const { allowAudio, interactionOccured, audioFiles } = useAudioController()
 
   const audioEl = ref<HTMLAudioElement | null>(null)
   const channelSrc = computed<string>(() => {
     return audioFiles.value[props.channel.file].file
   })
 
-  const startAutoPlayIfPossible = async () => {
-    if (!audioEl.value) {
-      return
-    }
+  const cancel = onClickOutside(audioEl, () => startPlayback())
 
-    // if (playAudio.value) {
-    //   try {
-    //     await audioEl.value.play()
-    //   } catch (exception) {
-    //     // Audio couldn't be loaded, change state accordingly
-    //     await audioEl.value.pause()
-    //     togglePlayAudio(false)
-    //   }
-    // } else {
-    //   await audioEl.value.pause()
-    // }
+  const startPlayback = async () => {
+    if (allowAudio.value) {
+      try {
+        await audioEl.value!.play()
+        audioEl.value!.volume = props.channel.volume
+        cancel && cancel()
+        interactionOccured.value = true
+      } catch (exception) {
+        // Audio couldn't be loaded, change state accordingly
+        interactionOccured.value = false
+        await audioEl.value!.pause()
+      }
+    } else {
+      await stopPlayback()
+    }
   }
 
-  // TODO
-  const playAudio = computed<boolean>(() => true)
+  const stopPlayback = async () => {
+    await audioEl.value!.pause()
+  }
 
-  watch([allowAudio, playAudio], ([n1, n2], [o1, o2]) => {
+  const updatePlayback = async () => {
+    audioEl.value!.volume = props.channel.volume
+  }
+
+  watch([allowAudio, () => props.channel], ([n1, n2], [o1, o2]) => {
     if (!audioEl.value) {
       return
     }
 
     // NOTE: "allowAudio" changed from `false` to `true`
     if (n1 && !o1) {
-      audioEl.value.play()
+      startPlayback()
       return
     }
 
     // NOTE: "allowAudio" changed from `true` to `false`
     if (!n1 && o1) {
-      audioEl.value.pause()
+      stopPlayback()
       return
     }
 
-    // NOTE: "playAudio" changed from `false` to `true` / "allowAudio" stays `true`
-    if (n1 && n2 && !o2) {
-      audioEl.value.play()
-    }
-
-    // NOTE: "playAudio" changed from `true` to `false` / "allowAudio" stays `true`
-    if (n1 && !n2 && o2) {
-      audioEl.value.pause()
+    // NOTE: "props.channel" changed / "allowAudio" stays `true`
+    if (n1 && !isEqual(n2, o2)) {
+      updatePlayback()
     }
   })
 
@@ -75,8 +78,6 @@
       return
     }
 
-    audioEl.value.volume = 0.6
-
-    startAutoPlayIfPossible()
+    startPlayback()
   })
 </script>
