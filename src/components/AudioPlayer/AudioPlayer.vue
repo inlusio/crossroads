@@ -23,7 +23,7 @@
     return audioFiles.value[props.channel.file].file
   })
   const isAllowedToStart = computed<boolean>(() => {
-    return allowAudio.value && repeatCount.value < props.channel.repeat
+    return allowAudio.value && repeatCount.value < props.channel.repeat && !!interactionOccured.value
   })
 
   const cancelListener = onClickOutside(audioEl, () => {
@@ -31,21 +31,16 @@
   })
 
   const startPlayback = async () => {
-    if (isAllowedToStart.value) {
-      try {
-        audioEl.value!.currentTime = 0
-        await audioEl.value!.play()
-        audioEl.value!.volume = props.channel.volume
-        console.log('startPlayback – start – success', repeatCount.value, props.channel.repeat)
-      } catch (exception) {
-        // Audio couldn't be loaded, change state accordingly
-        interactionOccured.value = false
-        await audioEl.value!.pause()
-        console.log('startPlayback – start – fail', repeatCount.value, props.channel.repeat)
-      }
-    } else {
-      console.log('startPlayback – stop', repeatCount.value, props.channel.repeat)
-      await stopPlayback()
+    try {
+      audioEl.value!.currentTime = 0
+      await audioEl.value!.play()
+      audioEl.value!.volume = props.channel.volume
+      console.log('startPlayback – start – success', repeatCount.value, props.channel.repeat)
+    } catch (exception) {
+      // Audio couldn't be loaded, change state accordingly
+      interactionOccured.value = false
+      await audioEl.value!.pause()
+      console.log('startPlayback – start – fail', repeatCount.value, props.channel.repeat)
     }
   }
 
@@ -53,30 +48,12 @@
     await audioEl.value!.pause()
   }
 
-  const handleRepeat = (repeat: number) => {
-    if (isAllowedToStart.value) {
-      console.log('handle repeat start', repeatCount.value, repeat)
-      startPlayback()
-    } else {
-      console.log('handle repeat stop', repeatCount.value, repeat)
-      stopPlayback()
-    }
-  }
-
-  watch(allowAudio, (n) => {
-    if (!audioEl.value) {
-      return
-    }
-
+  watch(isAllowedToStart, (n) => {
     if (n) {
       startPlayback()
     } else {
       stopPlayback()
     }
-  })
-
-  watch(repeatCount, () => {
-    handleRepeat(props.channel.repeat)
   })
 
   watch(
@@ -87,19 +64,9 @@
   )
 
   watch(
-    () => props.channel.repeat,
-    (v) => {
-      handleRepeat(v)
-    },
-  )
-
-  watch(
     () => interactionOccured.value,
     (v) => {
-      if (v) {
-        cancelListener && cancelListener()
-        startPlayback()
-      }
+      v && cancelListener && cancelListener()
     },
   )
 
