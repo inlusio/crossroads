@@ -15,7 +15,7 @@
 
   const props = defineProps<Props>()
   const { t } = useTranslation()
-  const { bemFacets } = useBem('c-main-actions-nav', props, {})
+  const { bemFacets } = useBem('c-c-main-actions-nav', props, {})
   const { showFullscreen, toggleFullscreen } = useFullscreenController()
   const { allowAudio, toggleAllowAudio } = useAudioController()
 
@@ -33,15 +33,15 @@
 </script>
 
 <template>
-  <div class="main-actions-nav u-typography-root" :class="bemFacets">
-    <ul class="main-actions-nav__list u-reset">
-      <li class="main-actions-nav__entry">
+  <div class="c-main-actions-nav u-typography-root" :class="bemFacets">
+    <ul class="c-main-actions-nav__list u-reset">
+      <li class="c-main-actions-nav__entry">
         <button
           @click="toggleAllowAudio()"
-          class="main-actions-nav__btn btn btn--icon-medium btn--bubble btn--highlight"
+          class="c-main-actions-nav__btn btn btn--icon-medium btn--bubble btn--highlight"
         >
           <UiIcon :key="audioIcon" :id="audioIcon" :colorize="true" :size="UiIconSizeId.Medium" />
-          <span class="s-tooltip-label main-actions-nav__btn-tooltip">
+          <span class="s-tooltip-label c-main-actions-nav__btn-tooltip">
             <template v-if="allowAudio">
               {{ t('main_actions_nav.audio_on') }}
             </template>
@@ -51,14 +51,14 @@
           </span>
         </button>
       </li>
-      <li class="main-actions-nav__entry">
+      <li class="c-main-actions-nav__entry">
         <button
           @click="toggleFullscreen"
-          class="main-actions-nav__btn btn btn--icon-medium btn--bubble btn--highlight"
+          class="c-main-actions-nav__btn btn btn--icon-medium btn--bubble btn--highlight"
           :class="fullscreenBtnClasses"
         >
           <UiIcon :key="fullscreenIcon" :id="fullscreenIcon" :colorize="true" :size="UiIconSizeId.Medium" />
-          <span class="s-tooltip-label main-actions-nav__btn-tooltip">
+          <span class="s-tooltip-label c-main-actions-nav__btn-tooltip">
             <template v-if="showFullscreen">
               {{ t('main_actions_nav.fullscreen_on') }}
             </template>
@@ -68,13 +68,13 @@
           </span>
         </button>
       </li>
-      <li class="main-actions-nav__entry">
+      <li class="c-main-actions-nav__entry">
         <RouterLink
           :to="{ name: RouteRecordId.Home }"
-          class="main-actions-nav__btn btn btn--icon-medium btn--bubble btn--highlight"
+          class="c-main-actions-nav__btn btn btn--icon-medium btn--bubble btn--highlight"
         >
           <UiIcon :id="UiIconId.QuestionMark" :colorize="true" :size="UiIconSizeId.Medium" />
-          <span class="s-tooltip-label main-actions-nav__btn-tooltip">
+          <span class="s-tooltip-label c-main-actions-nav__btn-tooltip">
             {{ t('main_actions_nav.to_home') }}
           </span>
         </RouterLink>
@@ -86,13 +86,13 @@
 <style scoped lang="scss">
   @use '@nirazul/scss-utils' as utils;
 
-  .main-actions-nav__list {
+  .c-main-actions-nav__list {
     display: flex;
     flex-flow: row nowrap;
     gap: 8px;
   }
 
-  .main-actions-nav__btn {
+  .c-main-actions-nav__btn {
     position: relative;
     cursor: pointer;
 
@@ -102,14 +102,14 @@
 
     @include utils.has-focus {
       &:not(:disabled) {
-        .main-actions-nav__btn-tooltip {
+        .c-main-actions-nav__btn-tooltip {
           opacity: 1;
         }
       }
     }
   }
 
-  .main-actions-nav__btn-tooltip {
+  .c-main-actions-nav__btn-tooltip {
     pointer-events: none;
     position: absolute;
     top: calc(100% + 8px);

@@ -13,8 +13,10 @@
   import MainActionsNav from '@/components/MainActionsNav/MainActionsNav.vue'
   import { useDialogHotspot } from '@/composables/DialogHotspot/DialogHotspot'
   import useSceneTransition from '@/composables/SceneTransition/SceneTransition'
-  import Debug from '@/components/DebugPanel/DebugPanel.vue'
-  import { GameSceneId } from '@/models/GameScene/GameScene'
+  import DebugPanel from '@/components/DebugPanel/DebugPanel.vue'
+  import useAudioController from '@/composables/AudioController/AudioController'
+  import type { AudioChannelEntry } from '@/models/AudioChannel/AudioChannel'
+  import AudioChannel from '@/components/AudioChannel/AudioChannel.vue'
 
   const { hotspots } = useDialogHotspot()
 
@@ -26,6 +28,12 @@
   const { isHotspotShown } = useDialogHotspot()
   const { transitionName, transitionMode } = useSceneTransition()
 
+  const { audioChannels } = useAudioController()
+
+  const getChannelKey = (channel: AudioChannelEntry) => {
+    return `${channel.label}::${channel.behaviour}`
+  }
+
   const onActionRequested = (hotspot: DialogHotspot) => {
     hotspot.commandData.forEach((command) => handleCommand(command))
   }
@@ -33,11 +41,18 @@
 
 <template>
   <main class="p-page-scene s-layout-game s-layout-game--has-header">
+    <AudioChannel
+      v-for="channel in audioChannels"
+      :key="getChannelKey(channel)"
+      :channel="channel"
+      :data-key="getChannelKey(channel)"
+    />
+
     <MainActionsNav class="p-page-scene__main-actions-nav" />
     <div class="s-layout-game__main">
       <div class="s-layout-game__viewer">
-        <Transition :name="transitionName" :mode="transitionMode">
-          <div :key="sceneId" v-if="content" class="s-layout-game__viewer-frame">
+        <Transition :mode="transitionMode" :name="transitionName">
+          <div v-if="content" :key="sceneId" class="s-layout-game__viewer-frame">
             <ViewShell
               :key="sceneId"
               :background="content.illustration"
@@ -46,7 +61,7 @@
               :width="1600"
             >
               <template #debug>
-                <Debug v-if="sceneId === GameSceneId.Testing" />
+                <DebugPanel v-if="isDebug" />
               </template>
               <template #content="{ width, height }">
                 <ResponsiveShell

@@ -6,6 +6,7 @@ export interface DialogCommandSpecPlayAudio extends arg.Spec {
   '--volume': arg.Handler<number>
   '--repeat': arg.Handler<number>
   '--behaviour': arg.Handler<AudioChannelBehaviour>
+  '--stop': arg.Handler<boolean>
 }
 
 export type DialogCommandResultPlayAudio = arg.Result<DialogCommandSpecPlayAudio> & {
@@ -13,6 +14,7 @@ export type DialogCommandResultPlayAudio = arg.Result<DialogCommandSpecPlayAudio
   volume: number
   repeat: number
   behaviour: AudioChannelBehaviour
+  stop: boolean
 }
 
 export const dialogCommandSpecPlayAudio: arg.Spec = {
@@ -20,6 +22,7 @@ export const dialogCommandSpecPlayAudio: arg.Spec = {
   '--volume': Number,
   '--repeat': Number,
   '--behaviour': String,
+  '--stop': Boolean,
   '-f': '--file',
   '-v': '--volume',
   '-r': '--repeat',

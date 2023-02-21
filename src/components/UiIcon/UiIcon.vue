@@ -1,9 +1,3 @@
-<template>
-  <span class="c-ui-icon" v-if="entry" :class="rootClasses">
-    <component :is="icon" class="c-ui-icon--svg" />
-  </span>
-</template>
-
 <script lang="ts" setup>
   import { computed, defineAsyncComponent } from 'vue'
 
@@ -41,5 +35,11 @@
     return defineAsyncComponent(() => import(`../../assets/svg/${entry.value?.icon}.svg`))
   })
 </script>
+
+<template>
+  <span class="c-ui-icon" v-if="entry" :class="rootClasses">
+    <component :is="icon" class="c-ui-icon--svg" />
+  </span>
+</template>
 
 <style lang="scss" src="./_UiIcon.scss" />

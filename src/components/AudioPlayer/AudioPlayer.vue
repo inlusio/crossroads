@@ -1,84 +1,46 @@
 <template>
-  <audio :id="channel.label" ref="audioEl" @ended="onEnded">
+  <audio ref="audioEl" class="c-audio-player">
     <source :src="channelSrc" type="audio/mp3" />
   </audio>
 </template>
 
 <script lang="ts" setup>
-  import { computed, onMounted, ref, watch } from 'vue'
+  import { computed, ref, watch } from 'vue'
   import useAudioController from '@/composables/AudioController/AudioController'
-  import type { AudioChannel } from '@/models/AudioChannel/AudioChannel'
-  import { onClickOutside } from '@vueuse/core'
+  import type { AudioChannelEntry } from '@/models/AudioChannel/AudioChannel'
+  import type { UseAudioTransitionEmits } from '@/composables/AudioTransition/AudioTransition'
+  import useAudioTransition from '@/composables/AudioTransition/AudioTransition'
+
+  interface Emits extends UseAudioTransitionEmits {
+    (e: 'playback', flag: boolean): void
+  }
 
   interface Props {
-    channel: AudioChannel
+    channel: AudioChannelEntry
   }
 
+  const emit = defineEmits<Emits>()
   const props = defineProps<Props>()
-  const { allowAudio, interactionOccured, audioFiles } = useAudioController()
+  const { start, stop } = useAudioTransition(emit)
+  const { audioFiles } = useAudioController()
 
   const audioEl = ref<HTMLAudioElement | null>(null)
-  const repeatCount = ref<number>(0)
-  const channelSrc = computed<string>(() => {
-    return audioFiles.value[props.channel.file].file
-  })
-  const isAllowedToStart = computed<boolean>(() => {
-    return allowAudio.value && repeatCount.value < props.channel.repeat && !!interactionOccured.value
-  })
+  const channelSrc = computed<string>(() => audioFiles.value[props.channel.file].file)
 
-  const cancelListener = onClickOutside(audioEl, () => {
-    interactionOccured.value = true
-  })
-
-  const startPlayback = async () => {
-    try {
-      audioEl.value!.currentTime = 0
-      await audioEl.value!.play()
-      audioEl.value!.volume = props.channel.volume
-      console.log('startPlayback – start – success', repeatCount.value, props.channel.repeat)
-    } catch (exception) {
-      // Audio couldn't be loaded, change state accordingly
-      interactionOccured.value = false
-      await audioEl.value!.pause()
-      console.log('startPlayback – start – fail', repeatCount.value, props.channel.repeat)
-    }
-  }
-
-  const stopPlayback = async () => {
-    await audioEl.value!.pause()
-  }
-
-  watch(isAllowedToStart, (n) => {
-    if (n) {
-      startPlayback()
-    } else {
-      stopPlayback()
-    }
-  })
-
+  // Volume data changed
   watch(
     () => props.channel.volume,
     (v) => {
+      if (!audioEl.value) {
+        return
+      }
+
       audioEl.value!.volume = v
     },
   )
 
-  watch(
-    () => interactionOccured.value,
-    (v) => {
-      v && cancelListener && cancelListener()
-    },
-  )
-
-  const onEnded = () => {
-    repeatCount.value += 1
-  }
-
-  onMounted(() => {
-    if (!audioEl.value) {
-      return
-    }
-
-    startPlayback()
+  defineExpose({
+    start: () => start(audioEl.value!),
+    stop: () => stop(audioEl.value!),
   })
 </script>

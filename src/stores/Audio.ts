@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { StoreId } from '@/models/Store'
 import usePersistentStorage from '@/composables/PersistentStorage/PersistentStorage'
-import type { AudioChannelDict, AudioChannelVolumeStorage } from '@/models/AudioChannel/AudioChannel'
+import type { AudioChannelDict } from '@/models/AudioChannel/AudioChannel'
 import { ref } from 'vue'
 import type { AudioFileContent, AudioFileContentDict, AudioFileContentList } from '@/models/AudioFile/AudioFile'
 import useViteGlobUtils from '@/composables/ViteGlobUtils/ViteGlobUtils'
@@ -17,8 +17,8 @@ export const useAudioStore = defineStore(StoreId.Audio, () => {
 
   const allowAudio = persistentRef<boolean>('allowAudio', true)
   const audioChannels = ref<AudioChannelDict>({})
-  const audioChannelsVolume = persistentRef<AudioChannelVolumeStorage>('audioChannels', {})
   const audioFiles = ref<AudioFileContentDict>({})
+  const interactionOccured = ref<boolean | undefined>(undefined)
 
   const load = async () => {
     const promises = Object.values(modules).map(async (value) => {
@@ -35,8 +35,7 @@ export const useAudioStore = defineStore(StoreId.Audio, () => {
   const reset = () => {
     allowAudio.value = true
     audioChannels.value = {}
-    audioChannelsVolume.value = {}
   }
 
-  return { allowAudio, audioChannels, audioChannelsVolume, audioFiles, load, reset }
+  return { allowAudio, audioChannels, audioFiles, interactionOccured, load, reset }
 })

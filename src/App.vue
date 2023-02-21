@@ -1,16 +1,27 @@
 <script lang="ts" setup>
   import { RouterView } from 'vue-router'
   import { useBootstrapStore } from '@/stores/Bootstrap'
-  import AudioPlayer from '@/components/AudioPlayer/AudioPlayer.vue'
   import useAudioController from '@/composables/AudioController/AudioController'
+  import { onBeforeUnmount, onMounted } from 'vue'
 
   useBootstrapStore()
-  const { audioChannels } = useAudioController()
+  const { interactionOccured } = useAudioController()
+
+  const setInteractionOccured = () => {
+    interactionOccured.value = true
+    document.removeEventListener('click', setInteractionOccured)
+  }
+
+  onMounted(() => {
+    document.addEventListener('click', setInteractionOccured)
+  })
+
+  onBeforeUnmount(() => {
+    document.removeEventListener('click', setInteractionOccured)
+  })
 </script>
 
 <template>
-  <AudioPlayer v-for="channel in audioChannels" :key="`${channel.label}::${channel.file}`" :channel="channel" />
-
   <header>
     <div class="s-app__wrapper">
       <nav />

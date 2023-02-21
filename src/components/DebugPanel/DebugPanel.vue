@@ -7,7 +7,6 @@
 <template>
   <div class="debug-panel">
     <pre><b>Allow audio:</b> {{ allowAudio }}</pre>
-    <br />
     <pre><b>Interaction occured:</b> {{ interactionOccured }}</pre>
     <br />
     <pre><b>Channels:</b></pre>
@@ -20,11 +19,12 @@
 
   .debug-panel {
     z-index: 1000;
-    pointer-events: none;
     position: absolute;
     top: 0;
     left: 0;
+    height: 100%;
     padding: 4px;
+    overflow-y: auto;
     font-size: 1.2rem;
     color: col.$monochrome-white;
     background-color: col.$monochrome-black;

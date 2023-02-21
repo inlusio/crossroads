@@ -10,7 +10,14 @@ module.exports = {
     '@vue/eslint-config-prettier',
   ],
   rules: {
-    '@typescript-eslint/no-unused-vars': ['error', { args: 'after-used', destructuredArrayIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
+      },
+    ],
   },
   parserOptions: {
     parser: '@typescript-eslint/parser',
