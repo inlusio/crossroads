@@ -3,6 +3,6 @@
   "name": "Outro",
   "illustration": "/image/cms/scene/illustration/07_outro.png",
   "dialogue": {
-    "code": "title: Start\nposition: 200,120\n---\nConroy: Ob ich Mrs. Bloom bei der Aussenstation finden werde? #Thoughts\nConroy: Und was hat sie wohl herausgefunden, dass sie ganz alleine aufgebrochen ist? #Thoughts\nConroy: Wir werden sehen... #Thoughts\nConroy: Es ist wohl wirklich alles eine Frage der Perspekive. #Thoughts\n<<hotspot ENDE -x 800 -y 750 --click \"scene testing\">>\n==="
+    "code": "title: Start\nposition: 200,120\n---\n<<audio ambient -f arctic_wind -r 0>>\nConroy: Ob ich Mrs. Bloom bei der Aussenstation finden werde? #Thoughts\nConroy: Und was hat sie wohl herausgefunden, dass sie ganz alleine aufgebrochen ist? #Thoughts\nConroy: Wir werden sehen... #Thoughts\nConroy: Es ist wohl wirklich alles eine Frage der Perspekive. #Thoughts\n<<hotspot ENDE -x 800 -y 750 --click \"scene testing\">>\n==="
   }
 }
