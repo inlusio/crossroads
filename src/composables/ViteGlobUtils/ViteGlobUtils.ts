@@ -1,10 +1,19 @@
 import { basename } from 'node:path'
 
 export default function useViteGlobUtils() {
-  type ReturnType<TReturnContent> = Record<string, () => Promise<TReturnContent & { default: TReturnContent }>>
+  type ReturnModule<TReturnContent> = TReturnContent
+  type ReturnPromiseFn<TReturnContent> = () => Promise<TReturnContent>
 
-  const mapToIds = <TContent>(modules: Record<string, () => Promise<TContent>>, ext: string): ReturnType<TContent> => {
-    const converted = Object.entries(modules).map(([key, value]) => {
+  type ReturnData<TReturnContent, TEager extends boolean> = TEager extends true
+    ? ReturnModule<TReturnContent>
+    : ReturnPromiseFn<TReturnContent>
+  type ReturnType<TReturnContent, TEager extends boolean> = Record<string, ReturnData<TReturnContent, TEager>>
+
+  const mapToIds = <TContent, TEager extends boolean = false>(
+    modules: ReturnType<TContent, TEager>,
+    ext: string,
+  ): ReturnType<TContent, TEager> => {
+    const converted = Object.entries(modules).map(([key, value]): [string, ReturnData<TContent, TEager>] => {
       return [basename(key, ext), value]
     })
 
