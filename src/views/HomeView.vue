@@ -5,11 +5,20 @@
   import { RouteRecordId } from '@/models/RouteRecord/RouteRecord'
   import { GameSceneId } from '@/models/GameScene/GameScene'
   import useAudioController from '@/composables/AudioController/AudioController'
+  import useTaleJamApi from '@/composables/TaleJamApi/TaleJamApi'
+  import { onMounted } from 'vue'
 
   const router = useRouter()
   const { toRoute } = useRouteRecord()
   const { dialog, reset: resetDialog } = useDialog()
   const { reset: resetAudio } = useAudioController()
+
+  const { getStoryList } = useTaleJamApi()
+
+  onMounted(async () => {
+    const test = await getStoryList()
+    console.log(test)
+  })
 
   const onReset = () => {
     resetDialog()

@@ -5,14 +5,16 @@ import useViteGlobUtils from '@/composables/ViteGlobUtils/ViteGlobUtils'
 import type { RouteRecord } from 'vue-router'
 import { RouteRecordId, RouteRecordParam } from '@/models/RouteRecord/RouteRecord'
 
+const { mapToIds } = useViteGlobUtils()
+
+const modules = mapToIds<GameSceneContent>(
+  import.meta.glob<GameSceneContent>('../../../content/cms/scene/de/*.json'),
+  '.json',
+)
+
 export default function useGameScene() {
   const { toRoute, sceneParam } = useRouteRecord()
-  const { mapToIds } = useViteGlobUtils()
 
-  const modules = mapToIds<GameSceneContent>(
-    import.meta.glob<GameSceneContent>('../../../content/cms/scene/de/*.json'),
-    '.json',
-  )
   const content = ref<GameSceneContent | null>(null)
 
   const toGameScene = (targetId: GameSceneId): RouteRecord => {
