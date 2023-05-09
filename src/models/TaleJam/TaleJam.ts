@@ -19,6 +19,8 @@ export type TaleJamStory = {
   user_updated: string
 }
 
+export type TaleJamSceneOverview = Pick<TaleJamStory, 'id'>
+
 export type TaleJamScene = {
   id: number
 }

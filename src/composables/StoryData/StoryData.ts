@@ -1,29 +1,41 @@
 import type { Ref } from 'vue'
 import { watch } from 'vue'
-import { useTaleJamStoryStore } from '@/stores/TaleJamStory'
+import { useStoryDataStore } from '@/stores/StoryData'
 import { storeToRefs } from 'pinia'
 import useTaleJamApi from '@/composables/TaleJamApi/TaleJamApi'
-import type { TaleJamStory } from '@/models/TaleJam/TaleJam'
+import type { TaleJamSceneOverview, TaleJamStory } from '@/models/TaleJam/TaleJam'
 
 export default function useStoryData() {
-  const taleJamStoryStore = useTaleJamStoryStore()
-  const { taleJamStory, taleJamStoryId } = storeToRefs(taleJamStoryStore)
-  const { getStoryEntry } = useTaleJamApi()
+  const storyDataStore = useStoryDataStore()
+  const { sceneList, storyEntry, storyId } = storeToRefs(storyDataStore)
+  const { getStoryEntry, getSceneList } = useTaleJamApi()
 
   watch(
-    () => taleJamStoryId.value,
+    () => storyId.value,
     async () => {
-      if (typeof taleJamStoryId.value != 'number') {
+      if (typeof storyId.value != 'number') {
         return
       }
 
-      taleJamStory.value = (await getStoryEntry(taleJamStoryId.value)) as TaleJamStory
+      storyEntry.value = (await getStoryEntry(storyId.value)) as TaleJamStory
+    },
+    { immediate: true },
+  )
+
+  watch(
+    () => storyEntry.value,
+    async () => {
+      if (storyEntry.value == null) {
+        return
+      }
+
+      sceneList.value = (await getSceneList(storyEntry.value.tj_scenes)) as Array<TaleJamSceneOverview>
     },
     { immediate: true },
   )
 
   return {
-    taleJamStory: taleJamStory as Ref<TaleJamStory | null>,
-    taleJamStoryId: taleJamStoryId as Ref<number | null>,
+    storyEntry: storyEntry as Ref<TaleJamStory | null>,
+    storyId: storyId as Ref<number | null>,
   }
 }

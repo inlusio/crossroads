@@ -6,10 +6,10 @@
   import useStoryData from '@/composables/StoryData/StoryData'
 
   useBootstrapStore()
-  const { taleJamStoryId } = useStoryData()
+  const { storyId } = useStoryData()
   const { interactionOccured } = useAudioController()
 
-  taleJamStoryId.value = Number(import.meta.env.VITE_TALE_JAM_STORY_ID)
+  storyId.value = Number(import.meta.env.VITE_TALE_JAM_STORY_ID)
 
   const setInteractionOccured = () => {
     interactionOccured.value = true

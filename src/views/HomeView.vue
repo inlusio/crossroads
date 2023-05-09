@@ -15,12 +15,12 @@
   const { toRoute } = useRouteRecord()
   const { dialog, reset: resetDialog } = useDialog()
   const { reset: resetAudio } = useAudioController()
-  const { taleJamStory } = useStoryData()
+  const { storyEntry } = useStoryData()
 
   const isLoaded = ref<boolean>(false)
 
   watch(
-    () => taleJamStory.value,
+    () => storyEntry.value,
     () => {
       isLoaded.value = true
     },
@@ -48,14 +48,14 @@
           <div class="p-page-home__content u-typography-root">
             <div class="p-page-home__top" v-if="isLoaded">
               <h1 class="p-page-home__title">
-                {{ taleJamStory?.story_title }}
+                {{ storyEntry?.story_title }}
               </h1>
               <span class="p-page-home__subtitle">
-                {{ taleJamStory?.story_tagline }}
+                {{ storyEntry?.story_tagline }}
               </span>
             </div>
             <div class="p-page-home__details">
-              <!-- <pre style="font-size: 1rem" v-text="taleJamStory" /> -->
+              <!-- <pre style="font-size: 1rem" v-text="story" /> -->
               <div class="p-page-home__actions" v-if="isLoaded">
                 <template v-if="dialog.hasStarted">
                   <RouterLink

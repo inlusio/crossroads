@@ -4,6 +4,5 @@ export const enum StoreId {
   DialogMain = 'DialogMain',
   DialogHotspots = 'DialogHotspots',
   DialogVariables = 'DialogVariables',
-  TaleJamStory = 'TaleJamStory',
-  TaleJamScene = 'TaleJamScene',
+  StoryData = 'StoryData',
 }
