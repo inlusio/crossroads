@@ -5,20 +5,27 @@
   import { RouteRecordId } from '@/models/RouteRecord/RouteRecord'
   import { GameSceneId } from '@/models/GameScene/GameScene'
   import useAudioController from '@/composables/AudioController/AudioController'
-  import useTaleJamApi from '@/composables/TaleJamApi/TaleJamApi'
-  import { onMounted } from 'vue'
+  import { ref, watch } from 'vue'
+  import DotLoader from '@/components/DotLoader/DotLoader.vue'
+  import useStoryData from '@/composables/StoryData/StoryData'
+  import useTranslation from '@/composables/Translation/Translation'
 
   const router = useRouter()
+  const { t } = useTranslation()
   const { toRoute } = useRouteRecord()
   const { dialog, reset: resetDialog } = useDialog()
   const { reset: resetAudio } = useAudioController()
+  const { taleJamStory } = useStoryData()
 
-  const { getStoryList } = useTaleJamApi()
+  const isLoaded = ref<boolean>(false)
 
-  onMounted(async () => {
-    const test = await getStoryList()
-    console.log(test)
-  })
+  watch(
+    () => taleJamStory.value,
+    () => {
+      isLoaded.value = true
+    },
+    { immediate: true },
+  )
 
   const onReset = () => {
     resetDialog()
@@ -39,42 +46,48 @@
       <div class="s-container s-container--primary">
         <div class="s-container__container p-page-home__main">
           <div class="p-page-home__content u-typography-root">
-            <h1 class="p-page-home__title">«Crossroads»</h1>
-            <span class="p-page-home__subtitle"> Die Suche nach der verschwundenen Wissenschaftlerin Mrs. Bloom </span>
-
-            <!--
-            <div class="p-page-home__intro">
-              <p>
-                Vorbemerkung: Bei dem folgenden Spiel handelt es sich um einen ersten Prototypen, um die Story und erste
-                Spielmechaniken von «Crossroads» zu testen. Vielen Dank für eure Teilnahme an der Erprobung und viel
-                Glück bei der Suche nach Mrs. Bloom.
-              </p>
+            <div class="p-page-home__top" v-if="isLoaded">
+              <h1 class="p-page-home__title">
+                {{ taleJamStory?.story_title }}
+              </h1>
+              <span class="p-page-home__subtitle">
+                {{ taleJamStory?.story_tagline }}
+              </span>
             </div>
-            -->
-
-            <div class="p-page-home__actions">
-              <template v-if="dialog.hasStarted">
-                <RouterLink
-                  class="u-reset btn btn--medium btn--highlight"
-                  :to="{ name: 'scene', params: { scene: GameSceneId.Map } }"
-                >
-                  Story fortsetzen
-                </RouterLink>
-                <button @click="onReset" class="u-reset btn btn--medium btn--highlight">Story neustarten</button>
-              </template>
-              <template v-else>
-                <RouterLink
-                  class="u-reset btn btn--medium btn--highlight"
-                  :to="{ name: 'scene', params: { scene: GameSceneId.Intro } }"
-                >
-                  Story starten
-                </RouterLink>
-              </template>
-            </div>
-            <div class="p-page-home__actions" v-if="dialog.hasStarted">
-              <a href="https://ww2.unipark.de/uc/crossroads/" class="u-reset btn btn--medium btn--highlight">
-                Zur Umfrage
-              </a>
+            <div class="p-page-home__details">
+              <!-- <pre style="font-size: 1rem" v-text="taleJamStory" /> -->
+              <div class="p-page-home__actions" v-if="isLoaded">
+                <template v-if="dialog.hasStarted">
+                  <RouterLink
+                    class="u-reset btn btn--medium btn--highlight"
+                    :to="{ name: 'scene', params: { scene: GameSceneId.Map } }"
+                  >
+                    Story fortsetzen
+                  </RouterLink>
+                  <button @click="onReset" class="u-reset btn btn--medium btn--highlight">Story neustarten</button>
+                </template>
+                <template v-else>
+                  <RouterLink
+                    class="u-reset btn btn--medium btn--highlight"
+                    :to="{ name: 'scene', params: { scene: GameSceneId.Intro } }"
+                  >
+                    Story starten
+                  </RouterLink>
+                </template>
+              </div>
+              <div class="p-page-home__actions" v-if="isLoaded && dialog.hasStarted">
+                <a href="https://ww2.unipark.de/uc/crossroads/" class="u-reset btn btn--medium btn--highlight">
+                  Zur Umfrage
+                </a>
+              </div>
+              <div class="p-page-home__loading" v-if="!isLoaded">
+                <b>
+                  {{ t('general.loading') }}
+                </b>
+                <button @click="onReset" class="u-reset btn btn--medium btn--highlight" disabled>
+                  <DotLoader :facets="['dark']" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -119,13 +132,23 @@
     color: col.$monochrome-white;
   }
 
+  .p-page-home__details {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 32px;
+  }
+
   .p-page-home__actions {
     display: flex;
     flex-flow: row nowrap;
     gap: 12px;
+  }
 
-    ~ .p-page-home__actions {
-      margin-top: 32px;
-    }
+  .p-page-home__loading {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 12px;
   }
 </style>

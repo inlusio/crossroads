@@ -3,9 +3,13 @@
   import { useBootstrapStore } from '@/stores/Bootstrap'
   import useAudioController from '@/composables/AudioController/AudioController'
   import { onBeforeUnmount, onMounted } from 'vue'
+  import useStoryData from '@/composables/StoryData/StoryData'
 
   useBootstrapStore()
+  const { taleJamStoryId } = useStoryData()
   const { interactionOccured } = useAudioController()
+
+  taleJamStoryId.value = Number(import.meta.env.VITE_TALE_JAM_STORY_ID)
 
   const setInteractionOccured = () => {
     interactionOccured.value = true

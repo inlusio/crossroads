@@ -6,6 +6,7 @@ import useStorageKey from '@/composables/StorageKey/StorageKey'
 
 export const enum CustomSerializerId {
   Set = 'SetSerializer',
+  Object = 'ObjectSerializer',
 }
 
 export interface PersistentRefOptions {
@@ -19,6 +20,7 @@ export interface PersistentRefOptions {
 const getSerializer = <TValue>(customSerializerId: CustomSerializerId | undefined): Serializer<TValue> | undefined => {
   switch (customSerializerId) {
     case CustomSerializerId.Set:
+    case CustomSerializerId.Object:
       return {
         read: (raw) => {
           return parse(raw)

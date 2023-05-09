@@ -1,5 +1,6 @@
 export enum TaleJamApiEndpointId {
-  GetStoryList = 'GET_STORY_LIST',
+  GetStory = 'GET_STORY',
+  GetScene = 'GET_SCENE',
 }
 
 export interface TaleJamApiEndpointEntry {
@@ -12,8 +13,12 @@ export type TaleJamApiEndpointDict = Record<TaleJamApiEndpointId, TaleJamApiEndp
 
 export const taleJamApiEndpointList: TaleJamApiEndpointList = [
   {
-    id: TaleJamApiEndpointId.GetStoryList,
+    id: TaleJamApiEndpointId.GetStory,
     collectionId: 'tj_stories',
+  },
+  {
+    id: TaleJamApiEndpointId.GetScene,
+    collectionId: 'tj_scenes',
   },
 ]
 
