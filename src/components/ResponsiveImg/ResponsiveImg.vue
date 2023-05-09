@@ -37,13 +37,13 @@
     let srcset: string
     let sizes: string
     const src = `/${path.replace(/(^\/)|(\/$)/g, '')}`
-    if (import.meta.env.VITE_DISPLAY_DEV_IMAGES) {
+    if (import.meta.env.VITE_DISPLAY_DEV_IMAGES === 'True') {
       srcset = ''
     } else {
       srcset = props.resolutions.map((m) => `${src}?nf_resize=fit&w=${w * m} ${w * m}w`).join(', ')
     }
 
-    if (import.meta.env.VITE_DISPLAY_DEV_IMAGES) {
+    if (import.meta.env.VITE_DISPLAY_DEV_IMAGES === 'True') {
       const dppx = import.meta.env.SRR ? 1 : window.devicePixelRatio
       sizes = `${(w / maxResolution.value) * Math.min(maxResolution.value, dppx)}px`
     } else {

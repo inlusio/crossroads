@@ -9,7 +9,7 @@ interface TaleJamStory {
 
 async function getStoryList() {
   const { collectionId } = taleJamApiEndpointDict[TaleJamApiEndpointId.GetStoryList]
-  const result = await directus.items<string, TaleJamStory>(collectionId).readByQuery()
+  const result = await directus.items<string, TaleJamStory>(collectionId).readByQuery({})
 
   console.log(result)
 
