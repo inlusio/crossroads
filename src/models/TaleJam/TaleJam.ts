@@ -19,8 +19,21 @@ export type TaleJamStory = {
   user_updated: string
 }
 
-export type TaleJamSceneOverview = Pick<TaleJamStory, 'id'>
-
 export type TaleJamScene = {
   id: number
+  status: string
+  sort: null | unknown
+  user_created: string
+  date_created: string
+  user_updated: string
+  date_updated: string
+  script: string
+  scene_name: string
+  scene_id: string
+  scene_image: string
+  scene_storyparent: number
+  '360active': boolean
+  tj_audio: Array<number>
 }
+
+export type TaleJamSceneOverview = Pick<TaleJamScene, 'id' | 'scene_id'>

@@ -29,7 +29,7 @@ export default function useStoryData() {
         return
       }
 
-      sceneList.value = (await getSceneList(storyEntry.value.tj_scenes)) as Array<TaleJamSceneOverview>
+      sceneList.value = (await getSceneList(storyEntry.value.tj_scenes)).data as Array<TaleJamSceneOverview>
     },
     { immediate: true },
   )
@@ -37,5 +37,6 @@ export default function useStoryData() {
   return {
     storyEntry: storyEntry as Ref<TaleJamStory | null>,
     storyId: storyId as Ref<number | null>,
+    sceneList: sceneList as Ref<Array<TaleJamSceneOverview>>,
   }
 }

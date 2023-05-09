@@ -19,7 +19,7 @@ async function getSceneList(sceneIds: Array<number>): Promise<ManyItems<TaleJamS
   // const {} = taleJamApiEndpointDict[TaleJamApiEndpointId.GetScene]
   return await directus.items('tj_scenes').readByQuery({
     filter: { id: { _in: sceneIds } },
-    fields: ['id'],
+    fields: ['id', 'scene_id'],
   })
 }
 
