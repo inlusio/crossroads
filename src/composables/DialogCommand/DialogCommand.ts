@@ -2,7 +2,6 @@ import { parseArgs } from 'string-args-parser'
 import arg from 'arg'
 import { DialogBool, dialogCommandDict, DialogCommandId } from '@/models/DialogCommand/DialogCommand'
 import useGameScene from '@/composables/GameScene/GameScene'
-import type { GameSceneId } from '@/models/GameScene/GameScene'
 import type { DialogResultCommandData } from '@/models/DialogResult/DialogResult'
 import { useRouter } from 'vue-router'
 import type { ReactiveDialog } from '@/models/Dialog/Dialog'
@@ -89,7 +88,7 @@ export default function useDialogCommand(dialog: ReactiveDialog) {
         break
       }
       case DialogCommandId.GotoScene:
-        await router.push(toGameScene(args[0] as GameSceneId))
+        await router.push(toGameScene(args[0]))
         break
       case DialogCommandId.Jump:
         dialog.runner.jump(...args)

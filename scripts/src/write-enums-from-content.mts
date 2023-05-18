@@ -44,4 +44,6 @@ const writeEnumFromContent = (locale: string, collection: string, enumName: stri
   writeEnum(idList, enumName)
 }
 
-writeEnumFromContent('de', 'scene', 'GameSceneId')
+// NOTE: This is no longer necessary as the local netlify API endpoint has been replace by a directus instance.
+// writeEnumFromContent('de', 'scene', 'GameSceneId');
+console.log(`"${writeEnumFromContent.name}" was not called as it is no longer necessary.`)

@@ -55,7 +55,7 @@
           <div v-if="content" :key="sceneId" class="s-layout-game__viewer-frame">
             <ViewShell
               :key="sceneId"
-              :background="content.illustration"
+              :background="content.scene_image"
               :facets="[ViewShellFacet.Scene]"
               :height="900"
               :width="1600"

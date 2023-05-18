@@ -2,11 +2,11 @@ import useDialogRunner from '@/composables/DialogRunner/DialogRunner'
 import type { Dialog } from '@/models/Dialog/Dialog'
 import { reactive, watch } from 'vue'
 import useGameScene from '@/composables/GameScene/GameScene'
-import type { GameSceneContent } from '@/models/GameScene/GameScene'
 import { useDialogMainStore } from '@/stores/DialogMain'
 import { storeToRefs } from 'pinia'
 import { useDialogVariablesStore } from '@/stores/DialogVariables'
 import { useDialogHotspotsStore } from '@/stores/DialogHotspots'
+import type { TaleJamScene } from '@/models/TaleJam/TaleJam'
 
 export default function useDialog() {
   const dialogMainStore = useDialogMainStore()
@@ -34,12 +34,12 @@ export default function useDialog() {
 
   const { createRunner } = useDialogRunner(dialog)
 
-  const createDialog = ({ id, dialogue }: GameSceneContent) => {
+  const createDialog = ({ scene_id, script }: TaleJamScene) => {
     dialog.hotspots = []
-    dialog.sceneId = id
+    dialog.sceneId = scene_id
     dialog.isReady = true
     dialog.hasStarted = true
-    dialog.runner = createRunner(dialog, storage, dialogue.code)
+    dialog.runner = createRunner(dialog, storage, script)
 
     return dialog
   }
@@ -55,7 +55,7 @@ export default function useDialog() {
     () => {
       dialog.isReady = false
 
-      if (!content.value?.dialogue.code) {
+      if (!content.value?.script) {
         return
       }
 

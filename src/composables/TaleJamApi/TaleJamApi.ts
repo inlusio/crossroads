@@ -5,27 +5,38 @@ import type { TaleJamSceneOverview } from '@/models/TaleJam/TaleJam'
 
 const directus = new Directus<TaleJamCollections>(import.meta.env.VITE_TALE_JAM_API_BASE_URL)
 
-async function getStoryList() {
+async function getStoryList(tjIds: Array<number>) {
   // const {} = taleJamApiEndpointDict[TaleJamApiEndpointId.GetStory]
-  return await directus.items('tj_stories').readByQuery({})
+  return await directus.items('tj_stories').readByQuery({
+    filter: { id: { _in: tjIds } },
+    fields: ['id'],
+  })
 }
 
-async function getStoryEntry(storyId: number) {
+async function getStoryEntry(tjId: number) {
   // const {} = taleJamApiEndpointDict[TaleJamApiEndpointId.GetStory]
-  return await directus.items('tj_stories').readOne(storyId)
+  return await directus.items('tj_stories').readOne(tjId)
 }
 
-async function getSceneList(sceneIds: Array<number>): Promise<ManyItems<TaleJamSceneOverview>> {
+async function getSceneList(tjIds: Array<number>): Promise<ManyItems<TaleJamSceneOverview>> {
   // const {} = taleJamApiEndpointDict[TaleJamApiEndpointId.GetScene]
   return await directus.items('tj_scenes').readByQuery({
-    filter: { id: { _in: sceneIds } },
+    filter: { id: { _in: tjIds } },
     fields: ['id', 'scene_id'],
   })
 }
 
-async function getSceneEntry(storyId: number) {
+async function getSceneEntry(tjId: number) {
   // const {} = taleJamApiEndpointDict[TaleJamApiEndpointId.GetScene]
-  return await directus.items('tj_scenes').readOne(storyId)
+  return await directus.items('tj_scenes').readOne(tjId)
+}
+
+async function getSceneEntryBySceneId(sceneId: string) {
+  // const {} = taleJamApiEndpointDict[TaleJamApiEndpointId.GetScene]
+  return await directus.items('tj_scenes').readByQuery({
+    filter: { scene_id: { _eq: sceneId } },
+    limit: 1,
+  })
 }
 
 export default function useTaleJamApi() {
@@ -34,5 +45,6 @@ export default function useTaleJamApi() {
     getStoryEntry,
     getSceneList,
     getSceneEntry,
+    getSceneEntryBySceneId,
   }
 }

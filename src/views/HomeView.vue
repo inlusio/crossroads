@@ -3,11 +3,10 @@
   import { useRouter } from 'vue-router'
   import useRouteRecord from '@/composables/RouteRecord/RouteRecord'
   import { RouteRecordId } from '@/models/RouteRecord/RouteRecord'
-  import { GameSceneId } from '@/models/GameScene/GameScene'
   import useAudioController from '@/composables/AudioController/AudioController'
   import { ref, watch } from 'vue'
   import DotLoader from '@/components/DotLoader/DotLoader.vue'
-  import useStoryData from '@/composables/StoryData/StoryData'
+  import useGameStory from '@/composables/GameStory/GameStory'
   import useTranslation from '@/composables/Translation/Translation'
 
   const router = useRouter()
@@ -15,7 +14,7 @@
   const { toRoute } = useRouteRecord()
   const { dialog, reset: resetDialog } = useDialog()
   const { reset: resetAudio } = useAudioController()
-  const { storyEntry } = useStoryData()
+  const { storyEntry } = useGameStory()
 
   const isLoaded = ref<boolean>(false)
 
@@ -31,10 +30,11 @@
     resetDialog()
     resetAudio()
 
+    // TODO: Replace with sensible default
     router.push(
       toRoute({
         name: RouteRecordId.Scene,
-        params: { scene: GameSceneId.Intro },
+        params: { scene: '__todo__' },
       }),
     )
   }
@@ -60,7 +60,7 @@
                 <template v-if="dialog.hasStarted">
                   <RouterLink
                     class="u-reset btn btn--medium btn--highlight"
-                    :to="{ name: 'scene', params: { scene: GameSceneId.Map } }"
+                    :to="{ name: 'scene', params: { scene: '__todo_map__' } }"
                   >
                     Story fortsetzen
                   </RouterLink>
@@ -69,7 +69,7 @@
                 <template v-else>
                   <RouterLink
                     class="u-reset btn btn--medium btn--highlight"
-                    :to="{ name: 'scene', params: { scene: GameSceneId.Intro } }"
+                    :to="{ name: 'scene', params: { scene: '__todo_intro__' } }"
                   >
                     Story starten
                   </RouterLink>

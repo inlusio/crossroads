@@ -1,9 +1,9 @@
 <script lang="ts" setup>
   import useAudioController from '@/composables/AudioController/AudioController'
-  import useStoryData from '@/composables/StoryData/StoryData'
+  import useGameStory from '@/composables/GameStory/GameStory'
 
   const { allowAudio, interactionOccured, audioChannels } = useAudioController()
-  const { sceneList } = useStoryData()
+  const { sceneList } = useGameStory()
 </script>
 
 <template>

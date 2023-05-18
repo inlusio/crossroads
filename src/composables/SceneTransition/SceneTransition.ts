@@ -1,6 +1,5 @@
 import useRouteRecord from '@/composables/RouteRecord/RouteRecord'
 import { ref, watch } from 'vue'
-import { GameSceneId } from '@/models/GameScene/GameScene'
 
 export default function useSceneTransition() {
   const { sceneParam } = useRouteRecord()
@@ -11,7 +10,7 @@ export default function useSceneTransition() {
   watch(
     () => sceneParam.value,
     (value, oldValue) => {
-      if ([value, oldValue].every((v) => Object.values(GameSceneId).includes(v as GameSceneId))) {
+      if ([value, oldValue].every((v) => typeof v === 'string')) {
         transitionName.value = 'trs-scene-fade'
         transitionMode.value = 'out-in'
       } else {
