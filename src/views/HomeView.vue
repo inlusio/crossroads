@@ -9,6 +9,9 @@
   import useGameStory from '@/composables/GameStory/GameStory'
   import useTranslation from '@/composables/Translation/Translation'
 
+  const SCENE_INTRO = 'intro'
+  const SCENE_MAP = 'map'
+
   const router = useRouter()
   const { t } = useTranslation()
   const { toRoute } = useRouteRecord()
@@ -34,7 +37,7 @@
     router.push(
       toRoute({
         name: RouteRecordId.Scene,
-        params: { scene: '__todo__' },
+        params: { scene: SCENE_INTRO },
       }),
     )
   }
@@ -60,7 +63,7 @@
                 <template v-if="dialog.hasStarted">
                   <RouterLink
                     class="u-reset btn btn--medium btn--highlight"
-                    :to="{ name: 'scene', params: { scene: '__todo_map__' } }"
+                    :to="{ name: 'scene', params: { scene: SCENE_MAP } }"
                   >
                     Story fortsetzen
                   </RouterLink>
@@ -69,7 +72,7 @@
                 <template v-else>
                   <RouterLink
                     class="u-reset btn btn--medium btn--highlight"
-                    :to="{ name: 'scene', params: { scene: '__todo_intro__' } }"
+                    :to="{ name: 'scene', params: { scene: SCENE_INTRO } }"
                   >
                     Story starten
                   </RouterLink>
