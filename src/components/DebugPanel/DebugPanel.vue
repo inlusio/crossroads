@@ -8,8 +8,8 @@
 
 <template>
   <div class="debug-panel">
-    <pre class="debug-panel__item"><b>Allow audio:</b> {{ allowAudio }}</pre>
-    <pre class="debug-panel__item"><b>Interaction occured:</b> {{ interactionOccured }}</pre>
+    <pre class="debug-panel__item"><b>Allow audio:</b> {{ allowAudio ? 'true' : 'false' }}</pre>
+    <pre class="debug-panel__item"><b>Interaction occured:</b> {{ interactionOccured ? 'true' : 'false' }}</pre>
     <details>
       <summary><b>Audio channels:</b></summary>
       <pre v-for="channel in audioChannels" :key="channel.label" v-text="channel" />
