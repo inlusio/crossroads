@@ -1,6 +1,7 @@
 export enum TaleJamApiEndpointId {
   GetStory = 'GET_STORY',
   GetScene = 'GET_SCENE',
+  GetAudio = 'GET_AUDIO',
 }
 
 export interface TaleJamApiEndpointEntry {
@@ -19,6 +20,10 @@ export const taleJamApiEndpointList: TaleJamApiEndpointList = [
   {
     id: TaleJamApiEndpointId.GetScene,
     collectionId: 'tj_scenes',
+  },
+  {
+    id: TaleJamApiEndpointId.GetAudio,
+    collectionId: 'tj_audio',
   },
 ]
 

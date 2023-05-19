@@ -23,8 +23,10 @@
 
   watch(
     () => storyEntry.value,
-    () => {
-      isLoaded.value = true
+    (nVal) => {
+      if (nVal != null) {
+        isLoaded.value = true
+      }
     },
     { immediate: true },
   )
@@ -33,7 +35,6 @@
     resetDialog()
     resetAudio()
 
-    // TODO: Replace with sensible default
     router.push(
       toRoute({
         name: RouteRecordId.Scene,

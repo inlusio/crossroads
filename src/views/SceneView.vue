@@ -17,7 +17,9 @@
   import useAudioController from '@/composables/AudioController/AudioController'
   import type { AudioChannelEntry } from '@/models/AudioChannel/AudioChannel'
   import AudioChannel from '@/components/AudioChannel/AudioChannel.vue'
+  import useTaleJamApi from '@/composables/TaleJamApi/TaleJamApi'
 
+  const { getFile } = useTaleJamApi()
   const { hotspots } = useDialogHotspot()
 
   const { t } = useTranslation()
@@ -55,7 +57,7 @@
           <div v-if="content" :key="sceneId" class="s-layout-game__viewer-frame">
             <ViewShell
               :key="sceneId"
-              :background="content.scene_image"
+              :background="getFile(content.scene_image)"
               :facets="[ViewShellFacet.Scene]"
               :height="900"
               :width="1600"

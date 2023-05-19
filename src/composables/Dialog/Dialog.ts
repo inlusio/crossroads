@@ -34,9 +34,9 @@ export default function useDialog() {
 
   const { createRunner } = useDialogRunner(dialog)
 
-  const createDialog = ({ scene_id, script }: TaleJamScene) => {
+  const createDialog = ({ scene_slug, script }: TaleJamScene) => {
     dialog.hotspots = []
-    dialog.sceneId = scene_id
+    dialog.sceneId = scene_slug
     dialog.isReady = true
     dialog.hasStarted = true
     dialog.runner = createRunner(dialog, storage, script)

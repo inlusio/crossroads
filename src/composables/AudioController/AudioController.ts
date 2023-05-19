@@ -12,6 +12,8 @@ export default function useAudioController() {
 
   const toggleAllowAudio = useToggle(allowAudio)
 
+  // TODO: watch audioOverviewList
+
   load().then(() => {
     audioContentLoaded.value = true
   })

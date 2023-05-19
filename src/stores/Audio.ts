@@ -3,17 +3,14 @@ import { StoreId } from '@/models/Store'
 import usePersistentStorage from '@/composables/PersistentStorage/PersistentStorage'
 import type { AudioChannelDict } from '@/models/AudioChannel/AudioChannel'
 import { ref } from 'vue'
-import type { AudioFileContent, AudioFileContentDict, AudioFileContentList } from '@/models/AudioFile/AudioFile'
-import useViteGlobUtils from '@/composables/ViteGlobUtils/ViteGlobUtils'
+import type { AudioFileContentDict } from '@/models/AudioFile/AudioFile'
+import useGameStory from '@/composables/GameStory/GameStory'
+import useTaleJamApi from '@/composables/TaleJamApi/TaleJamApi'
 
 export const useAudioStore = defineStore(StoreId.Audio, () => {
-  const { mapToIds } = useViteGlobUtils()
   const { persistentRef } = usePersistentStorage(StoreId.Audio)
-
-  const modules = mapToIds<AudioFileContent>(
-    import.meta.glob<AudioFileContent>('../../content/cms/audio/*.json'),
-    '.json',
-  )
+  const { audioOverviewList } = useGameStory()
+  const { getFile } = useTaleJamApi()
 
   const allowAudio = persistentRef<boolean>('allowAudio', true)
   const audioChannels = ref<AudioChannelDict>({})
@@ -21,13 +18,8 @@ export const useAudioStore = defineStore(StoreId.Audio, () => {
   const interactionOccured = ref<boolean | undefined>(undefined)
 
   const load = async () => {
-    const promises = Object.values(modules).map(async (value) => {
-      return value()
-    })
-    const files = (await Promise.all(promises)) as AudioFileContentList
-
-    audioFiles.value = files.reduce((acc, value) => {
-      acc[value.id] = value
+    audioFiles.value = audioOverviewList.value.reduce((acc, { audio_slug, audio_file }) => {
+      acc[audio_slug] = { id: audio_slug, file: getFile(audio_file) }
       return acc
     }, {} as AudioFileContentDict)
   }

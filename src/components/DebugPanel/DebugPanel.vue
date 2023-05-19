@@ -3,19 +3,25 @@
   import useGameStory from '@/composables/GameStory/GameStory'
 
   const { allowAudio, interactionOccured, audioChannels } = useAudioController()
-  const { sceneList } = useGameStory()
+  const { audioOverviewList, sceneOverviewList } = useGameStory()
 </script>
 
 <template>
   <div class="debug-panel">
-    <pre><b>Allow audio:</b> {{ allowAudio }}</pre>
-    <pre><b>Interaction occured:</b> {{ interactionOccured }}</pre>
-    <br />
-    <pre><b>Scene list:</b></pre>
-    <pre>{{ sceneList }}</pre>
-    <br />
-    <pre><b>Channels:</b></pre>
-    <pre v-for="channel in audioChannels" :key="channel.label" v-text="channel" />
+    <pre class="debug-panel__item"><b>Allow audio:</b> {{ allowAudio }}</pre>
+    <pre class="debug-panel__item"><b>Interaction occured:</b> {{ interactionOccured }}</pre>
+    <details>
+      <summary><b>Audio channels:</b></summary>
+      <pre v-for="channel in audioChannels" :key="channel.label" v-text="channel" />
+    </details>
+    <details>
+      <summary><b>Scene List:</b></summary>
+      <pre>{{ sceneOverviewList }}</pre>
+    </details>
+    <details>
+      <summary><b>Audio List:</b></summary>
+      <pre>{{ audioOverviewList }}</pre>
+    </details>
   </div>
 </template>
 
@@ -33,5 +39,39 @@
     font-size: 1.2rem;
     color: col.$monochrome-white;
     background-color: col.$monochrome-black;
+  }
+
+  details {
+    padding: 0.5em 0.5em 0;
+  }
+
+  .debug-panel__item {
+    padding: 0.5em;
+  }
+
+  details,
+  .debug-panel__item {
+    border: 1px solid #aaa;
+    border-radius: 4px;
+
+    ~ details,
+    ~ .debug-panel__item {
+      margin-top: 4px;
+    }
+  }
+
+  summary {
+    font-weight: bold;
+    margin: -0.5em -0.5em 0;
+    padding: 0.5em;
+  }
+
+  details[open] {
+    padding: 0.5em;
+  }
+
+  details[open] summary {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 0.5em;
   }
 </style>

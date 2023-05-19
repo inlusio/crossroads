@@ -14,6 +14,7 @@
   }
 
   interface Props {
+    api: 'netlify' | 'sharp'
     src: string
     width: number
     loading?: LoadingStrategy
@@ -22,6 +23,7 @@
 
   const emit = defineEmits<Emits>()
   const props = withDefaults(defineProps<Props>(), {
+    api: 'sharp',
     loading: 'auto',
     resolutions: () => [1, 2],
   })
@@ -34,13 +36,23 @@
   })
 
   const getResponsiveImage = (path: string, w: number): RootAttrs => {
+    const isAbsolute = /(http(s?)):\/\//i.test(path)
+
     let srcset: string
     let sizes: string
-    const src = `/${path.replace(/(^\/)|(\/$)/g, '')}`
+    const src = `${isAbsolute ? '' : '/'}${path.replace(/(^\/)|(\/$)/g, '')}`
     if (import.meta.env.VITE_DISPLAY_DEV_IMAGES === 'True') {
       srcset = ''
     } else {
-      srcset = props.resolutions.map((m) => `${src}?nf_resize=fit&w=${w * m} ${w * m}w`).join(', ')
+      srcset = props.resolutions
+        .map((m) => {
+          if (props.api === 'netlify') {
+            return `${src}?nf_resize=fit&w=${w * m} ${w * m}w`
+          } else {
+            return `${src}?fit=cover&width=${w * m}&quality=80 ${w * m}w`
+          }
+        })
+        .join(', ')
     }
 
     if (import.meta.env.VITE_DISPLAY_DEV_IMAGES === 'True') {
