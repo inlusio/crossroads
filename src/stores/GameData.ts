@@ -1,24 +1,29 @@
 import { defineStore } from 'pinia'
 import { StoreId } from '@/models/Store'
-import type { TaleJamAudioOverview, TaleJamScene, TaleJamSceneOverview, TaleJamStory } from '@/models/TaleJam/TaleJam'
+import type {
+  TaleDeckAudioOverview,
+  TaleDeckScene,
+  TaleDeckSceneOverview,
+  TaleDeckStory,
+} from '@/models/TaleDeck/TaleDeck'
 import { ref, watch } from 'vue'
-import useTaleJamApi from '@/composables/TaleJamApi/TaleJamApi'
+import useTaleDeckApi from '@/composables/TaleDeckApi/TaleDeckApi'
 import useRouteRecord from '@/composables/RouteRecord/RouteRecord'
 
 export const useGameDataStore = defineStore(StoreId.GameData, () => {
   const { sceneParam } = useRouteRecord()
-  const { getStoryEntry, getSceneList, getAudioList, getSceneEntryBySlug } = useTaleJamApi()
-  // const { persistentRef } = usePersistentStorage(StoreId.TaleJam)
+  const { getStoryEntry, getSceneList, getAudioList, getSceneEntryBySlug } = useTaleDeckApi()
+  // const { persistentRef } = usePersistentStorage(StoreId.TaleDeck)
 
   const storyId = ref<number | null>(null)
-  const storyEntry = ref<TaleJamStory | null>(null)
-  const sceneOverviewList = ref<Array<TaleJamSceneOverview>>([])
-  const sceneEntry = ref<TaleJamScene | null>(null)
-  const audioOverviewList = ref<Array<TaleJamAudioOverview>>([])
+  const storyEntry = ref<TaleDeckStory | null>(null)
+  const sceneOverviewList = ref<Array<TaleDeckSceneOverview>>([])
+  const sceneEntry = ref<TaleDeckScene | null>(null)
+  const audioOverviewList = ref<Array<TaleDeckAudioOverview>>([])
 
   // With persistent ref
-  // const storyEntry = persistentRef<TaleJamStory | null>('storyEntry', null, { customSerializerId: CustomSerializerId.Object })
-  // const sceneOverviewList = persistentRef<Array<TaleJamSceneOverview>>('sceneOverviewList', [], { customSerializerId: CustomSerializerId.Object })
+  // const storyEntry = persistentRef<TaleDeckStory | null>('storyEntry', null, { customSerializerId: CustomSerializerId.Object })
+  // const sceneOverviewList = persistentRef<Array<TaleDeckSceneOverview>>('sceneOverviewList', [], { customSerializerId: CustomSerializerId.Object })
 
   watch(
     () => storyId.value,
@@ -28,7 +33,7 @@ export const useGameDataStore = defineStore(StoreId.GameData, () => {
       }
 
       const result = await getStoryEntry(storyId.value)
-      storyEntry.value = result as TaleJamStory
+      storyEntry.value = result as TaleDeckStory
     },
     { immediate: true },
   )
@@ -43,8 +48,8 @@ export const useGameDataStore = defineStore(StoreId.GameData, () => {
       const { tj_scenes, tj_audio } = storyEntry.value
       const [r1, r2] = await Promise.all([getSceneList(tj_scenes), getAudioList(tj_audio)])
 
-      sceneOverviewList.value = r1.data as Array<TaleJamSceneOverview>
-      audioOverviewList.value = r2.data as Array<TaleJamAudioOverview>
+      sceneOverviewList.value = r1.data as Array<TaleDeckSceneOverview>
+      audioOverviewList.value = r2.data as Array<TaleDeckAudioOverview>
     },
     { immediate: true },
   )
@@ -56,7 +61,7 @@ export const useGameDataStore = defineStore(StoreId.GameData, () => {
         const { data } = await getSceneEntryBySlug(sceneParam.value)
 
         if (Array.isArray(data) && data.length > 0) {
-          sceneEntry.value = data[0] as TaleJamScene
+          sceneEntry.value = data[0] as TaleDeckScene
         } else {
           sceneEntry.value = null
         }

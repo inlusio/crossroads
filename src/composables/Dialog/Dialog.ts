@@ -6,7 +6,7 @@ import { useDialogMainStore } from '@/stores/DialogMain'
 import { storeToRefs } from 'pinia'
 import { useDialogVariablesStore } from '@/stores/DialogVariables'
 import { useDialogHotspotsStore } from '@/stores/DialogHotspots'
-import type { TaleJamScene } from '@/models/TaleJam/TaleJam'
+import type { TaleDeckScene } from '@/models/TaleDeck/TaleDeck'
 
 export default function useDialog() {
   const dialogMainStore = useDialogMainStore()
@@ -34,7 +34,7 @@ export default function useDialog() {
 
   const { createRunner } = useDialogRunner(dialog)
 
-  const createDialog = ({ scene_slug, script }: TaleJamScene) => {
+  const createDialog = ({ scene_slug, script }: TaleDeckScene) => {
     dialog.hotspots = []
     dialog.sceneId = scene_slug
     dialog.isReady = true

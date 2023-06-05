@@ -4,10 +4,12 @@
   import useRouteRecord from '@/composables/RouteRecord/RouteRecord'
   import { RouteRecordId } from '@/models/RouteRecord/RouteRecord'
   import useAudioController from '@/composables/AudioController/AudioController'
-  import { ref, watch } from 'vue'
+  import { computed, ref, watch } from 'vue'
+  import type { CSSProperties } from 'vue'
   import DotLoader from '@/components/DotLoader/DotLoader.vue'
   import useGameStory from '@/composables/GameStory/GameStory'
   import useTranslation from '@/composables/Translation/Translation'
+  import useTaleDeckApi from '@/composables/TaleDeckApi/TaleDeckApi'
 
   const SCENE_INTRO = 'intro'
   const SCENE_MAP = 'map'
@@ -18,8 +20,18 @@
   const { dialog, reset: resetDialog } = useDialog()
   const { reset: resetAudio } = useAudioController()
   const { storyEntry } = useGameStory()
+  const { getFile } = useTaleDeckApi()
 
   const isLoaded = ref<boolean>(false)
+
+  const rootStyles = computed<CSSProperties>(() => {
+    const img = storyEntry.value?.story_image
+    const url = img == null ? '' : getFile(img)
+
+    return {
+      'background-image': `url(${url})`,
+    }
+  })
 
   watch(
     () => storyEntry.value,
@@ -45,7 +57,7 @@
 </script>
 
 <template>
-  <main class="p-page-home s-layout-content">
+  <main class="p-page-home s-layout-content" :style="rootStyles">
     <div class="s-layout-content__main">
       <div class="s-container s-container--primary">
         <div class="s-container__container p-page-home__main">
@@ -105,7 +117,6 @@
   @use '@/assets/scss/base/typography/typography' as type;
 
   .p-page-home {
-    background-image: url('/image/static/bg.jpg');
     background-size: cover;
     background-position: center center;
     background-color: col.$monochrome-magnet;

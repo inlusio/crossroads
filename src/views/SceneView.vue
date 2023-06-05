@@ -17,9 +17,9 @@
   import useAudioController from '@/composables/AudioController/AudioController'
   import type { AudioChannelEntry } from '@/models/AudioChannel/AudioChannel'
   import AudioChannel from '@/components/AudioChannel/AudioChannel.vue'
-  import useTaleJamApi from '@/composables/TaleJamApi/TaleJamApi'
+  import useTaleDeckApi from '@/composables/TaleDeckApi/TaleDeckApi'
 
-  const { getFile } = useTaleJamApi()
+  const { getFile } = useTaleDeckApi()
   const { hotspots } = useDialogHotspot()
 
   const { t } = useTranslation()

@@ -5,12 +5,12 @@ import type { AudioChannelDict } from '@/models/AudioChannel/AudioChannel'
 import { ref } from 'vue'
 import type { AudioFileContentDict } from '@/models/AudioFile/AudioFile'
 import useGameStory from '@/composables/GameStory/GameStory'
-import useTaleJamApi from '@/composables/TaleJamApi/TaleJamApi'
+import useTaleDeckApi from '@/composables/TaleDeckApi/TaleDeckApi'
 
 export const useAudioStore = defineStore(StoreId.Audio, () => {
   const { persistentRef } = usePersistentStorage(StoreId.Audio)
   const { audioOverviewList } = useGameStory()
-  const { getFile } = useTaleJamApi()
+  const { getFile } = useTaleDeckApi()
 
   const allowAudio = persistentRef<boolean>('allowAudio', true)
   const audioChannels = ref<AudioChannelDict>({})

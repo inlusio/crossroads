@@ -3,7 +3,7 @@ import type { RouteRecord } from 'vue-router'
 import { RouteRecordId, RouteRecordParam } from '@/models/RouteRecord/RouteRecord'
 import { useGameDataStore } from '@/stores/GameData'
 import { storeToRefs } from 'pinia'
-import type { TaleJamScene } from '@/models/TaleJam/TaleJam'
+import type { TaleDeckScene } from '@/models/TaleDeck/TaleDeck'
 import type { Ref } from 'vue'
 
 export default function useGameScene() {
@@ -21,7 +21,7 @@ export default function useGameScene() {
   }
 
   return {
-    content: sceneEntry as Ref<TaleJamScene | null>,
+    content: sceneEntry as Ref<TaleDeckScene | null>,
     sceneId: sceneParam,
     toGameScene,
   }

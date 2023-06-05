@@ -1,4 +1,4 @@
-export interface TaleJamCollection {
+export interface TaleDeckCollection {
   id: number
   status: string
   sort: null | unknown
@@ -8,13 +8,13 @@ export interface TaleJamCollection {
   date_updated: string
 }
 
-export type TaleJamCollections = {
-  tj_stories: TaleJamStory
-  tj_scenes: TaleJamScene
+export type TaleDeckCollections = {
+  tj_stories: TaleDeckStory
+  tj_scenes: TaleDeckScene
 }
 
-export interface TaleJamStory extends TaleJamCollection {
-  story_image: null | unknown
+export interface TaleDeckStory extends TaleDeckCollection {
+  story_image: null | string
   story_name: string
   story_tagline: string
   story_slug: string
@@ -23,7 +23,7 @@ export interface TaleJamStory extends TaleJamCollection {
   tj_audio: Array<number>
 }
 
-export interface TaleJamScene extends TaleJamCollection {
+export interface TaleDeckScene extends TaleDeckCollection {
   scene_image: string
   scene_name: string
   scene_slug: string
@@ -33,11 +33,11 @@ export interface TaleJamScene extends TaleJamCollection {
   '360active': boolean
 }
 
-export interface TaleJamAudio extends TaleJamCollection {
+export interface TaleDeckAudio extends TaleDeckCollection {
   audio_file: string
   audio_slug: string
   tj_story_id: number
 }
 
-export type TaleJamSceneOverview = Pick<TaleJamScene, 'id' | 'scene_slug'>
-export type TaleJamAudioOverview = Pick<TaleJamAudio, 'id' | 'audio_file' | 'audio_slug'>
+export type TaleDeckSceneOverview = Pick<TaleDeckScene, 'id' | 'scene_slug'>
+export type TaleDeckAudioOverview = Pick<TaleDeckAudio, 'id' | 'audio_file' | 'audio_slug'>
