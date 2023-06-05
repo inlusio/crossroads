@@ -9,7 +9,7 @@
   const { storyId } = useGameStory()
   const { interactionOccured } = useAudioController()
 
-  storyId.value = Number(import.meta.env.VITE_TALE_JAM_STORY_ID)
+  storyId.value = Number(import.meta.env.VITE_TALE_DECK_STORY_ID)
 
   const setInteractionOccured = () => {
     interactionOccured.value = true

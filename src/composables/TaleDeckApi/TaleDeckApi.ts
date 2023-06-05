@@ -3,10 +3,10 @@ import type { ManyItems } from '@directus/sdk'
 import type { TaleDeckAudioOverview, TaleDeckCollections } from '@/models/TaleDeck/TaleDeck'
 import type { TaleDeckSceneOverview } from '@/models/TaleDeck/TaleDeck'
 
-const directus = new Directus<TaleDeckCollections>(import.meta.env.VITE_TALE_JAM_API_BASE_URL)
+const directus = new Directus<TaleDeckCollections>(import.meta.env.VITE_TALE_DECK_API_BASE_URL)
 
 function getFile(tjFileId: string): string {
-  return `${import.meta.env.VITE_TALE_JAM_API_BASE_URL}assets/${tjFileId}`
+  return `${import.meta.env.VITE_TALE_DECK_API_BASE_URL}assets/${tjFileId}`
 }
 
 async function getStoryList(tjIds: Array<number>) {
